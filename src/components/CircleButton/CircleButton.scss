@@ -1,0 +1,15 @@
+.Circle-button {
+  &.white-button {
+    background-color: var(--active-button-color);
+    i {
+      color: var(--backgroung-element-color);
+    }
+  }
+
+  &.black-button {
+    background-color: transparent;
+    i {
+      color: var(--player-buttons-color);
+    }
+  }
+}

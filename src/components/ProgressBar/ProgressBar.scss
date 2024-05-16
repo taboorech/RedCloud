@@ -1,0 +1,22 @@
+.Progress-bar {
+  background-color: var(--level-line-color);
+  height: .25rem;
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  .progress {
+    background-color: var(--level-fill-color);
+    height: 100%;
+    width: 20%;
+  }
+
+  .circle {
+    background-color: var(--level-line-indicator-color);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 6px;
+    height: 6px;
+    transform: translateY(-25%);
+  }
+}

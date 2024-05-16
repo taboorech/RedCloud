@@ -1,0 +1,11 @@
+.Progress-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  > div:not(.line) {
+    align-items: center;
+  }
+  > .line {
+    width: 100%;
+  }
+}
