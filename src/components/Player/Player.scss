@@ -1,55 +1,12 @@
 .Player {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
   background-color: var(--backgroung-element-color);
   border-radius: 10px;
+  height: 6.375rem;
   .controls-block {
     width: 65%;
-  //   .time {
-      
-  //   }
   }
 }
-
-
-// .Player{
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-between;
-//   background-color: var(--backgroung-element-color);
-//   height: 6.375rem;
-//   width: 64.3125rem;  
-//   border-radius: 0.625rem;
-//   .volumeBlock{
-//     width: 11.9375rem;
-//     height: 100%;
-//     background-color: aqua;
-//   }
-//   .playBlock{
-   
-//     background-color: aquamarine;
-//     width: 40.375rem;
-//     height: 100%;
-//     .elementBar{
-//       display: flex;
-//       flex-direction: row;
-//       justify-content: center;
-//       .button{
-//         background-color: var(--player-buttons-color);
-//         width: 1.5rem;
-//         height: 1.5rem;
-//         margin-right: 1rem;
-//         margin-top: 2.4375rem;
-//       }
-//       .playButton{
-//         background-color: white;
-//         width: 2.5rem;
-//         height: 2.5rem;
-//         margin-right: 1rem;
-//       }
-
-//     }
-
-//   }
-
-// }

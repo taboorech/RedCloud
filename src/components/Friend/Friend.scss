@@ -1,0 +1,15 @@
+.Friend {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  > .image-block {
+    margin-right: .5156rem;
+  }
+
+  > p {
+    font-size: 18px;
+    color: var(--default-text-color);
+  }
+}

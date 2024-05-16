@@ -12,4 +12,14 @@
       color: var(--player-buttons-color);
     }
   }
+
+  &.white-text {
+    i {
+      color: var(--active-button-color);
+    }
+  }
+
+  &.without-shadow {
+    box-shadow: none;
+  }
 }

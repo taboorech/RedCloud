@@ -13,7 +13,7 @@ function Player(){
 
       </div>
       <div className="controls-block">
-        <PlayerControls/>
+        <PlayerControls audioPlayer = {audioPlayer} />
         <ProgressBlock audioPlayer = {audioPlayer} />
       </div>
       <PlayerAdditionalButtons/>

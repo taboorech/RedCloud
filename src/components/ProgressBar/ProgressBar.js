@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import "./ProgressBar.scss";
 
 function ProgressBar({ audioPlayer }) {
@@ -7,7 +7,7 @@ function ProgressBar({ audioPlayer }) {
   const progressRef = useRef();
   const circleRef = useRef();
 
-  const progressBarClickHandler = (event) => {
+  const progressBarClickHandler = (event) => { 
     const calculateFunction = (event) => {
       let currentProgress = ((event.clientX - progressBarRef.current.offsetLeft) * 100) / progressBarRef.current.offsetWidth;
       if(currentProgress > 100) {
@@ -16,24 +16,21 @@ function ProgressBar({ audioPlayer }) {
       if(currentProgress < 0) {
         currentProgress = 0;
       }
-
+  
       progressRef.current.style.width = currentProgress + "%";
       circleRef.current.style.left = currentProgress + "%";
       
       return currentProgress;
     }
-    
     let currentProgress = calculateFunction(event);
     const initialPaused = audioPlayer.paused;
     if(!initialPaused) {
       audioPlayer.pause();
     }
     audioPlayer.currentTime = (currentProgress / 100) * audioPlayer.duration;
-    // this.currentTime.innerHTML = this.calculateTime(this.audioSettings.currentTime);
     window.onmousemove = (event) => {
       currentProgress = calculateFunction(event);
       audioPlayer.currentTime = (currentProgress / 100) * audioPlayer.duration;
-      // this.currentTime.innerHTML = this.calculateTime(this.audioSettings.currentTime);
     }
     window.onmouseup = () => {
       window.onmousemove = null;
@@ -42,6 +39,14 @@ function ProgressBar({ audioPlayer }) {
       }
     }
   }
+
+  useEffect(() => {
+    audioPlayer.addEventListener("timeupdate", (event) => {
+      let currentProgress = audioPlayer.currentTime * 100 / audioPlayer.duration;
+      progressRef.current.style.width = currentProgress + "%";
+      circleRef.current.style.left = currentProgress + "%";
+    });
+  }, [audioPlayer]);
 
   return (
     <div className="Progress-bar" ref={progressBarRef} onMouseDown={(event) => progressBarClickHandler(event)}>
