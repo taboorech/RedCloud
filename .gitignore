@@ -21,6 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+<<<<<<< HEAD
+=======
 
 .DS_*
 *.log
@@ -36,3 +38,4 @@ bower_components
 psd
 thumb
 sketch
+>>>>>>> c144e4a0726c47fc2c3581c9648cc044fcba099a
