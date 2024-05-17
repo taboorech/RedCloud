@@ -1,0 +1,12 @@
+.Player {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--backgroung-element-color);
+  border-radius: 10px;
+  height: 6.375rem;
+  .controls-block {
+    width: 65%;
+  }
+}

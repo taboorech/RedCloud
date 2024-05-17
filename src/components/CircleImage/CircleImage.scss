@@ -1,0 +1,15 @@
+.Image {
+  width: 77%;
+  height: 57%;
+  text-align: center;
+  &.small-image {
+    width: 30%;
+    height: 3.625rem;
+  }
+  img {
+    width: 100%;
+    height: 100% !important;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+}
