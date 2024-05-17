@@ -1,13 +1,18 @@
+import { useState } from "react";
 import CircleButton from "../CircleButton/CircleButton";
 import "./PlayerControls.scss";
 
 function PlayerControls({ audioPlayer }) {
 
+  const [isPaused, setIsPauser] = useState(audioPlayer.paused);
+
   const playButtonClickHandler = () => {
-    if(audioPlayer.paused) {
+    if(isPaused) {
+      setIsPauser(!isPaused);
       return audioPlayer.play();
     }
 
+    setIsPauser(!isPaused);
     return audioPlayer.pause();
   }
 
@@ -20,7 +25,7 @@ function PlayerControls({ audioPlayer }) {
         <i className="material-icons">skip_previous</i>
       </CircleButton>
       <CircleButton className={"btn-small waves-effect waves-dark white-button"} onClick = {playButtonClickHandler}>
-        <i className="material-icons">play_arrow</i>
+        <i className="material-icons">{isPaused ? "play_arrow" : "pause"}</i>
       </CircleButton>
       <CircleButton className={"btn-small waves-effect waves-light black-button"}>
         <i className="material-icons">skip_next</i>
