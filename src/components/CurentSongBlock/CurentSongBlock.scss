@@ -1,0 +1,23 @@
+.CurentSongBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(321deg, rgba(0,0,0,1) 31%, rgba(255,10,10,1) 83%);
+  width: 30.625rem;
+  height: 65.0625rem;
+  border-radius: 0.625rem;
+
+  > .switch-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5625rem;
+  }
+
+  > .song-image {
+    margin-top: .875rem;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+  }
+}
