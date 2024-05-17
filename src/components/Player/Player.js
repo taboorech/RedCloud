@@ -1,7 +1,8 @@
 import "./Player.scss"
-import ProgressBlock from "../ProgressBlock/ProgressBlock";
-import PlayerControls from "../PlayerControls/PlayerControls";
-import PlayerAdditionalButtons from "../PlayerAdditionalButtons/PlayerAdditionalButtons";
+import ProgressBlock from "./ProgressBlock/ProgressBlock";
+import PlayerControls from "./PlayerControls/PlayerControls";
+import PlayerAdditionalButtons from "./PlayerAdditionalButtons/PlayerAdditionalButtons";
+import VolumeBlock from "./VolumeBlock/VolumeBlock";
 
 function Player(){
 
@@ -9,8 +10,8 @@ function Player(){
 
   return(
     <div className="Player">
-      <div className="volume-block">
-
+      <div className="volume-controls-block">
+        <VolumeBlock audioPlayer={audioPlayer} />
       </div>
       <div className="controls-block">
         <PlayerControls audioPlayer = {audioPlayer} />

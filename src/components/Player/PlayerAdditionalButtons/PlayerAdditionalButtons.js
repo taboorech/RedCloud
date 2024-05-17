@@ -1,5 +1,5 @@
 import "./PlayerAdditionalButtons.scss";
-import CircleButton from "../CircleButton/CircleButton";
+import CircleButton from "../../CircleButton/CircleButton";
 
 function PlayerAdditionalButtons() {
   return (

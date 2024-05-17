@@ -1,6 +1,6 @@
 import "./CircleButton.scss";
 
-function CircleButton({ className = "", children, onClick }) {
+function CircleButton({ className = "", title, children, onClick }) {
 
   const classNames = [
     "Circle-button",
@@ -9,7 +9,7 @@ function CircleButton({ className = "", children, onClick }) {
   ];
 
   return (
-    <button className={classNames.join(" ")} onClick={onClick} >
+    <button className={classNames.join(" ")} onClick={onClick} title={title}>
       {children}
     </button>
   )

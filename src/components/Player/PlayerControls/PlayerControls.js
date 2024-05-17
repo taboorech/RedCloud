@@ -1,20 +1,25 @@
-import { useState } from "react";
-import CircleButton from "../CircleButton/CircleButton";
+import { useEffect, useState } from "react";
+import CircleButton from "../../CircleButton/CircleButton";
 import "./PlayerControls.scss";
 
 function PlayerControls({ audioPlayer }) {
 
-  const [isPaused, setIsPauser] = useState(audioPlayer.paused);
+  const [isPaused, setIsPaused] = useState(audioPlayer.paused);
 
   const playButtonClickHandler = () => {
     if(isPaused) {
-      setIsPauser(!isPaused);
+      setIsPaused(!isPaused);
       return audioPlayer.play();
     }
 
-    setIsPauser(!isPaused);
+    setIsPaused(!isPaused);
     return audioPlayer.pause();
   }
+
+  useEffect(() => {
+    audioPlayer.addEventListener("play", () => setIsPaused(false));
+    audioPlayer.addEventListener("pause", () => setIsPaused(true));
+  }, [audioPlayer]);
 
   return (
     <div className="Player-controls">
