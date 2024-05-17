@@ -9,7 +9,7 @@ function CircleImage({ src, alt, className = "" }) {
 
   return (
     <div className={classNames.join(" ")}>
-      <img src={src} alt={alt}/>
+      <img src={src} alt={alt} className="responsive-img"/>
     </div>
   )
 }
