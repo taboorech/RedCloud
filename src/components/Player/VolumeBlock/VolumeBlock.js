@@ -1,12 +1,15 @@
+import "./VolumeBlock.scss";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import CircleButton from "../../CircleButton/CircleButton";
-import { useEffect, useRef, useState } from "react";
-import "./VolumeBlock.scss";
+import { useEffect, useRef } from "react";
 import { classNamesHandler } from "../../../utils/classNamesHandler";
+import { useDispatch, useSelector } from "react-redux";
+import { setIsMuted } from "../../../redux";
 
 function VolumeBlock({ audioPlayer, className }) {
 
-  const [isMuted, setIsMuted] = useState(localStorage.getItem("audioPlayerMuted") === "true" || audioPlayer.muted);
+  const isMuted = useSelector((state) => state.audioPlayer.isMuted);
+  const dispatch = useDispatch();
 
   const progressBarRef = useRef();
   const progressRef = useRef();
@@ -19,7 +22,7 @@ function VolumeBlock({ audioPlayer, className }) {
 
   const onProgressChange = (currentProgress) => {
     if(isMuted) {
-      setIsMuted(false);
+      dispatch(setIsMuted(false));
       audioPlayer.muted = false;
     }
     audioPlayer.volume = currentProgress / 100;
@@ -27,7 +30,7 @@ function VolumeBlock({ audioPlayer, className }) {
   };
 
   const muteButtonClickHandler = () => {
-    setIsMuted(!isMuted);
+    dispatch(setIsMuted(!isMuted));
     if(!isMuted) {
       changeProgress(0);
     } else {

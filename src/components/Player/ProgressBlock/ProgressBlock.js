@@ -1,11 +1,15 @@
 import "./ProgressBlock.scss";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import Time from "../../Time/Time";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentTime } from "../../../redux";
 
 function ProgressBlock({ audioPlayer }) {
 
-  const [currentTime, setCurrentTime] = useState(audioPlayer.currentTime);
+  const currentTime = useSelector((state) => state.audioPlayer.currentTime);
+  const dispatch = useDispatch();
+
   const progressBarRef = useRef();
   const progressRef = useRef();
   const circleRef = useRef();
@@ -27,12 +31,12 @@ function ProgressBlock({ audioPlayer }) {
 
   useEffect(() => {
     audioPlayer.addEventListener("timeupdate", (event) => {
-      setCurrentTime(audioPlayer.currentTime);
+      dispatch(setCurrentTime(audioPlayer.currentTime));
       let currentProgress = audioPlayer.currentTime * 100 / audioPlayer.duration;
       progressRef.current.style.width = currentProgress + "%";
       circleRef.current.style.left = currentProgress + "%";
     });
-  }, [audioPlayer]);
+  }, [audioPlayer, dispatch]);
 
   return (
     <div className="Progress-block">
