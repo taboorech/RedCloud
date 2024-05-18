@@ -37,4 +37,4 @@ psd
 thumb
 sketch
 
-*.json
+db.json

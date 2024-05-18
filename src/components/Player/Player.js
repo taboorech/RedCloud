@@ -10,14 +10,12 @@ function Player(){
 
   return(
     <div className="Player">
-      <div className="volume-controls-block">
-        <VolumeBlock audioPlayer={audioPlayer} />
-      </div>
+      <VolumeBlock audioPlayer={audioPlayer} className={"volume-controls-block"}/>
       <div className="controls-block">
         <PlayerControls audioPlayer = {audioPlayer} />
         <ProgressBlock audioPlayer = {audioPlayer} />
       </div>
-      <PlayerAdditionalButtons/>
+      <PlayerAdditionalButtons className={"additional-buttons"}/>
     </div>
   )
 }
