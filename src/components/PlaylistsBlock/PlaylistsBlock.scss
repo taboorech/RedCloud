@@ -29,12 +29,13 @@
         &.with-transition {
           transition: all ease-in-out .3s;
         }
-        > div {
+        > .playlist {
           height: 100%;
           width: 4.4375rem;
           display: flex;
           align-items: center;
           margin-right: 1.375rem;
+          cursor: pointer;
           img {
             height: 80%;
             width: 100%;

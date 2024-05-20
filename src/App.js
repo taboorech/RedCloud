@@ -1,3 +1,4 @@
+import CurentSongBlock from "./components/CurentSongBlock/CurentSongBlock";
 import Navigation from "./components/Navigation/Navigation";
 import Player from "./components/Player/Player";
 import PlaylistsBlock from "./components/PlaylistsBlock/PlaylistsBlock";
@@ -9,6 +10,7 @@ function App() {
       <PlaylistsBlock/>
       <Profile/>
       <Navigation/>
+      <CurentSongBlock/>
       <Player/>
     </div>
   );

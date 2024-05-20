@@ -22,4 +22,11 @@
   &.without-shadow {
     box-shadow: none;
   }
+
+  &.white-border {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid var(--active-button-color);
+  }
 }

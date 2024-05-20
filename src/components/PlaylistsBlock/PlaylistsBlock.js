@@ -35,7 +35,7 @@ function PlaylistsBlock() {
 
   const fillPlaylists = () => (
     playlists.map((playlist, index) => (
-      <div key={`playlist-${index}`}>
+      <div key={`playlist-${index}`} className="playlist">
         <img src={playlist} alt="playlistImage" className="responsive-img"/>
       </div>
     ))

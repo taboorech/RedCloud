@@ -1,3 +1,4 @@
+import { classNamesHandler } from "../../utils/classNamesHandler";
 import "./Time.scss";
 
 function Time({ className, time }) {
@@ -17,7 +18,7 @@ function Time({ className, time }) {
   }
 
   return (
-    <div className="Time">
+    <div className={classNamesHandler("Time", className)}>
       {calculateTime(time)}
     </div>
   )

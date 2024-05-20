@@ -1,0 +1,33 @@
+.Songs-block {
+  height: 100%;
+
+  > .songs-block-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+    color: var(--default-text-color);
+
+    > p {
+      font-size: 20px;
+    }
+
+  }
+
+  > .songs {
+    margin: 0 auto;
+    width: 80%;
+    overflow-y: scroll;
+    height: 42%;
+    > .line {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .song {
+        margin-bottom: 1.875rem;
+      }
+    }
+  }
+}

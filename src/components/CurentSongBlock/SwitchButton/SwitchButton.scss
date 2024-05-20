@@ -1,0 +1,33 @@
+.Swtich-button {
+  display: inline-block;
+  position: relative;
+  width: 11.25rem; 
+  height: 2.5rem;
+  background-color: #202020; 
+  border-radius: 15px;
+  cursor: pointer;
+  
+  > .switch {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    color: black;
+    font-weight: bold;
+    transition: color 0.3s;
+    transition: transform ease-in-out .5s;
+    margin-left: .25rem;
+    margin-right: .25rem;
+
+    > .label {
+      background-color: white; 
+      padding: 0.2188rem 0.9375rem; 
+      border-radius: 0.9375rem;
+    }
+  }
+
+  &.toggled {
+    > .switch {
+      transform: translateX(50%);
+    }
+  }
+}

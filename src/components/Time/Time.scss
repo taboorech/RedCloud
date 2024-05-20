@@ -1,4 +1,9 @@
 .Time {
   color: var(--default-text-color);
   font-weight: bolder;
+  &.secondary {
+    color: var(--secondary-text-color);
+    // font-weight: normal;
+    font-size: 12px;
+  }
 }

@@ -11,3 +11,9 @@
   --default-text-color: #FFF;
   --active-button-color: #FFF;
 }
+
+.without-scrollbar {
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}

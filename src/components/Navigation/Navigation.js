@@ -25,7 +25,7 @@ function Navigation() {
       </div>
       <div className="friends-online-block">
         <h5>Friends online</h5>
-        <div className="friends">
+        <div className="friends without-scrollbar">
           {fillFriends()}
         </div>
       </div>

@@ -1,0 +1,53 @@
+.CurentSongBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(321deg, rgba(0,0,0,1) 31%, rgba(255,10,10,1) 83%);
+  width: 20%;
+  height: 65.0625rem;
+  border-radius: 0.625rem;
+
+  > .switch-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5625rem;
+  }
+
+  > .song-image {
+    margin-top: .875rem;
+    display: flex;
+    justify-content: center;
+    width: 85%;
+  }
+
+  > .close-button-block {
+    display: flex;
+    align-self: flex-start;
+    margin-top: .8125rem;
+    margin-left: .875rem;
+  }
+
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
+
+  @media screen and (min-width: 900px) {
+    width: 20%;
+  }
+
+  @media screen and (min-width: 1000px) {
+    width: 17%;
+  }
+
+  @media screen and (min-width: 1200px) {
+    width: 20%;
+  }
+
+  // @media screen and (min-width: 1300px) {
+  //   width: 13%;
+  // }
+
+  // @media screen and (min-width: 1500px) {
+  //   width: 10%;
+  // }
+}
