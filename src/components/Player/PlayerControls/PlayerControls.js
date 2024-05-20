@@ -1,20 +1,28 @@
-import { useState } from "react";
-import CircleButton from "../CircleButton/CircleButton";
 import "./PlayerControls.scss";
+import { useEffect } from "react";
+import CircleButton from "../../CircleButton/CircleButton";
+import { useDispatch, useSelector } from "react-redux";
+import { setIsPaused } from "../../../redux";
 
 function PlayerControls({ audioPlayer }) {
 
-  const [isPaused, setIsPauser] = useState(audioPlayer.paused);
+  const isPaused = useSelector((state) => state.audioPlayer.isPaused);
+  const dispatch = useDispatch();
 
   const playButtonClickHandler = () => {
     if(isPaused) {
-      setIsPauser(!isPaused);
+      dispatch(setIsPaused(!isPaused));
       return audioPlayer.play();
     }
 
-    setIsPauser(!isPaused);
+    dispatch(setIsPaused(!isPaused));
     return audioPlayer.pause();
   }
+
+  useEffect(() => {
+    audioPlayer.addEventListener("play", () => dispatch(setIsPaused(false)));
+    audioPlayer.addEventListener("pause", () => dispatch(setIsPaused(true)));
+  }, [audioPlayer, dispatch]);
 
   return (
     <div className="Player-controls">

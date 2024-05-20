@@ -1,0 +1,23 @@
+.Volume-block {
+  width: 15%;
+  display: flex;
+  flex-direction: row;
+  .mute-button {
+    margin-right: .5rem;
+
+    @media screen and (min-width: 700px) {
+      margin-right: 0;
+    }
+  }
+
+  .line {
+    height: 100%;
+    width: 70%;
+    margin-top: .4375rem;
+  }
+
+  @media screen and (max-width: 1200px) {
+    width: 40%;
+  }
+
+}

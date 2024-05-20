@@ -1,15 +1,11 @@
+import { classNamesHandler } from "../../utils/classNamesHandler";
 import "./CircleImage.scss";
 
 function CircleImage({ src, alt, className = "" }) {
 
-  const classNames = [
-    "Image",
-    ...className.split(" ")
-  ]
-
   return (
-    <div className={classNames.join(" ")}>
-      <img src={src} alt={alt}/>
+    <div className={classNamesHandler("Image", className)}>
+      <img src={src} alt={alt} className="responsive-img"/>
     </div>
   )
 }

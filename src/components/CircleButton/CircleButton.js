@@ -1,15 +1,10 @@
+import { classNamesHandler } from "../../utils/classNamesHandler";
 import "./CircleButton.scss";
 
-function CircleButton({ className = "", children, onClick }) {
-
-  const classNames = [
-    "Circle-button",
-    "btn-floating",
-    ...className.split(" ")
-  ];
+function CircleButton({ className = "", title, children, onClick }) {
 
   return (
-    <button className={classNames.join(" ")} onClick={onClick} >
+    <button className={classNamesHandler("Circle-button btn-floating", className)} onClick={onClick} title={title}>
       {children}
     </button>
   )

@@ -1,9 +1,10 @@
 import "./PlayerAdditionalButtons.scss";
-import CircleButton from "../CircleButton/CircleButton";
+import CircleButton from "../../CircleButton/CircleButton";
+import { classNamesHandler } from "../../../utils/classNamesHandler";
 
-function PlayerAdditionalButtons() {
+function PlayerAdditionalButtons({ className }) {
   return (
-    <div className="Player-additional-buttons">
+    <div className={classNamesHandler("Player-additional-buttons", className)}>
       <CircleButton className={"btn-small waves-effect waves-light black-button"}>
         <i className="material-icons">block</i>
       </CircleButton>

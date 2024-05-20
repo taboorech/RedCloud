@@ -6,6 +6,59 @@
   width: 90%;
   > .image-block {
     margin-right: .5156rem;
+    width: 50%;
+
+    @media screen and (max-width: 900px) {
+      display: none;
+    }
+  
+    @media screen and (min-width: 900px) {
+      width: 30%;
+    }
+  
+    @media screen and (min-width: 1000px) {
+      width: 40%;
+    }
+  
+    @media screen and (min-width: 1100px) {
+      width: 35%;
+    }
+
+    @media screen and (min-width: 1150px) {
+      width: 30%;
+    }
+
+    @media screen and (min-width: 1200px) {
+      width: 35%;
+    }
+  
+    @media screen and (min-width: 1300px) {
+      width: 40%;
+    }
+  
+    @media screen and (min-width: 1350px) {
+      width: 35%;
+    }
+
+    @media screen and (min-width: 1450px) {
+      width: 35%;
+    }
+
+    @media screen and (min-width: 1500px) {
+      width: 60%;
+    }
+
+    @media screen and (min-width: 1600px) {
+      width: 50%;
+    }
+
+    @media screen and (min-width: 1650px) {
+      width: 40%;
+    }
+
+    @media screen and (min-width: 1750px) {
+      width: 30%;
+    }
   }
 
   > p {
