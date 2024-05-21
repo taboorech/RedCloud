@@ -1,0 +1,35 @@
+.Part {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  transition: opacity 200ms;
+  > .image {
+    margin-top: .875rem;
+    display: flex;
+    justify-content: center;
+    width: 85%;
+  }
+
+  >.close-button-block {
+    display: flex;
+    align-self: flex-start;
+    margin-top: .8125rem;
+    margin-left: .875rem;
+    margin-bottom: .875rem;
+  }
+
+  &.enter-done {
+    opacity: 0;
+  }
+  &.enter-active {
+    opacity: 0.5;
+  }
+  &.exit-done {
+    opacity: 1;
+  }
+  &.exit-active {
+    opacity: 0.5;
+  }
+
+}

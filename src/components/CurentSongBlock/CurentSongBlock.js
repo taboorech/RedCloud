@@ -1,24 +1,43 @@
 import "./CurentSongBlock.scss"
 import SwitchButton from "./SwitchButton/SwitchButton"
-import Image from "../Image/Image";
-import CircleButton from "../CircleButton/CircleButton";
+import Part from "./Part/Part";
 import SongsBlock from "./SongsBlock/SongsBlock";
+import { useState, useRef } from "react";
+import { CSSTransition } from "react-transition-group";
+import AuthorBiographyBlock from "./AuthorBiographyBlock/AuthorBiographyBlock";
 
 function CurentSongBlock(){
+
+  const [isQueue, setIsQueue] = useState(true);
+  const currentBlockRef = useRef();
+  const partRef = useRef();
+
+  const closeButtonClickHandler = (event) => {
+    event.currentTarget.classList.toggle("rotateHorizontal");
+    currentBlockRef.current.classList.toggle("close");
+  };
+
   return(
-    <div className="CurentSongBlock">
+    <div className="CurentSongBlock" ref={currentBlockRef}>
       <div className="switch-button-container">
-        <SwitchButton/>
+        <SwitchButton setIsQueue={setIsQueue}/>
       </div>
-      <div className="song-image">
-        <Image src={"./images/Song.png"} alt="Song" />
-      </div>
-      <div className="close-button-block">
-        <CircleButton className="white-button waves-effect waves-dark">
-          <i className="material-icons">chevron_right</i>
-        </CircleButton>
-      </div>
-      <SongsBlock/>
+      <CSSTransition nodeRef={partRef} in={isQueue} timeout={{
+        enter: 500,
+        exit: 300
+      }} mountOnEnter unmountOnExit>
+        <Part imageSrc={"./images/Song.png"} imageAlt={"Playlist-image"} innerRef={partRef} className="queue-part" closeButtonClickHandler={closeButtonClickHandler}>
+          <SongsBlock/>
+        </Part>
+      </CSSTransition>
+      <CSSTransition nodeRef={partRef} in={!isQueue} timeout={{
+        enter: 500,
+        exit: 300
+      }} mountOnEnter unmountOnExit>
+        <Part imageSrc={"./images/avatar.jpg"} imageAlt={"Author-photo"} innerRef={partRef} className="author-part" closeButtonClickHandler={closeButtonClickHandler}>
+          <AuthorBiographyBlock/>
+        </Part>
+      </CSSTransition>
     </div>
   )
 }

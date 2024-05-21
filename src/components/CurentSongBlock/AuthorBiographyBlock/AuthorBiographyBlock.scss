@@ -1,0 +1,26 @@
+.Author-biography-block {
+  width: 85%;
+  height: 40%;
+  color: var(--default-text-color);
+  text-align: justify;
+  overflow-y: scroll;
+  background-color: var(--backgroung-element-color);
+  padding: 0 1rem;
+  border-radius: 10px;
+
+  @media screen and (max-width: 1000px) {
+    height: 80%;
+  }
+
+  @media screen and (max-width: 1200px) {
+    height: 52%;
+  }
+
+  @media screen and (max-width: 1300px) {
+    height: 55%;
+  }
+
+  @media screen and (max-width: 1580px) {
+    height: 50%;
+  }
+}
