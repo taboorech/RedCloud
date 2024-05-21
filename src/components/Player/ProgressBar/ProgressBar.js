@@ -34,6 +34,7 @@ function ProgressBar(
     window.onmouseup = () => {
       window.onmousemove = null;
       onProgressMouseUp && onProgressMouseUp(currentProgress);
+      window.onmouseup = null;
     }
   };
 

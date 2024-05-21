@@ -1,9 +1,10 @@
+import { classNamesHandler } from '../../utils/classNamesHandler';
 import CircleImage from '../CircleImage/CircleImage';
 import './Profile.scss';
 
-function Profile() {
+function Profile({ className }) {
   return(
-    <div className='Profile'>
+    <div className={classNamesHandler('Profile', className)}>
       <CircleImage src={"./images/avatar.jpg"} alt='profileImage' className={"image-block"}/>
       <h4>Name</h4>
     </div>

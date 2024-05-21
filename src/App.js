@@ -1,17 +1,12 @@
-import CurentSongBlock from "./components/CurentSongBlock/CurentSongBlock";
-import Navigation from "./components/Navigation/Navigation";
-import Player from "./components/Player/Player";
-import PlaylistsBlock from "./components/PlaylistsBlock/PlaylistsBlock";
-import Profile from "./components/Profile/Profile";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home/Home";
 
 function App() {
   return (
     <div className="App">
-      <PlaylistsBlock/>
-      <Profile/>
-      <Navigation/>
-      <CurentSongBlock/>
-      <Player/>
+      <Routes>
+        <Route path="/" element={<Home/>}></Route>
+      </Routes>
     </div>
   );
 }

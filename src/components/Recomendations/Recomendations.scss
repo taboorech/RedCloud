@@ -1,0 +1,29 @@
+.Recomendations {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  > h4 {
+    color: var(--default-text-color);
+    margin-top: 0rem;
+    text-align: start;
+    margin-bottom: 1rem;
+  }
+
+  > .recomendations-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    overflow-x: scroll;
+
+    > .recomendations-list {
+      display: flex;
+      flex-direction: row;
+      width: auto;
+
+      > .recommend-item {
+        margin-right: 3rem;
+      }
+    }
+  }
+}

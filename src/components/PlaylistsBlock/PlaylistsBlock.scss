@@ -4,7 +4,8 @@
   justify-content: space-between;
   background-color: var(--backgroung-element-color);
   height: 4.6875rem;
-  width: 50%;
+  // width: 50%;
+  width: 100%;
   border-radius: 0.625rem;
   position: relative;
   > div {
@@ -55,16 +56,16 @@
     transform: translateX(50%);
   }
 
-  @media screen and (min-width: 500px) {
-    width: 100%;
-  }
+  // @media screen and (min-width: 500px) {
+  //   width: 100%;
+  // }
 
-  @media screen and (min-width: 700px) {
-    width: 70%;
-  }
+  // @media screen and (min-width: 700px) {
+  //   width: 70%;
+  // }
 
-  @media screen and (min-width: 1200px) {
-    width: 50%;
-  }
+  // @media screen and (min-width: 1200px) {
+  //   width: 50%;
+  // }
 
 }

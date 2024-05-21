@@ -1,8 +1,9 @@
+import { classNamesHandler } from "../../utils/classNamesHandler";
 import CircleButton from "../CircleButton/CircleButton";
 import Friend from "../Friend/Friend";
 import "./Navigation.scss";
 
-function Navigation() {
+function Navigation({ className }) {
 
   const friendsArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -11,7 +12,7 @@ function Navigation() {
   )
 
   return (
-    <div className="Navigation">
+    <div className={classNamesHandler("Navigation", className)}>
       <div className="upper-buttons-block buttons-block">
         <CircleButton className="btn-large waves-effect waves-light black-button white-text without-shadow" title={"Add person to room"}>
           <i className="material-icons">person_add</i>

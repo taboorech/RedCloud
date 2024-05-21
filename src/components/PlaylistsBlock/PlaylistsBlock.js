@@ -2,8 +2,9 @@ import { useEffect, useRef } from "react";
 import "./PlaylistsBlock.scss";
 import M from "materialize-css";
 import CircleButton from "../CircleButton/CircleButton";
+import { classNamesHandler } from "../../utils/classNamesHandler";
 
-function PlaylistsBlock() {
+function PlaylistsBlock({ className }) {
 
   const playlistsElementRef = useRef();
   const contentElementRef = useRef();
@@ -80,7 +81,7 @@ function PlaylistsBlock() {
   }, []);
 
   return (
-    <div className="PlaylistsBlock">
+    <div className={classNamesHandler("PlaylistsBlock", className)}>
       <div className="prev-button scroll-button" onClick={prevButtonClickHandler}>
         <img src={"./images/Previous playlist.svg"} alt="prevPlaylistsButton"/>
       </div>

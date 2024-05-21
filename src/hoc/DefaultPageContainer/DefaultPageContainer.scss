@@ -1,0 +1,96 @@
+.Default-page-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  padding: 1.5625rem 1.25rem;
+
+  > .left-side-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    > .profile {
+      height: 30%;
+    }
+
+    > .navigation {
+      height: 65%;
+    }
+
+    @media screen and (max-width: 900px) {
+      display: none;
+    }
+  
+    @media screen and (min-width: 900px) {
+      width: 20%;
+    }
+  
+    @media screen and (min-width: 1000px) {
+      width: 17%;
+    }
+  
+    @media screen and (min-width: 1200px) {
+      width: 15%;
+    }
+  
+    @media screen and (min-width: 1300px) {
+      width: 13%;
+    }
+  
+    @media screen and (min-width: 1500px) {
+      width: 10%;
+    }
+  }
+
+  > .center-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 60%;
+
+    > .middle {
+      width: 100%;
+      padding: .875rem 1rem;
+      overflow-y: scroll;
+    }
+
+    > :not(.middle) {
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    @media screen and (min-width: 500px) {
+      width: 100%;
+    }
+  
+    @media screen and (min-width: 700px) {
+      width: 60%;
+    }
+
+    @media screen and (min-width: 900px) {
+      width: 50%;
+    }
+  
+    @media screen and (min-width: 1200px) {
+      width: 65%;
+    }
+
+    
+  }
+
+  > .right-side-block {
+    height: 100%;
+
+    @media screen and (max-width: 900px) {
+      display: none;
+    }
+  
+    @media screen and (min-width: 900px) {
+      width: 25%;
+    }
+  
+    @media screen and (min-width: 1500px) {
+      width: 20%;
+    }
+  }
+}

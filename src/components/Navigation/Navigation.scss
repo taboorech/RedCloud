@@ -3,14 +3,14 @@
   flex-direction: column;
   justify-content: space-between;
   background: linear-gradient(321deg, rgba(0,0,0,1) 31%, rgba(255,10,10,1) 83%);
-  width: 10%;
-  height: 46.75rem;
+  height: 100%;
   border-radius: 10px;
+  width: 100%;
 
   > .friends-online-block {
     display: flex;
     flex-direction: column;
-    height: 80%;
+    height: 75%;
     > h5 {
       color: var(--default-text-color);
       text-align: center;
@@ -41,29 +41,5 @@
     &.bottom-buttons-block {
       margin-bottom: $upper-bottom-buttons-block-margin;
     }
-  }
-
-  @media screen and (max-width: 900px) {
-    display: none;
-  }
-
-  @media screen and (min-width: 900px) {
-    width: 20%;
-  }
-
-  @media screen and (min-width: 1000px) {
-    width: 17%;
-  }
-
-  @media screen and (min-width: 1200px) {
-    width: 15%;
-  }
-
-  @media screen and (min-width: 1300px) {
-    width: 13%;
-  }
-
-  @media screen and (min-width: 1500px) {
-    width: 10%;
   }
 }

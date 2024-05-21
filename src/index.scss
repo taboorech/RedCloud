@@ -12,6 +12,11 @@
   --active-button-color: #FFF;
 }
 
+body {
+  background-color: var(--backgroung-page-color);
+  overflow: hidden;
+}
+
 .without-scrollbar {
   &::-webkit-scrollbar {
     width: 0;
