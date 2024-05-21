@@ -1,0 +1,36 @@
+.Recomendations {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: black;
+  width: 68.8125rem;
+  height: 15.875rem;
+
+  > .recomendations-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    > h4 {
+      color: var(--default-text-color);
+      margin-top: 0rem;
+      text-align: start;
+      margin-bottom: 1rem;
+    }
+
+    > .recomendations-list {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+      overflow-x: auto; 
+      overflow-y: hidden; 
+      gap: 1rem; 
+      white-space: nowrap; 
+
+      &::-webkit-scrollbar {
+        width: 0;
+      }
+    }
+  }
+}
