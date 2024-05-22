@@ -1,0 +1,11 @@
+.Content-with-header {
+  > .header {
+    > * {
+      margin-top: 0;
+    }
+  }
+
+  > .content {
+    margin-left: 1.25rem;
+  }
+}

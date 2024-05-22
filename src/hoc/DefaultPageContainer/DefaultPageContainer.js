@@ -10,7 +10,7 @@ function DefaultPageContainer({ children }) {
   return (
     <div className="Default-page-container">
       <div className="left-side-block">
-        <Profile className={"profile"}/>
+        <Profile className={"profile"} username={"Kainless"} />
         <Navigation className={"navigation"}/>
       </div>
       <div className="center-block">

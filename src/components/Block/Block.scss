@@ -1,0 +1,8 @@
+.Block {
+  height: 100%;
+  overflow-y: scroll;
+  border-radius: var(--default-border-radius);
+  background-color: var(--backgroung-element-color);
+  color: var(--default-text-color);
+  padding: 2rem;
+}

@@ -52,11 +52,16 @@
       width: 100%;
       padding: .875rem 1rem;
       overflow-y: scroll;
+      height: 100%;
     }
 
     > :not(.middle) {
       width: 90%;
       margin: 0 auto;
+    }
+
+    > .player {
+      width: 70%;
     }
 
     @media screen and (min-width: 500px) {

@@ -3,7 +3,7 @@ import "./Baner.scss";
 
 function Baner({ className }){
   return(
-    <div className={classNamesHandler("Baner", className)}>
+    <div className={classNamesHandler("Baner", className)} style={{backgroundImage: `url(${"./images/Baner.svg"})`}}>
       <div className="row">
         <div className="column">
           <div className="head-line"><h2>Justin Bieber - Changes</h2></div>
