@@ -7,7 +7,7 @@ function About() {
   return (
     <div className="About">
       <DefaultPageContainer>
-        <Block>
+        <Block className={"scroll"}>
           <ContentWithHeader header={<h2>About us</h2>}>
             <p>
               Welcome to our project! We are two students who are passionate about technology and strive to create innovative solutions to improve people's lives in the online world.

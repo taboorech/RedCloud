@@ -1,8 +1,9 @@
+import { classNamesHandler } from "../../utils/classNamesHandler";
 import "./Block.scss";
 
-function Block({ children }) {
+function Block({ className, children }) {
   return (
-    <div className="Block without-scrollbar">
+    <div className={classNamesHandler("Block without-scrollbar", className)}>
       { children }
     </div>
   )

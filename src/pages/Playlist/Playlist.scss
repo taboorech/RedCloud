@@ -1,0 +1,14 @@
+.Playlist {
+  .playlist-controls-block {
+    height: 30%;
+    margin-bottom: 1.875rem;
+  }
+
+  .playlist-songs {
+    height: 65%;
+
+    > *:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+  }
+}

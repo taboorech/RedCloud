@@ -3,7 +3,10 @@ import "./Time.scss";
 
 function Time({ className, time }) {
 
-  const calculateTime = () => {
+  const calculateTime = (time) => {
+    if(!time) {
+      return "0:00";
+    }
     let minutes = Math.floor(time / 60);
     const hours = Math.floor(minutes / 60);
     let seconds = (time % 60).toFixed();
