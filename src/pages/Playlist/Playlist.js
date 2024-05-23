@@ -3,6 +3,7 @@ import Block from "../../components/Block/Block";
 import DefaultPageContainer from "../../hoc/DefaultPageContainer/DefaultPageContainer";
 import SongExpansive from "../../components/SongExpansive/SongExpansive";
 import PlaylistBaner from "../../components/PlaylistBaner/PlaylistBaner";
+import SongsList from "../../components/SongsList/SongsList";
 
 function Playlist() {
   return (
@@ -11,7 +12,7 @@ function Playlist() {
         <Block className={"playlist-controls-block"}>
           <PlaylistBaner isOwner={true} />
         </Block>
-        <Block className={"playlist-songs scroll"}>
+        <SongsList className={"playlist-songs scroll"}>
           <SongExpansive title={"Song title"} album={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
           <SongExpansive title={"Song title"} album={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
           <SongExpansive title={"Song title"} album={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
@@ -21,7 +22,7 @@ function Playlist() {
           <SongExpansive title={"Song title"} album={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
           <SongExpansive title={"Song title"} album={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
           <SongExpansive title={"Song title"} album={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
-        </Block>
+        </SongsList>
       </DefaultPageContainer>
     </div>
   )

@@ -1,0 +1,33 @@
+.SearchFilters {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  > .filter {
+    margin-right: 1.5625rem;
+  }
+  @media screen and (min-width: 500px) {
+    flex-wrap: wrap;
+    .filter {
+      width: 20%;
+      font-size: 13px;
+      margin-bottom: 1.25rem;
+    }
+  }
+
+  @media screen and (min-width: 700px) {
+    .filter {
+      font-size: 15px;
+    }
+  }
+
+  @media screen and (min-width: 900px) {
+    .filter {
+      font-size: 16px;
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    flex-wrap: nowrap;
+  }
+}

@@ -1,0 +1,15 @@
+.Person {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--default-text-color);
+  // width: 11.4375rem;
+  height: 100%;
+  .image-block {
+    height: 90%;
+  }
+
+  p {
+    height: 10%;
+  }
+}

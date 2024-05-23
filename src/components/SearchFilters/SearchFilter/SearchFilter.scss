@@ -1,0 +1,17 @@
+.SearchFilter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--default-text-color);
+  background-color: var(--backgroung-element-color);
+  border-radius: 50px;
+  width: 100%;
+  padding: .3rem 0;
+  cursor: pointer;
+  transition: background-color ease-in-out .5s;
+
+  &.active {
+    background-color: var(--active-button-color);
+    color: var(--active-button-text-color);
+  }
+}
