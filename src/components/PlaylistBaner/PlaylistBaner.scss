@@ -43,4 +43,36 @@
       margin-right: 3.125rem;
     }
   }
+
+  @media screen and (max-width: 1250px) {
+    flex-direction: column;
+    > .playlist-info {
+      width: 100%;
+      height: 50%;
+      > .image-block {
+        display: none;
+      }
+      > .text-block {
+        > .playlist-title {
+          font-size: 28px;
+        }
+  
+        > .playlist-duration {
+          font-size: 20px;
+        }
+  
+        > .playlist-privacy {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 1400px) {
+    > .playlist-info {
+      > .image-block {
+        width: 30%;
+      }
+    }
+  }
 }

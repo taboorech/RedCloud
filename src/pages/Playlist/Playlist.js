@@ -6,11 +6,10 @@ import PlaylistBaner from "../../components/PlaylistBaner/PlaylistBaner";
 
 function Playlist() {
   return (
-    // TODO: Need to do flexible settings
     <div className="Playlist">
       <DefaultPageContainer>
         <Block className={"playlist-controls-block"}>
-          <PlaylistBaner/>
+          <PlaylistBaner isOwner={true} />
         </Block>
         <Block className={"playlist-songs scroll"}>
           <SongExpansive title={"Song title"} album={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />

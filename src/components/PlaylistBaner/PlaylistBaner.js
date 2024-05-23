@@ -2,7 +2,8 @@ import "./PlaylistBaner.scss";
 import Image from "../Image/Image";
 import CircleButton from "../CircleButton/CircleButton";
 
-function PlaylistBaner() {
+function PlaylistBaner({ isOwner = false }) {
+
   return (
     <div className="PlaylistBaner">
       <div className="playlist-info">
@@ -25,9 +26,11 @@ function PlaylistBaner() {
         <CircleButton className="black-button waves-effect waves-light btn-large white-text">
           <i className="material-icons">file_download</i>
         </CircleButton>
-        <CircleButton className="black-button waves-effect waves-light btn-large white-text">
-          <i className="material-icons">add_circle_outline</i>
-        </CircleButton>
+        {isOwner &&
+          <CircleButton className="black-button waves-effect waves-light btn-large white-text">
+            <i className="material-icons">add_circle_outline</i>
+          </CircleButton> 
+        }
         <CircleButton className="black-button waves-effect waves-light btn-large white-text">
           <i className="material-icons">settings</i>
         </CircleButton>

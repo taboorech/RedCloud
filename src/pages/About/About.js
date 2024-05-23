@@ -26,10 +26,10 @@ function About() {
               As part of this project, we are working on creating a modern music application. The main features of our application include:
             </p>
             <Collection>
-              <li className="collection-item">Пошук та відтворення музики: Легкий доступ до улюблених треків.</li>
-              <li className="collection-item">Створення та управління плейлистами: Інтуїтивно зрозумілий інтерфейс для організації музичної колекції.</li>
-              <li className="collection-item">Рекомендації на основі вподобань: Персоналізовані музичні рекомендації.</li>
-              <li className="collection-item">Соціальна інтеграція: Можливість ділитися музикою з друзями через соціальні мережі.</li>
+              <li className="collection-item">Search and play music: Easily access your favorite tracks.</li>
+              <li className="collection-item">Create and manage playlists: An intuitive interface for organizing your music collection.</li>
+              <li className="collection-item">Recommendations based on preferences: Personalized music recommendations.</li>
+              <li className="collection-item">Social integration: The ability to share music with friends via social networks.</li>
             </Collection>
           </ContentWithHeader>
           <ContentWithHeader header={<h3>Our vision</h3>}>
