@@ -5,10 +5,17 @@
 
   .authors-block {
     height: 20%;
+    margin-bottom: 1.25rem;
+    > * {
+      width: 5%;
+    }
   }
 
   .playlist-songs {
     height: 60%;
   }
 
+  .full {
+    height: 83%;
+  }
 }

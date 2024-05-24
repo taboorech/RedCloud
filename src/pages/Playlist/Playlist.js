@@ -13,15 +13,15 @@ function Playlist() {
           <PlaylistBaner isOwner={true} />
         </Block>
         <SongsList className={"playlist-songs scroll"}>
-          <SongExpansive title={"Song title"} album={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
-          <SongExpansive title={"Song title"} album={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
-          <SongExpansive title={"Song title"} album={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
-          <SongExpansive title={"Song title"} album={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
-          <SongExpansive title={"Song title"} album={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
-          <SongExpansive title={"Song title"} album={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
-          <SongExpansive title={"Song title"} album={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
-          <SongExpansive title={"Song title"} album={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
-          <SongExpansive title={"Song title"} album={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
+          <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
+          <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
+          <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
+          <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
+          <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
+          <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
+          <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
+          <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
+          <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
         </SongsList>
       </DefaultPageContainer>
     </div>

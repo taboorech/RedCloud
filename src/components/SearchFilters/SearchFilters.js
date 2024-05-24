@@ -6,8 +6,7 @@ import { setActiveFilter } from "../../redux";
 
 function SearchFilters({ className }) {
 
-  const filters = ["All", "Songs", "Authors", "Profile", "Albums", "Podcasts", "Playlists"];
-  const activeFilter = useSelector((state) => state.searchFilter.activeFilter);
+  const [filters, activeFilter] = useSelector((state) => [state.searchFilter.filters, state.searchFilter.activeFilter]);
   const dispatch = useDispatch();
 
   const filterClickHandler = (index) => {

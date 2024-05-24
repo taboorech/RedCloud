@@ -1,4 +1,12 @@
 .Authors-block {
   display: flex;
   flex-direction: row;
+
+  &.small {
+    overflow-x: scroll;
+  }
+
+  > .author:not(:last-child) {
+    margin-right: 5.5rem;
+  }
 }

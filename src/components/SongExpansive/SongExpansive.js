@@ -4,7 +4,7 @@ import Image from "../Image/Image";
 import Time from "../Time/Time";
 import "./SongExpansive.scss";
 
-function SongExpansive({ title, album, duration, imageSrc, className }) {
+function SongExpansive({ title, secondaryInfo, duration, imageSrc, className }) {
   return (
     <div className={classNamesHandler("SongExpansive", className)}>
       <div className="content">
@@ -15,8 +15,8 @@ function SongExpansive({ title, album, duration, imageSrc, className }) {
           <span>{ title }</span>
         </div>
       </div>
-      <div className="album-block">
-        { album }
+      <div className="secondary-info-block">
+        { secondaryInfo }
       </div>
       <div className="additional-block">
         <div className="time-block">
