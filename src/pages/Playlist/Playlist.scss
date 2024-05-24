@@ -6,6 +6,21 @@
 
   .playlist-songs {
     height: 65%;
+
+    > .empty-playlist {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      > p {
+        font-size: 20px;
+      }
+
+      > .button {
+        width: 20%;
+      }
+    }
   }
 
   @media screen and (max-width: 1200px) {

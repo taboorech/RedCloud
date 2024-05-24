@@ -1,0 +1,12 @@
+.Button {
+  color: var(--button-text-color);
+  background-color: var(--default-button);
+  
+  &.white-button {
+    background-color: var(--white-button);
+  }
+
+  &.dark-button {
+    background-color: var(--dark-button);
+  }
+}

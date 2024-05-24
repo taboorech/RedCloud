@@ -4,8 +4,16 @@ import DefaultPageContainer from "../../hoc/DefaultPageContainer/DefaultPageCont
 import SongExpansive from "../../components/SongExpansive/SongExpansive";
 import PlaylistBaner from "../../components/PlaylistBaner/PlaylistBaner";
 import SongsList from "../../components/SongsList/SongsList";
+import Button from "../../components/Button/Button";
 
-function Playlist() {
+function Playlist({ isOwner }) {
+
+  const songs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  const songsFill = () => (
+    songs.map((song) => <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />)
+  );
+
   return (
     <div className="Playlist">
       <DefaultPageContainer>
@@ -13,15 +21,13 @@ function Playlist() {
           <PlaylistBaner isOwner={true} />
         </Block>
         <SongsList className={"playlist-songs scroll"}>
-          <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
-          <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
-          <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
-          <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
-          <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
-          <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
-          <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
-          <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
-          <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
+          { songs.length ? 
+            songsFill() :
+            <div className="empty-playlist">
+              <p>Empty playlist</p>
+              { isOwner && <Button className={"button white-button"}>Add song</Button>}
+            </div>
+          }
         </SongsList>
       </DefaultPageContainer>
     </div>
