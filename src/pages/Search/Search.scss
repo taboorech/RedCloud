@@ -6,16 +6,33 @@
   .authors-block {
     height: 20%;
     margin-bottom: 1.25rem;
-    > * {
-      width: 5%;
-    }
+    animation-name: show;
+    animation-duration: .5s;
+    animation-timing-function: ease-in-out;
   }
 
   .playlist-songs {
     height: 60%;
+    animation-name: show;
+    animation-duration: .5s;
+    animation-timing-function: ease-in-out;
   }
 
   .full {
-    height: 83%;
+    height: 80%;
+  
+    @media screen and (max-width: 1200px) {
+      height: 70%;
+    }
+  }
+
+  @keyframes show {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
   }
 }

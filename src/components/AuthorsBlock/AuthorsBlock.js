@@ -4,11 +4,18 @@ import Block from "../Block/Block";
 import Person from "../Person/Person";
 import { useRef, useEffect } from "react";
 
-function AuthorsBlock({ className }) {
+function AuthorsBlock({ className, authors }) {
 
   const scrollElementRef = useRef();
 
+  const fillAuthors = () => (
+    authors.map((author) => <Person username={author.name} className={"author"}/>)
+  )
+
   useEffect(() => {
+    if(!scrollElementRef.current.classList.contains("small")) {
+      return;
+    }
     scrollElementRef.current.addEventListener('wheel', function(event) {
       event.preventDefault();
       scrollElementRef.current.scrollLeft += event.deltaY;
@@ -16,34 +23,8 @@ function AuthorsBlock({ className }) {
   }, []);
 
   return (
-    <Block className={classNamesHandler("Authors-block without-scrollbar small", className)} innerRef={scrollElementRef}>
-      <Person username={"Kainless"} className={"author"}/>
-      <Person username={"Kainless"} className={"author"}/>
-      <Person username={"Kainless"} className={"author"}/>
-      <Person username={"Kainless"} className={"author"}/>
-      <Person username={"Kainless"} className={"author"}/>
-      <Person username={"Kainless"} className={"author"}/>
-      <Person username={"Kainless"} className={"author"}/>
-      <Person username={"Kainless"} className={"author"}/>
-      <Person username={"Kainless"} className={"author"}/>
-      <Person username={"Kainless"} className={"author"}/>
-      <Person username={"Kainless"} className={"author"}/>
-      <Person username={"Kainless"} className={"author"}/>
-      <Person username={"Kainless"} className={"author"}/>
-      <Person username={"Kainless"} className={"author"}/>
-      <Person username={"Kainless"} className={"author"}/>
-      <Person username={"Kainless"} className={"author"}/>
-      <Person username={"Kainless"} className={"author"}/>
-      <Person username={"Kainless"} className={"author"}/>
-      <Person username={"Kainless"} className={"author"}/>
-      <Person username={"Kainless"} className={"author"}/>
-      <Person username={"Kainless"} className={"author"}/>
-      <Person username={"Kainless"} className={"author"}/>
-      <Person username={"Kainless"} className={"author"}/>
-      <Person username={"Kainless"} className={"author"}/>
-      <Person username={"Kainless"} className={"author"}/>
-      <Person username={"Kainless"} className={"author"}/>
-      <Person username={"Kainless"} className={"author"}/>
+    <Block className={classNamesHandler("Authors-block without-scrollbar scroll", className)} innerRef={scrollElementRef}>
+      { fillAuthors() }
     </Block>
   )
 }
