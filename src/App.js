@@ -3,6 +3,8 @@ import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import Playlist from "./pages/Playlist/Playlist";
 import Search from "./pages/Search/Search";
+import Lyrics from "./pages/Lyrics/Lyrics";
+import Auth from "./pages/Auth/Auth";
 
 function App() {
   return (
@@ -11,7 +13,9 @@ function App() {
         <Route path="/" element={<Home/>}></Route>
         <Route path="/playlist/:id" element={<Playlist/>}></Route>
         <Route path="/search" element={<Search/>}></Route>
+        <Route path="/lyrics" element={<Lyrics/>}></Route>
         <Route path="/about" element={<About/>}></Route>
+        <Route path="/auth" element={<Auth/>}></Route>
       </Routes>
     </div>
   );

@@ -1,0 +1,12 @@
+.Form {
+  width: 100%;
+  text-align: center;
+  background-color: var(--form-background);
+  color: var(--default-text-color);
+  padding: 2rem;
+
+  > .headline {
+    margin-top: 5rem;
+    margin-bottom: 3rem;
+  }
+}
