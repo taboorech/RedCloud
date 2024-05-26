@@ -17,10 +17,10 @@ function Navigation({ className }) {
         <CircleButton className="btn-large waves-effect waves-light black-button white-text without-shadow" title={"Add person to room"}>
           <i className="material-icons">person_add</i>
         </CircleButton>
-        <CircleButton className="btn-large waves-effect waves-light black-button white-text without-shadow" title={"Return home"}>
+        <CircleButton isNavLink={true} to={"/"} className="btn-large waves-effect waves-light black-button white-text without-shadow" title={"Return home"}>
           <i className="material-icons">home</i>
         </CircleButton>
-        <CircleButton className="btn-large waves-effect waves-light black-button white-text without-shadow" title={"Search page"}>
+        <CircleButton isNavLink={true} to={"/search"} className="btn-large waves-effect waves-light black-button white-text without-shadow" title={"Search page"}>
           <i className="material-icons">search</i>
         </CircleButton>
       </div>
@@ -37,7 +37,7 @@ function Navigation({ className }) {
         <CircleButton className="btn-large waves-effect waves-light black-button white-text without-shadow" title={"Get premium"}>
           <i className="material-icons">stars</i>
         </CircleButton>
-        <CircleButton className="btn-large waves-effect waves-light black-button white-text without-shadow" title={"About us"}>
+        <CircleButton isNavLink={true} to={"/about"} className="btn-large waves-effect waves-light black-button white-text without-shadow" title={"About us"}>
           <i className="material-icons">info_outline</i>
         </CircleButton>
       </div>

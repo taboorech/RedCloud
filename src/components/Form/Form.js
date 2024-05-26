@@ -1,15 +1,10 @@
+import "./Form.scss";
 import { useEffect } from "react";
 import M from "materialize-css";
-import "./Form.scss";
-import Input from "../Input/Input";
 import Button from "../Button/Button";
 import { classNamesHandler } from "../../utils/classNamesHandler";
 
-function Form({ className, headlineText, children }) {
-
-  const onSubmitHandler = (event) => {
-    event.preventDefault();
-  }
+function Form({ className, headlineText, children, anotherOptions, buttonText, onSubmitHandler }) {
 
   useEffect(() => {
     M.updateTextFields();
@@ -20,17 +15,15 @@ function Form({ className, headlineText, children }) {
       <h4 className="headline">
         { headlineText }
       </h4>
-      {/* <div className="inputs-block">
-
-      </div> */}
       <div className="row inputs-block">
-        <Input id={"login"} type={"text"} blockClassName={"s12"} inputClassName={"validate"} labelText={"Login"} />
-        <Input id={"password"} type={"password"} blockClassName={"s12"} inputClassName={"validate"} labelText={"Password"} />
+        { children }
       </div>
-      <Button className={"white-text"}>
-        Log in
+      <div className="row valign-wrapper another-options">
+        { anotherOptions }
+      </div>
+      <Button className={"white-text button"} type={"submit"}>
+        { buttonText }
       </Button>
-      {/* { children } */}
     </form>
   )
 }

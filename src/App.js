@@ -5,6 +5,7 @@ import Playlist from "./pages/Playlist/Playlist";
 import Search from "./pages/Search/Search";
 import Lyrics from "./pages/Lyrics/Lyrics";
 import Auth from "./pages/Auth/Auth";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/search" element={<Search/>}></Route>
         <Route path="/lyrics" element={<Lyrics/>}></Route>
         <Route path="/about" element={<About/>}></Route>
+        <Route path="/profile" element={<ProfilePage/>}></Route>
         <Route path="/auth" element={<Auth/>}></Route>
       </Routes>
     </div>

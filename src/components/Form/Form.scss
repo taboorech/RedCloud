@@ -4,9 +4,23 @@
   background-color: var(--form-background);
   color: var(--default-text-color);
   padding: 2rem;
+  height: auto;
 
   > .headline {
-    margin-top: 5rem;
+    margin-top: 3rem;
     margin-bottom: 3rem;
+  }
+
+  > .inputs-block {
+    margin: 0;
+  }
+
+  > .another-options {
+    margin-bottom: 7rem;
+  }
+
+  > .button {
+    width: 50%;
+    margin: 0 auto;
   }
 }

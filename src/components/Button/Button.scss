@@ -1,4 +1,9 @@
 .Button {
+  // ! CAN BREAK SOMETHING
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // !
   color: var(--button-text-color);
   background-color: var(--default-button);
   
