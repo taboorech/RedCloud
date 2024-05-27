@@ -1,0 +1,17 @@
+.Settings {
+
+  .settings-properties {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    > .save-button {
+      width: 20%;
+      align-self: flex-end;
+    }
+  }
+
+  .select-element {
+    width: 30%;
+  }
+}

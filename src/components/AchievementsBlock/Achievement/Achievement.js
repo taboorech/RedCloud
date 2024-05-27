@@ -1,12 +1,12 @@
 import "./Achievement.scss";
 import Block from "../../Block/Block";
 
-function Achievement() {
+function Achievement({ icon, count, detail }) {
   return (
     <Block className={"Achievement"}>
-      <i className="material-icons">home</i>
-      <span className="counter">20</span>
-      <span className="detail">Songs</span>
+      <i className="material-icons">{ icon }</i>
+      <span className="counter">{ count }</span>
+      <span className="detail">{ detail }</span>
     </Block>
   )
 }

@@ -1,8 +1,9 @@
+import { classNamesHandler } from "../../utils/classNamesHandler";
 import "./ContentWithHeader.scss";
 
-function ContentWithHeader({ header, children }) {
+function ContentWithHeader({ header, className, children }) {
   return (
-    <div className="Content-with-header">
+    <div className={classNamesHandler("Content-with-header", className)}>
       <div className="header">
         { header }
       </div>

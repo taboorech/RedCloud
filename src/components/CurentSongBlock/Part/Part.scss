@@ -3,7 +3,12 @@
   flex-direction: column;
   align-items: center;
   height: 100%;
-  transition: opacity 200ms;
+  transition: opacity ease-in-out 200ms;
+
+  > * {
+    transition: opacity ease-in-out .2s;
+  }
+
   > .image {
     margin-top: .875rem;
     display: flex;
@@ -32,4 +37,9 @@
     opacity: 0.5;
   }
 
+  &.closed {
+    > *:not(.close-button-block) {
+      opacity: 0;
+    }
+  }
 }

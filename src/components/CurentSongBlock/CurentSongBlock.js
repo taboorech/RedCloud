@@ -15,6 +15,7 @@ function CurentSongBlock(){
   const closeButtonClickHandler = (event) => {
     event.currentTarget.classList.toggle("rotateHorizontal");
     currentBlockRef.current.classList.toggle("close");
+    event.currentTarget.parentNode.parentNode.classList.toggle("closed")
   };
 
   return(
@@ -26,7 +27,7 @@ function CurentSongBlock(){
         enter: 500,
         exit: 300
       }} mountOnEnter unmountOnExit>
-        <Part imageSrc={"./images/Song.png"} imageAlt={"Playlist-image"} innerRef={partRef} className="queue-part" closeButtonClickHandler={closeButtonClickHandler}>
+        <Part imageSrc={"./images/Song.png"} imageAlt={"Playlist-image"} innerRef={partRef} className={"queue-part"} closeButtonClickHandler={closeButtonClickHandler}>
           <SongsBlock/>
         </Part>
       </CSSTransition>
@@ -34,7 +35,7 @@ function CurentSongBlock(){
         enter: 500,
         exit: 300
       }} mountOnEnter unmountOnExit>
-        <Part imageSrc={"./images/avatar.jpg"} imageAlt={"Author-photo"} innerRef={partRef} className="author-part" closeButtonClickHandler={closeButtonClickHandler}>
+        <Part imageSrc={"./images/avatar.jpg"} imageAlt={"Author-photo"} innerRef={partRef} className={"author-part"} closeButtonClickHandler={closeButtonClickHandler}>
           <AuthorBiographyBlock/>
         </Part>
       </CSSTransition>

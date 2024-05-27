@@ -31,7 +31,7 @@ function Navigation({ className }) {
         </div>
       </div>
       <div className="bottom-buttons-block buttons-block">
-        <CircleButton className="btn-large waves-effect waves-light black-button white-text without-shadow" title={"Settings"}>
+        <CircleButton isNavLink={true} to={"/settings"} className="btn-large waves-effect waves-light black-button white-text without-shadow" title={"Settings"}>
           <i className="material-icons">settings</i>
         </CircleButton>
         <CircleButton className="btn-large waves-effect waves-light black-button white-text without-shadow" title={"Get premium"}>

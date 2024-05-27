@@ -1,9 +1,7 @@
 .Button {
-  // ! CAN BREAK SOMETHING
   display: flex;
   align-items: center;
   justify-content: center;
-  // !
   color: var(--button-text-color);
   background-color: var(--default-button);
   
@@ -13,5 +11,9 @@
 
   &.dark-button {
     background-color: var(--dark-button);
+  }
+
+  &:hover {
+    background-color: var(--button-hover-color);
   }
 }

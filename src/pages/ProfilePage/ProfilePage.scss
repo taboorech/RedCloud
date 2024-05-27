@@ -29,6 +29,10 @@
           }
         }
       }
+
+      @media screen and (max-width: 1200px) {
+        margin-bottom: .5rem;
+      }
     }
 
     > .additional-info {
@@ -40,24 +44,20 @@
       > * {
         flex: 1;
       }
-      // @media screen and (min-width: 500px) {
-      //   width: 100%;
-      // }
-    
-      // @media screen and (min-width: 700px) {
-      //   width: 60%;
-      // }
   
+      
       @media screen and (max-width: 1200px) {
-        // width: 50%;
         flex-direction: column;
-        height: 100%;
-        // flex-wrap: wrap-reverse;
+        gap: .5rem;
+
+        > .achievements-block {
+          gap: .3rem;
+        }
       }
-    
-      // @media screen and (min-width: 1200px) {
-      //   width: 65%;
-      // }
+    }
+
+    @media screen and (max-width: 1200px) {
+      height: 100%;
     }
   }
 }

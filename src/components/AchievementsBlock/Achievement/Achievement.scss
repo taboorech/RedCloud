@@ -6,6 +6,10 @@
   height: 100%;
   width: 100%;
 
+  > * {
+    text-align: center;
+  }
+
   > i {
     font-size: 50px;
   }
@@ -16,5 +20,19 @@
 
   > .detail {
     font-size: 20px;
+  }
+
+  @media screen and (max-width: 1200px) {
+    > i {
+      font-size: 25px;
+    }
+  
+    > .counter {
+      font-size: 17px;
+    }
+  
+    > .detail {
+      font-size: 15px;
+    }
   }
 }

@@ -1,0 +1,9 @@
+.Select {
+  width: 100%;
+  > select {
+    color: var(--default-text-color);
+    background-color: var(--select-background-color);
+    border: none;
+    width: 100%;
+  }
+}

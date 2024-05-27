@@ -16,12 +16,14 @@
   --button-text-color: #1E1E1E;
   --default-button: #282828;
   --dark-button: #1E1E1E;
+  --button-hover-color: #3a3a3a;
   --tab-background: #1E1E1E;
   --active-tab-background: #282828;
   --tab-border-color: var(--active-tab-background);
   --tab-text-color: var(--default-text-color);
   --form-background: #1E1E1E;
   --hyperlink-text-color: #4E7FFD;
+  --select-background-color: var(--default-button);
 }
 
 body {
