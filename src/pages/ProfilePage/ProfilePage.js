@@ -3,7 +3,12 @@ import CircleButton from "../../components/CircleButton/CircleButton";
 import Image from "../../components/Image/Image";
 import Block from "../../components/Block/Block";
 import DefaultPageContainer from "../../hoc/DefaultPageContainer/DefaultPageContainer";
+import AchievementsBlock from "../../components/AchievementsBlock/AchievementsBlock";
+import SongsList from "../../components/SongsList/SongsList";
+import SongExpansive from "../../components/SongExpansive/SongExpansive";
 
+
+// TODO: Add flexibility to page
 function ProfilePage() {
   return (
     <div className="ProfilePage">
@@ -25,7 +30,20 @@ function ProfilePage() {
               <i className="material-icons">edit</i>
             </CircleButton>
           </Block>
-          <div className="additional-info"></div>
+          <div className="additional-info">
+            <SongsList className={"playlist-songs scroll"}>
+              <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
+              <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
+              <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
+              <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
+              <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
+              <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
+              <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
+              <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
+              <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />
+            </SongsList>
+            <AchievementsBlock className={"achievements-block"}/>
+          </div>
         </Block>
       </DefaultPageContainer>
     </div>

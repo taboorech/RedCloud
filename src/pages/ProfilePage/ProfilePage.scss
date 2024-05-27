@@ -1,25 +1,25 @@
 .ProfilePage {
   .info {
+    background-color: transparent;
     > .main-info {
       display: flex;
       flex-direction: row;
       height: 30%;
       justify-content: space-between;
-      padding: 0;
+      margin-bottom: 1rem;
       > .person-info-container {
         display: flex;
         flex-direction: row;
         height: 100%;
-        // width: 50%;
         > .image-block {
           height: 100%;
-          // width: 40%;
           margin-right: 2rem;
         }
 
         > .person-info {
           display: flex;
           flex-direction: column;
+          margin-top: 1.25rem;
           > p {
             margin: 0;
           }
@@ -29,6 +29,35 @@
           }
         }
       }
+    }
+
+    > .additional-info {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      height: 70%;
+      gap: 2.5rem;
+      > * {
+        flex: 1;
+      }
+      // @media screen and (min-width: 500px) {
+      //   width: 100%;
+      // }
+    
+      // @media screen and (min-width: 700px) {
+      //   width: 60%;
+      // }
+  
+      @media screen and (max-width: 1200px) {
+        // width: 50%;
+        flex-direction: column;
+        height: 100%;
+        // flex-wrap: wrap-reverse;
+      }
+    
+      // @media screen and (min-width: 1200px) {
+      //   width: 65%;
+      // }
     }
   }
 }
