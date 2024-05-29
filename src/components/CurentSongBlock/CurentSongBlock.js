@@ -6,20 +6,13 @@ import { useState, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 import AuthorBiographyBlock from "./AuthorBiographyBlock/AuthorBiographyBlock";
 
-function CurentSongBlock(){
+function CurentSongBlock({ closeButtonClickHandler }){
 
   const [isQueue, setIsQueue] = useState(true);
-  const currentBlockRef = useRef();
   const partRef = useRef();
 
-  const closeButtonClickHandler = (event) => {
-    event.currentTarget.classList.toggle("rotateHorizontal");
-    currentBlockRef.current.classList.toggle("close");
-    event.currentTarget.parentNode.parentNode.classList.toggle("closed")
-  };
-
   return(
-    <div className="CurentSongBlock" ref={currentBlockRef}>
+    <div className="CurentSongBlock">
       <div className="switch-button-container">
         <SwitchButton setIsQueue={setIsQueue}/>
       </div>

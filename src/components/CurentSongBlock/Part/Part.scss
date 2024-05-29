@@ -36,10 +36,4 @@
   &.exit-active {
     opacity: 0.5;
   }
-
-  &.closed {
-    > *:not(.close-button-block) {
-      opacity: 0;
-    }
-  }
 }

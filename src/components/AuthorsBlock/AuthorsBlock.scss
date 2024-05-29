@@ -4,6 +4,11 @@
   grid-template-columns: repeat(6, 1fr);
   gap: 7rem;
   grid-auto-rows: 100px;
+  margin: 0 auto;
+
+  &:not(.small) {
+    max-width: 81.25rem;
+  }
 
   &.small {
     display: flex;
