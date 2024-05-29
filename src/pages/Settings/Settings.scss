@@ -13,5 +13,8 @@
 
   .select-element {
     width: 30%;
+    @media screen and (max-width: 1200px) {
+      width: 50%;
+    }
   }
 }

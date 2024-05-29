@@ -11,7 +11,7 @@ function PlayerAdditionalButtons({ className }) {
       <CircleButton className={"btn-small waves-effect waves-light black-button"}>
         <i className="material-icons">group_add</i>
       </CircleButton>
-      <CircleButton className={"btn-small waves-effect waves-light black-button"}>
+      <CircleButton isNavLink={true} to={"/lyrics"} className={"btn-small waves-effect waves-light black-button"}>
         <i className="material-icons">short_text</i>
       </CircleButton>
       <CircleButton className={"btn-small waves-effect waves-light black-button"}>

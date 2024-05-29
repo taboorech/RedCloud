@@ -16,4 +16,8 @@
   &:hover {
     background-color: var(--button-hover-color);
   }
+
+  &:focus {
+    background-color: var(--default-button); 
+  }
 }

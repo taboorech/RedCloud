@@ -3,6 +3,7 @@ import "./PlaylistsBlock.scss";
 import M from "materialize-css";
 import CircleButton from "../CircleButton/CircleButton";
 import { classNamesHandler } from "../../utils/classNamesHandler";
+import { NavLink } from "react-router-dom";
 
 function PlaylistsBlock({ className }) {
 
@@ -36,9 +37,9 @@ function PlaylistsBlock({ className }) {
 
   const fillPlaylists = () => (
     playlists.map((playlist, index) => (
-      <div key={`playlist-${index}`} className="playlist">
+      <NavLink to={`/playlist/${index}`} key={`playlist-${index}`} className="playlist">
         <img src={playlist} alt="playlistImage" className="responsive-img"/>
-      </div>
+      </NavLink>
     ))
   )
 

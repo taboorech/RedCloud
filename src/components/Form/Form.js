@@ -21,7 +21,7 @@ function Form({ className, headlineText, children, anotherOptions, buttonText, o
       <div className="row valign-wrapper another-options">
         { anotherOptions }
       </div>
-      <Button className={"white-text button"} type={"submit"}>
+      <Button className={"white-text button waves-effect waves-light"} type={"submit"}>
         { buttonText }
       </Button>
     </form>

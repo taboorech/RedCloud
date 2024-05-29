@@ -7,6 +7,7 @@ import Lyrics from "./pages/Lyrics/Lyrics";
 import Auth from "./pages/Auth/Auth";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import Settings from "./pages/Settings/Settings";
+import ProfileSettings from "./pages/ProfileSettings/ProfileSettings";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/lyrics" element={<Lyrics/>}></Route>
         <Route path="/about" element={<About/>}></Route>
         <Route path="/profile" element={<ProfilePage/>}></Route>
+        <Route path="/profile/settings" element={<ProfileSettings/>}></Route>
         <Route path="/settings" element={<Settings/>}></Route>
         <Route path="/auth" element={<Auth/>}></Route>
       </Routes>

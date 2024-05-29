@@ -1,0 +1,10 @@
+.FileInput {
+  > .btn {
+    background-color: var(--default-button);
+  }
+  > .file-path-wrapper {
+    > .file-path {
+      color: var(--default-text-color);
+    }
+  }
+}

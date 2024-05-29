@@ -1,0 +1,48 @@
+.Profile-settings {
+  .settings {
+    > .main-settings {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 1.5625rem;
+      > .box {
+        display: flex;
+        flex-direction: row;
+        flex: 2;
+        gap: 1.5625rem;
+        > .image-block {
+          // ! THE SIZE SHOULD BE CHANGED
+          width: 16.25rem;
+          height: 16.25rem;
+          // !
+          flex: 1;
+        }
+
+        > .inputs {
+          flex: 2;
+          > * {
+            padding: 0;
+            margin: 0;
+          }
+        }
+      }
+
+      > .select {        
+        flex: 1;
+      }
+    }
+
+    > .additional-settings {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      
+      > .part {
+        margin-bottom: 1.875rem;
+      }
+    }
+
+    // > .save-button {
+    //   // float: right;
+    // }
+  }
+}

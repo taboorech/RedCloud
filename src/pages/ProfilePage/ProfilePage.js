@@ -7,8 +7,6 @@ import AchievementsBlock from "../../components/AchievementsBlock/AchievementsBl
 import SongsList from "../../components/SongsList/SongsList";
 import SongExpansive from "../../components/SongExpansive/SongExpansive";
 
-
-// TODO: Add flexibility to page
 function ProfilePage() {
   return (
     <div className="ProfilePage">
@@ -26,7 +24,7 @@ function ProfilePage() {
                 <p className="description">Description</p>
               </div>
             </div>
-            <CircleButton className="waves-effect waves-light black-button">
+            <CircleButton isLink={true} to={"/profile/settings"} className="waves-effect waves-light black-button">
               <i className="material-icons">edit</i>
             </CircleButton>
           </Block>
