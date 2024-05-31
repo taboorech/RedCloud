@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 
 function Search() {
 
-  const [filters, activeFilter] = useSelector((state) => [state.searchFilter.filters, state.searchFilter.activeFilter]);
+  const { filters, activeFilter } = useSelector((state) => state.searchFilter);
 
   const generateContent = () => {
     switch(filters[activeFilter]) {

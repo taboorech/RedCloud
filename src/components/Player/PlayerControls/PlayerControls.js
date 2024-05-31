@@ -6,10 +6,14 @@ import { setIsPaused } from "../../../redux";
 
 function PlayerControls({ audioPlayer }) {
 
-  const isPaused = useSelector((state) => state.audioPlayer.isPaused);
+  const { isPaused, source } = useSelector((state) => state.audioPlayer);
   const dispatch = useDispatch();
 
   const playButtonClickHandler = () => {
+    if(source.length === 0) {
+      return;
+    }
+
     if(isPaused) {
       dispatch(setIsPaused(!isPaused));
       return audioPlayer.play();

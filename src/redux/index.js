@@ -8,9 +8,11 @@ export const store = configureStore({
     audioPlayer: audioPlayerReducer,
     searchBar: searchBarReducer,
     searchFilter: searchFiltersReducer
-  }
+  },
+
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware()
 });
 
-export { setIsPaused, setCurrentTime, setIsMuted } from "./slices/audioPlayerSlice";
+export { setSource as setAudioPlayerSource, setIsPaused, setCurrentTime, setDurationTime, setIsMuted } from "./slices/audioPlayerSlice";
 export { changeValue as changeSearchBarValue } from "./slices/searchBarSlice";
 export { setActiveFilter } from "./slices/searchFiltersSlice";

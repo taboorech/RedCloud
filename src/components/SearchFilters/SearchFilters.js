@@ -6,7 +6,7 @@ import { setActiveFilter } from "../../redux";
 
 function SearchFilters({ className }) {
 
-  const [filters, activeFilter] = useSelector((state) => [state.searchFilter.filters, state.searchFilter.activeFilter]);
+  const {filters, activeFilter} = useSelector((state) => state.searchFilter);
   const dispatch = useDispatch();
 
   const filterClickHandler = (index) => {

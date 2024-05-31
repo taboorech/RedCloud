@@ -4,10 +4,16 @@ import PlayerControls from "./PlayerControls/PlayerControls";
 import PlayerAdditionalButtons from "./PlayerAdditionalButtons/PlayerAdditionalButtons";
 import VolumeBlock from "./VolumeBlock/VolumeBlock";
 import { classNamesHandler } from "../../utils/classNamesHandler";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 function Player({ className }){
 
-  const audioPlayer = new Audio("./music/Tom Odell - Another Love.mp3");
+  const { audioPlayer, source } = useSelector((state) => state.audioPlayer);
+
+  useEffect(() => {
+    audioPlayer.src = source;
+  }, [audioPlayer, source]);
 
   return(
     <div className={classNamesHandler("Player", className)}>

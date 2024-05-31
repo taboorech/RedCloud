@@ -30,11 +30,16 @@ function ProgressBlock({ audioPlayer }) {
   }
 
   useEffect(() => {
+    audioPlayer.currentTime = localStorage.getItem("currentTime");
+  }, [audioPlayer]);
+  
+  useEffect(() => {
     audioPlayer.addEventListener("timeupdate", (event) => {
       dispatch(setCurrentTime(audioPlayer.currentTime));
       let currentProgress = audioPlayer.currentTime * 100 / audioPlayer.duration;
       progressRef.current.style.width = currentProgress + "%";
       circleRef.current.style.left = currentProgress + "%";
+      localStorage.setItem("currentTime", audioPlayer.currentTime);
     });
   }, [audioPlayer, dispatch]);
 
