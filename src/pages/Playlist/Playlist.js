@@ -6,7 +6,7 @@ import PlaylistBaner from "../../components/PlaylistBaner/PlaylistBaner";
 import SongsList from "../../components/SongsList/SongsList";
 import Button from "../../components/Button/Button";
 
-function Playlist({ isOwner }) {
+function Playlist({ audio, isOwner }) {
 
   const songs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -16,7 +16,7 @@ function Playlist({ isOwner }) {
 
   return (
     <div className="Playlist">
-      <DefaultPageContainer>
+      <DefaultPageContainer audio={audio}>
         <Block className={"playlist-controls-block"}>
           <PlaylistBaner isOwner={true} />
         </Block>

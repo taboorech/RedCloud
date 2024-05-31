@@ -7,7 +7,7 @@ import SongsList from "../../components/SongsList/SongsList";
 import AuthorsBlock from "../../components/AuthorsBlock/AuthorsBlock";
 import { useSelector } from "react-redux";
 
-function Search() {
+function Search({ audio }) {
 
   const { filters, activeFilter } = useSelector((state) => state.searchFilter);
 
@@ -59,7 +59,7 @@ function Search() {
 
   return (
     <div className="Search">
-      <DefaultPageContainer>
+      <DefaultPageContainer audio={audio}>
         <SearchBar/>
         <SearchFilters className={"search-filters-block"} />
         { generateContent() }

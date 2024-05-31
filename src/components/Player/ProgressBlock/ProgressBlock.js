@@ -2,46 +2,35 @@ import "./ProgressBlock.scss";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import Time from "../../Time/Time";
 import { useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setCurrentTime } from "../../../redux";
 
-function ProgressBlock({ audioPlayer }) {
+function ProgressBlock({ audio}) {
 
-  const currentTime = useSelector((state) => state.audioPlayer.currentTime);
-  const dispatch = useDispatch();
+  const { playing, pause, play, currentTimeChange, currentTime, duration } = audio;
 
   const progressBarRef = useRef();
   const progressRef = useRef();
   const circleRef = useRef();
 
   const onProgressChange = (currentProgress) => {
-    audioPlayer.currentTime = (currentProgress / 100) * audioPlayer.duration;
+    currentTimeChange((currentProgress / 100) * duration);
   }
 
   const onProgressMouseDown = (currentProgress) => {
-    if(!audioPlayer.paused) {
-      audioPlayer.pause();
+    if(playing) {
+      pause();
     }
     onProgressChange(currentProgress);
   };
 
   const onProgressMouseUp = (currentProgress) => {
-    audioPlayer.play();
+    play();
   }
-
-  useEffect(() => {
-    audioPlayer.currentTime = localStorage.getItem("currentTime");
-  }, [audioPlayer]);
   
   useEffect(() => {
-    audioPlayer.addEventListener("timeupdate", (event) => {
-      dispatch(setCurrentTime(audioPlayer.currentTime));
-      let currentProgress = audioPlayer.currentTime * 100 / audioPlayer.duration;
-      progressRef.current.style.width = currentProgress + "%";
-      circleRef.current.style.left = currentProgress + "%";
-      localStorage.setItem("currentTime", audioPlayer.currentTime);
-    });
-  }, [audioPlayer, dispatch]);
+    let currentProgress = currentTime * 100 / duration;
+    progressRef.current.style.width = currentProgress + "%";
+    circleRef.current.style.left = currentProgress + "%";
+  }, [currentTime, duration]);
 
   return (
     <div className="Progress-block">
@@ -56,7 +45,7 @@ function ProgressBlock({ audioPlayer }) {
           circleRef={circleRef}
         />
       </div>
-      <Time className="duration-time" time={audioPlayer.duration} />
+      <Time className="duration-time" time={duration} />
     </div>
   )
 }

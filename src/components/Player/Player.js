@@ -4,23 +4,15 @@ import PlayerControls from "./PlayerControls/PlayerControls";
 import PlayerAdditionalButtons from "./PlayerAdditionalButtons/PlayerAdditionalButtons";
 import VolumeBlock from "./VolumeBlock/VolumeBlock";
 import { classNamesHandler } from "../../utils/classNamesHandler";
-import { useSelector } from "react-redux";
-import { useEffect } from "react";
 
-function Player({ className }){
-
-  const { audioPlayer, source } = useSelector((state) => state.audioPlayer);
-
-  useEffect(() => {
-    audioPlayer.src = source;
-  }, [audioPlayer, source]);
+function Player({ audio, className }){
 
   return(
     <div className={classNamesHandler("Player", className)}>
-      <VolumeBlock audioPlayer={audioPlayer} className={"volume-controls-block"}/>
+      <VolumeBlock audio={audio} className={"volume-controls-block"}/>
       <div className="controls-block">
-        <PlayerControls audioPlayer = {audioPlayer} />
-        <ProgressBlock audioPlayer = {audioPlayer} />
+        <PlayerControls audio = {audio} />
+        <ProgressBlock audio = {audio} />
       </div>
       <PlayerAdditionalButtons className={"additional-buttons"}/>
     </div>

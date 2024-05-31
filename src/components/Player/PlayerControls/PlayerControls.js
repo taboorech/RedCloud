@@ -1,32 +1,13 @@
 import "./PlayerControls.scss";
-import { useEffect } from "react";
 import CircleButton from "../../CircleButton/CircleButton";
-import { useDispatch, useSelector } from "react-redux";
-import { setIsPaused } from "../../../redux";
 
-function PlayerControls({ audioPlayer }) {
+function PlayerControls({ audio }) {
 
-  const { isPaused, source } = useSelector((state) => state.audioPlayer);
-  const dispatch = useDispatch();
+  const { playing, toggle } = audio;
 
   const playButtonClickHandler = () => {
-    if(source.length === 0) {
-      return;
-    }
-
-    if(isPaused) {
-      dispatch(setIsPaused(!isPaused));
-      return audioPlayer.play();
-    }
-
-    dispatch(setIsPaused(!isPaused));
-    return audioPlayer.pause();
+    toggle();
   }
-
-  useEffect(() => {
-    audioPlayer.addEventListener("play", () => dispatch(setIsPaused(false)));
-    audioPlayer.addEventListener("pause", () => dispatch(setIsPaused(true)));
-  }, [audioPlayer, dispatch]);
 
   return (
     <div className="Player-controls">
@@ -37,7 +18,7 @@ function PlayerControls({ audioPlayer }) {
         <i className="material-icons">skip_previous</i>
       </CircleButton>
       <CircleButton className={"btn-small waves-effect waves-dark white-button"} onClick = {playButtonClickHandler}>
-        <i className="material-icons">{isPaused ? "play_arrow" : "pause"}</i>
+        <i className="material-icons">{!playing ? "play_arrow" : "pause"}</i>
       </CircleButton>
       <CircleButton className={"btn-small waves-effect waves-light black-button"}>
         <i className="material-icons">skip_next</i>

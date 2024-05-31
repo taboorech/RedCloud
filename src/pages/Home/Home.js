@@ -3,10 +3,10 @@ import DefaultPageContainer from "../../hoc/DefaultPageContainer/DefaultPageCont
 import Baner from "../../components/Baner/Baner";
 import "./Home.scss";
 
-function Home() {
+function Home({ audio }) {
   return (
     <div className="Home">
-      <DefaultPageContainer>
+      <DefaultPageContainer audio={audio}>
         <Baner className={"baner"}/>
         <Recomendations/>
         <Recomendations/>

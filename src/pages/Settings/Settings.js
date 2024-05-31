@@ -7,10 +7,10 @@ import Select from "../../components/Select/Select";
 import Checkbox from "../../components/Checkbox/Checkbox";
 import Button from "../../components/Button/Button";
 
-function Settings() {
+function Settings({ audio }) {
   return (
     <div className="Settings">
-      <DefaultPageContainer>
+      <DefaultPageContainer audio={audio}>
         <Block className={"settings-properties"}>
           <ContentWithHeader header={<h3>Settings</h3>} className={"scroll"}>
             <SettingsPart header={<h5>Language</h5>}>

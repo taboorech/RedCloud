@@ -2,10 +2,10 @@ import "./Lyrics.scss";
 import Block from "../../components/Block/Block";
 import DefaultPageContainer from "../../hoc/DefaultPageContainer/DefaultPageContainer";
 
-function Lyrics() {
+function Lyrics({ audio }) {
   return (
     <div className="Lyrics">
-      <DefaultPageContainer>
+      <DefaultPageContainer audio={audio}>
         <Block className={"lyrics-block scroll"}>
           <p className="lyrics-text">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet tellus sed leo volutpat ornare auctor vel arcu. Sed blandit cursus erat, 

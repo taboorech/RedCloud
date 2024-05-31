@@ -3,10 +3,10 @@ import DefaultPageContainer from "../../hoc/DefaultPageContainer/DefaultPageCont
 import ContentWithHeader from "../../components/ContentWithHeader/ContentWithHeader";
 import Collection from "../../components/Collection/Collection";
 
-function About() {
+function About({ audio }) {
   return (
     <div className="About">
-      <DefaultPageContainer>
+      <DefaultPageContainer audio={audio}>
         <Block className={"scroll"}>
           <ContentWithHeader header={<h2>About us</h2>}>
             <p>

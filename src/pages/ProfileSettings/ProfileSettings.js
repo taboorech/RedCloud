@@ -10,10 +10,10 @@ import DefaultPageContainer from "../../hoc/DefaultPageContainer/DefaultPageCont
 import Image from "../../components/Image/Image";
 import Button from "../../components/Button/Button";
 
-function ProfileSettings() {
+function ProfileSettings({ audio }) {
   return (
     <div className="Profile-settings">
-      <DefaultPageContainer>
+      <DefaultPageContainer audio={audio}>
         <Block className={"settings scroll"}>
           <div className="main-settings">
             <div className="box">

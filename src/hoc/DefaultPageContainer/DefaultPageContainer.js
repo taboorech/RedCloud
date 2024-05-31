@@ -7,7 +7,7 @@ import Profile from "../../components/Profile/Profile";
 import CircleButton from "../../components/CircleButton/CircleButton";
 import { useRef } from "react";
 
-function DefaultPageContainer({ children }) {
+function DefaultPageContainer({ audio, children }) {
 
   const containerRef = useRef();
   const rightBlockRef = useRef();
@@ -28,7 +28,7 @@ function DefaultPageContainer({ children }) {
         <div className="middle without-scrollbar">
           { children }
         </div>
-        <Player className={"player"} />
+        <Player className={"player"} audio={audio} />
       </div>
       <div className="right-side-block" ref={rightBlockRef}>
         <CurentSongBlock closeButtonClickHandler={closeButtonClickHandler} className={"current-song-block"}/>

@@ -1,19 +1,45 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 function useAudio() {
   const [audio] = useState(new Audio());
-  const [source, setSource] = useState("");
+  const [source, setSource] = useState("./music/Tom Odell - Another Love.mp3");
   const [playing, setPlaying] = useState(false);
-  const [currentTime] = useState(0);
+  const [currentTime, setCurrentTime] = useState(+localStorage.getItem("currentTime") || 0);
+  const [isMuted, setIsMuted] = useState(localStorage.getItem("audioPlayerMuted") === "true");
+  const [volume, setVolume] = useState(+localStorage.getItem("audioPlayerVolume"));
+  const [duration, setDuration] = useState(0);
 
-  const toggle = () => setPlaying(!playing);
+  const toggle = () => !!source.length && setPlaying(!playing);
+
+  const pause = () => !!source.length && setPlaying(false);
+  const play = () => !!source.length && setPlaying(true);
+
+  const currentTimeChange = useCallback((value) => {
+    audio.currentTime = value;
+    setCurrentTime(value);
+  }, [audio]);
 
   useEffect(() => {
-    playing ? audio.play() : audio.pause();
-  }, [audio, playing]);
+    const time = +localStorage.getItem("currentTime");
+    audio.currentTime = time;
+    setCurrentTime(time);
+  }, [audio]);
+
+  useEffect(() => {
+    audio.volume = volume;
+  }, [audio, volume]);
+
+  useEffect(() => {
+    audio.muted = isMuted;
+  }, [audio, isMuted]);
+
+  useEffect(() => {
+    playing && !!source.length ? audio.play() : audio.pause();
+  }, [audio, playing, source.length]);
 
   useEffect(() => {
     audio.src = source;
+    setDuration(audio.duration);
   }, [audio, source]);
 
   useEffect(() => {
@@ -23,7 +49,32 @@ function useAudio() {
     };
   }, [audio]);
 
-  return [audio, playing, source, currentTime, toggle, setSource];
+  useEffect(() => {
+    audio.addEventListener("timeupdate", () => {
+      setCurrentTime(audio.currentTime);
+      localStorage.setItem("currentTime", currentTime);
+    })
+
+    audio.addEventListener("loadeddata", () => {
+      setDuration(audio.duration)
+    })
+  }, [audio, currentTime]);
+
+  return {
+    playing, 
+    currentTime: audio.currentTime, 
+    volume, 
+    setVolume, 
+    isMuted, 
+    setIsMuted, 
+    toggle, 
+    setSource, 
+    source, 
+    currentTimeChange, 
+    duration, 
+    pause, 
+    play
+  };
 }
 
 export default useAudio;

@@ -7,10 +7,10 @@ import AchievementsBlock from "../../components/AchievementsBlock/AchievementsBl
 import SongsList from "../../components/SongsList/SongsList";
 import SongExpansive from "../../components/SongExpansive/SongExpansive";
 
-function ProfilePage() {
+function ProfilePage({ audio }) {
   return (
     <div className="ProfilePage">
-      <DefaultPageContainer>
+      <DefaultPageContainer audio={audio}>
         <Block className="info">
           <Block className="main-info">
             <div className="person-info-container">
