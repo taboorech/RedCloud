@@ -4,6 +4,7 @@ import M from "materialize-css";
 import CircleButton from "../CircleButton/CircleButton";
 import { classNamesHandler } from "../../utils/classNamesHandler";
 import { NavLink } from "react-router-dom";
+import Button from "../Button/Button";
 
 function PlaylistsBlock({ className }) {
 
@@ -77,7 +78,9 @@ function PlaylistsBlock({ className }) {
     M.FloatingActionButton.init(elems);
     window.addEventListener("resize", () => {
       const playlistsElement = playlistsElementRef.current;
-      playlistsElement.style.left = "0px";
+      if(!!playlistsElement) {
+        playlistsElement.style.left = "0px";
+      }
     });
   }, []);
 
@@ -87,16 +90,21 @@ function PlaylistsBlock({ className }) {
         <img src={"./images/Previous playlist.svg"} alt="prevPlaylistsButton"/>
       </div>
       <div className="content" ref={contentElementRef}>
-        <div ref={playlistsElementRef} className="playlists with-transition">
-          {fillPlaylists()}
-        </div>
+        {!!playlists.length ?
+          <div ref={playlistsElementRef} className="playlists with-transition">
+            {fillPlaylists()}
+          </div> :
+          <Button className={"white-button waves-effect waves-dark create-button"}>Create</Button>
+        }
       </div>
       <div className="next-button scroll-button" onClick={nextButtonClickHandler}>
         <img src={"./images/Next playlist.svg"} alt="nextPlaylistsButton"/>
       </div>
-      <CircleButton className={"btn-small waves-effect waves-dark white-button add-button"}>
-        <i className="material-icons">add</i>
-      </CircleButton>
+      {!!playlists.length &&
+        <CircleButton className={"btn-small waves-effect waves-dark white-button add-button"}>
+          <i className="material-icons">add</i>
+        </CircleButton>
+      }
     </div>
   )
 }
