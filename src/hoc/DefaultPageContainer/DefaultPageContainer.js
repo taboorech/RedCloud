@@ -20,7 +20,7 @@ function DefaultPageContainer({ audio, children }) {
   return (
     <div className="Default-page-container" ref={containerRef}>
       <div className="left-side-block">
-        <Profile className={"profile"} username={"Kainless"} />
+        <Profile className={"profile"} />
         <Navigation className={"navigation"}/>
       </div>
       <div className="center-block">

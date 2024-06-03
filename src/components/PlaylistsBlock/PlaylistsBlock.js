@@ -5,41 +5,21 @@ import CircleButton from "../CircleButton/CircleButton";
 import { classNamesHandler } from "../../utils/classNamesHandler";
 import { NavLink } from "react-router-dom";
 import Button from "../Button/Button";
+import { useFetchPlaylistsQuery } from "../../redux";
 
 function PlaylistsBlock({ className }) {
 
   const playlistsElementRef = useRef();
   const contentElementRef = useRef();
 
-  const playlists = [
-    "./images/avatar.jpg", 
-    "./images/avatar.jpg", 
-    "./images/avatar.jpg", 
-    "./images/1.jpg", 
-    "./images/avatar.jpg", 
-    "./images/avatar.jpg", 
-    "./images/avatar.jpg", 
-    "./images/1.jpg", 
-    "./images/avatar.jpg", 
-    "./images/avatar.jpg", 
-    "./images/1.jpg",
-    "./images/avatar.jpg",
-    "./images/avatar.jpg",
-    "./images/1.jpg",
-    "./images/1.jpg",
-    "./images/1.jpg",
-    "./images/avatar.jpg",
-    "./images/avatar.jpg",
-    "./images/1.jpg",
-    "./images/1.jpg",
-    "./images/avatar.jpg",
-    "./images/1.jpg",
-  ];
+  const { data } = useFetchPlaylistsQuery();
+
+  const playlists = data ? data : [];
 
   const fillPlaylists = () => (
     playlists.map((playlist, index) => (
-      <NavLink to={`/playlist/${index}`} key={`playlist-${index}`} className="playlist">
-        <img src={playlist} alt="playlistImage" className="responsive-img"/>
+      <NavLink to={`/playlist/${playlist._id}`} key={`playlist-${index}`} className="playlist">
+        <img src={playlist.imageUrl} alt="playlistImage" className="responsive-img"/>
       </NavLink>
     ))
   )
