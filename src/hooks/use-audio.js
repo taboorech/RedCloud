@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 
 function useAudio() {
   const [audio] = useState(new Audio());
-  const [source, setSource] = useState("./music/Tom Odell - Another Love.mp3");
+  const [source, setSource] = useState(localStorage.getItem("currentSong") || ""); 
   const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(+localStorage.getItem("currentTime") || 0);
   const [isMuted, setIsMuted] = useState(localStorage.getItem("audioPlayerMuted") === "true");

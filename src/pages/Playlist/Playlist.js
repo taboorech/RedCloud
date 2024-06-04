@@ -18,7 +18,15 @@ function Playlist({ audio }) {
 
   const songsFill = () => (
     songs.map((song, index) => 
-      <SongExpansive key={`song-${index}`} title={song.title} secondaryInfo={song.album} duration={song.duration} imageSrc={mainInstance.defaults.baseURL + song.imageUrl} />
+      <SongExpansive 
+        key={`song-${index}`} 
+        title={song.title} 
+        secondaryInfo={song.album} 
+        duration={song.duration} 
+        songUrl={mainInstance.defaults.baseURL + song.songUrl} 
+        imageSrc={mainInstance.defaults.baseURL + song.imageUrl} 
+        audio={audio}
+      />
     )
   );  
 

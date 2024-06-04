@@ -45,6 +45,7 @@ mainInstance.interceptors.response.use(
             return await axios(originalRequest);
           }
         } catch (refreshError) {
+          console.log(refreshError);
           localStorage.removeItem('accessToken');
           localStorage.removeItem('refreshToken');
           window.location = "/auth";

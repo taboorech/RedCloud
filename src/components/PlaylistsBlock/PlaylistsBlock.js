@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./PlaylistsBlock.scss";
 import M from "materialize-css";
 import CircleButton from "../CircleButton/CircleButton";
@@ -12,11 +12,12 @@ function PlaylistsBlock({ className }) {
 
   const playlistsElementRef = useRef();
   const contentElementRef = useRef();
+  const [playlists, setPlaylists] = useState([]);
 
   const { data } = useFetchPlaylistsQuery();
   const [ createNewPlaylist, createNewPlaylistResult ] = useCreatePlaylistMutation();
 
-  const playlists = data ? data : [];
+  // const playlists = data ? data : [];
 
   const fillPlaylists = () => (
     playlists.map((playlist, index) => (
@@ -70,13 +71,15 @@ function PlaylistsBlock({ className }) {
     });
   }, []);
 
-  // TODO: CHECK ADD PLAYLIST
-  // useEffect(() => {
-  //   // console.log(createNewPlaylistResult);
-  //   if(createNewPlaylistResult.isSuccess) {
-  //     playlists.push(createNewPlaylistResult.data)
-  //   }
-  // }, [createNewPlaylistResult, playlists]);
+  useEffect(() => {
+    if(createNewPlaylistResult.isSuccess) {
+      setPlaylists(prevArray => [...prevArray, createNewPlaylistResult.data])
+    }
+  }, [createNewPlaylistResult]);
+
+  useEffect(() => {
+    setPlaylists(data);
+  }, [data]);
 
   return (
     <div className={classNamesHandler("PlaylistsBlock", className)}>
@@ -84,7 +87,7 @@ function PlaylistsBlock({ className }) {
         <img src={"./images/Previous playlist.svg"} alt="prevPlaylistsButton"/>
       </div>
       <div className="content" ref={contentElementRef}>
-        {!!playlists.length ?
+        {!!playlists?.length ?
           <div ref={playlistsElementRef} className="playlists with-transition">
             {fillPlaylists()}
           </div> :
@@ -94,7 +97,7 @@ function PlaylistsBlock({ className }) {
       <div className="next-button scroll-button" onClick={nextButtonClickHandler}>
         <img src={"./images/Next playlist.svg"} alt="nextPlaylistsButton"/>
       </div>
-      {!!playlists.length &&
+      {!!playlists?.length &&
         <CircleButton className={"btn-small waves-effect waves-dark white-button add-button"} onClick={createButtonClickHandler}>
           <i className="material-icons">add</i>
         </CircleButton>
