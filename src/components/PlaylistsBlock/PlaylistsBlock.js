@@ -5,7 +5,8 @@ import CircleButton from "../CircleButton/CircleButton";
 import { classNamesHandler } from "../../utils/classNamesHandler";
 import { NavLink } from "react-router-dom";
 import Button from "../Button/Button";
-import { useFetchPlaylistsQuery } from "../../redux";
+import { useCreatePlaylistMutation, useFetchPlaylistsQuery } from "../../redux";
+import mainInstance from "../../api/mainInstance";
 
 function PlaylistsBlock({ className }) {
 
@@ -13,16 +14,21 @@ function PlaylistsBlock({ className }) {
   const contentElementRef = useRef();
 
   const { data } = useFetchPlaylistsQuery();
+  const [ createNewPlaylist, createNewPlaylistResult ] = useCreatePlaylistMutation();
 
   const playlists = data ? data : [];
 
   const fillPlaylists = () => (
     playlists.map((playlist, index) => (
       <NavLink to={`/playlist/${playlist._id}`} key={`playlist-${index}`} className="playlist">
-        <img src={playlist.imageUrl} alt="playlistImage" className="responsive-img"/>
+        <img src={mainInstance.defaults.baseURL + playlist.imageUrl} alt="playlistImage" className="responsive-img"/>
       </NavLink>
     ))
   )
+
+  const createButtonClickHandler = () => {
+    createNewPlaylist("Playlist");
+  }
 
   const nextButtonClickHandler = () => {
     const contentElementProperties = contentElementRef.current.getBoundingClientRect();
@@ -64,6 +70,14 @@ function PlaylistsBlock({ className }) {
     });
   }, []);
 
+  // TODO: CHECK ADD PLAYLIST
+  // useEffect(() => {
+  //   // console.log(createNewPlaylistResult);
+  //   if(createNewPlaylistResult.isSuccess) {
+  //     playlists.push(createNewPlaylistResult.data)
+  //   }
+  // }, [createNewPlaylistResult, playlists]);
+
   return (
     <div className={classNamesHandler("PlaylistsBlock", className)}>
       <div className="prev-button scroll-button" onClick={prevButtonClickHandler}>
@@ -81,7 +95,7 @@ function PlaylistsBlock({ className }) {
         <img src={"./images/Next playlist.svg"} alt="nextPlaylistsButton"/>
       </div>
       {!!playlists.length &&
-        <CircleButton className={"btn-small waves-effect waves-dark white-button add-button"}>
+        <CircleButton className={"btn-small waves-effect waves-dark white-button add-button"} onClick={createButtonClickHandler}>
           <i className="material-icons">add</i>
         </CircleButton>
       }

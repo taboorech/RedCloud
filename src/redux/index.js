@@ -24,4 +24,4 @@ setupListeners(store.dispatch);
 export { changeValue as changeSearchBarValue } from "./slices/searchBarSlice";
 export { setActiveFilter } from "./slices/searchFiltersSlice";
 export { useAuthMutation, useRegistrationMutation, useFetchUserInfoQuery } from "./apis/authApi";
-export { useFetchPlaylistsQuery } from "./apis/playlistApi";
+export { useFetchPlaylistsQuery, useFetchOnePlaylistQuery, useCreatePlaylistMutation } from "./apis/playlistApi";

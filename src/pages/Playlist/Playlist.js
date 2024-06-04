@@ -5,27 +5,42 @@ import SongExpansive from "../../components/SongExpansive/SongExpansive";
 import PlaylistBaner from "../../components/PlaylistBaner/PlaylistBaner";
 import SongsList from "../../components/SongsList/SongsList";
 import Button from "../../components/Button/Button";
+import { useFetchOnePlaylistQuery } from "../../redux";
+import { useParams } from "react-router-dom";
+import mainInstance from "../../api/mainInstance";
 
-function Playlist({ audio, isOwner }) {
+function Playlist({ audio }) {
 
-  const songs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const params = useParams();
+  const { data } = useFetchOnePlaylistQuery(params.id);
+
+  const songs = data ? data.playlist?.songs : [];
 
   const songsFill = () => (
-    songs.map((song) => <SongExpansive title={"Song title"} secondaryInfo={"Album title"} duration={239} imageSrc={"./images/avatar.jpg"} />)
-  );
+    songs.map((song, index) => 
+      <SongExpansive key={`song-${index}`} title={song.title} secondaryInfo={song.album} duration={song.duration} imageSrc={mainInstance.defaults.baseURL + song.imageUrl} />
+    )
+  );  
 
   return (
     <div className="Playlist">
       <DefaultPageContainer audio={audio}>
         <Block className={"playlist-controls-block"}>
-          <PlaylistBaner isOwner={true} />
+          <PlaylistBaner 
+            title = {data && data.playlist.title} 
+            songsCount={songs.length} 
+            duration={data && data.playlist.duration} 
+            isPrivate = {data && data.playlist.private} 
+            imageSource={data && mainInstance.defaults.baseURL + data.playlist.imageUrl} 
+            isOwner={data && data.isOwner} 
+          />
         </Block>
         <SongsList className={"playlist-songs scroll"}>
           { songs.length ? 
             songsFill() :
             <div className="empty-playlist">
               <p>Empty playlist</p>
-              { isOwner && <Button className={"button white-button"}>Add song</Button>}
+              { (data && data.isOwner) && <Button className={"button white-button"}>Add song</Button>}
             </div>
           }
         </SongsList>

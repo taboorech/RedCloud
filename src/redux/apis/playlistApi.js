@@ -13,10 +13,29 @@ const playlistApi = createApi({
             method: "GET"
           }
         }
+      }),
+      fetchOnePlaylist: builder.query({
+        query: (id) => {
+          return {
+            url: `/playlist/${id}`,
+            method: "GET"
+          }
+        }
+      }),
+      createPlaylist: builder.mutation({
+        query: (title) => {
+          return {
+            url: `/playlist/create`,
+            data: {
+              title
+            },
+            method: "PUT"
+          }
+        }
       })
     }
   }
 })
 
-export const { useFetchPlaylistsQuery } = playlistApi;
+export const { useFetchPlaylistsQuery, useFetchOnePlaylistQuery, useCreatePlaylistMutation } = playlistApi;
 export { playlistApi };

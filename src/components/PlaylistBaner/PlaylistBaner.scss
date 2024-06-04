@@ -29,6 +29,10 @@
       }
 
       > .playlist-duration {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: .5rem;
         font-size: 24px;
       }
 

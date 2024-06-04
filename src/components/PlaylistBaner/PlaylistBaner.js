@@ -1,19 +1,20 @@
 import "./PlaylistBaner.scss";
 import Image from "../Image/Image";
 import CircleButton from "../CircleButton/CircleButton";
+import Time from "../Time/Time";
 
-function PlaylistBaner({ isOwner = false }) {
+function PlaylistBaner({ imageSource, title, songsCount, duration, isPrivate, isOwner = false }) {
 
   return (
     <div className="PlaylistBaner">
       <div className="playlist-info">
         <div className="image-block">
-          <Image alt={"Song"} src={"./images/Song.png"} />
+          <Image alt={"Song"} src={imageSource} />
         </div>
         <div className="text-block">
-          <span className="playlist-title">Title</span>
-          <span className="playlist-duration">20 songs - 23:20:12</span>
-          <span className="playlist-privacy">Private playlist</span>
+          <span className="playlist-title">{ title }</span>
+          <span className="playlist-duration"><div>{songsCount} { songsCount === 1 ? "song" : "songs" }</div> - <Time className={"light"} time={duration}/></span>
+          <span className="playlist-privacy">{isPrivate ? "Private" : "Public"} playlist</span>
         </div>
       </div>
       <div className="buttons">
