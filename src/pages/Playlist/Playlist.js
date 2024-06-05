@@ -11,10 +11,18 @@ import mainInstance from "../../api/mainInstance";
 
 function Playlist({ audio }) {
 
+  const { setSource, setPlaylist } = audio;
   const params = useParams();
   const { data } = useFetchOnePlaylistQuery(params.id);
 
   const songs = data ? data.playlist?.songs : [];
+
+  const songClickHandler = (event) => {
+    const songUrl = event.currentTarget.getAttribute("songurl");
+    setSource(songUrl);
+    setPlaylist(songs);
+    localStorage.setItem("currentPlaylist", JSON.stringify(songs));
+  }
 
   const songsFill = () => (
     songs.map((song, index) => 
@@ -25,7 +33,7 @@ function Playlist({ audio }) {
         duration={song.duration} 
         songUrl={mainInstance.defaults.baseURL + song.songUrl} 
         imageSrc={mainInstance.defaults.baseURL + song.imageUrl} 
-        audio={audio}
+        onClick={songClickHandler}
       />
     )
   );  
@@ -36,7 +44,7 @@ function Playlist({ audio }) {
         <Block className={"playlist-controls-block"}>
           <PlaylistBaner 
             title = {data && data.playlist.title} 
-            songsCount={songs.length} 
+            songsCount={songs?.length} 
             duration={data && data.playlist.duration} 
             isPrivate = {data && data.playlist.private} 
             imageSource={data && mainInstance.defaults.baseURL + data.playlist.imageUrl} 
@@ -44,7 +52,7 @@ function Playlist({ audio }) {
           />
         </Block>
         <SongsList className={"playlist-songs scroll"}>
-          { songs.length ? 
+          { songs?.length ? 
             songsFill() :
             <div className="empty-playlist">
               <p>Empty playlist</p>

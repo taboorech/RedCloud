@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import mainInstance from "../api/mainInstance";
 
 function useAudio() {
   const [audio] = useState(new Audio());
@@ -8,6 +9,7 @@ function useAudio() {
   const [isMuted, setIsMuted] = useState(localStorage.getItem("audioPlayerMuted") === "true");
   const [volume, setVolume] = useState(+localStorage.getItem("audioPlayerVolume"));
   const [duration, setDuration] = useState(0);
+  const [playlist, setPlaylist] = useState(JSON.parse(localStorage.getItem("currentPlaylist")) || []);
 
   const toggle = () => !!source.length && setPlaying(!playing);
 
@@ -40,14 +42,31 @@ function useAudio() {
   useEffect(() => {
     audio.src = source;
     setDuration(audio.duration);
+    localStorage.setItem("currentSong", source);
   }, [audio, source]);
 
   useEffect(() => {
-    audio.addEventListener('ended', () => setPlaying(false));
+    const onEndedFunc = () => {
+      if(!playlist.length) {
+        return setPlaying(false);
+      }
+
+      const nextSong = playlist.findIndex(songInfo => (mainInstance.defaults.baseURL + songInfo.songUrl) === audio.src.replaceAll("%20", " ")) + 1;
+      if(nextSong >= playlist.length) {
+        return setPlaying(false);
+      }
+
+      setSource(mainInstance.defaults.baseURL + playlist[nextSong].songUrl);
+      setPlaying(false);
+      audio.addEventListener("loadeddata", () => play());
+      audio.removeEventListener("loadeddata", () => play());
+    }
+
+    audio.addEventListener('ended', () => onEndedFunc());
     return () => {
-      audio.removeEventListener('ended', () => setPlaying(false));
+      audio.removeEventListener('ended', () => onEndedFunc());
     };
-  }, [audio]);
+  }, [audio, playlist]);
 
   useEffect(() => {
     audio.addEventListener("timeupdate", () => {
@@ -72,6 +91,7 @@ function useAudio() {
     source, 
     currentTimeChange, 
     duration, 
+    setPlaylist,
     pause, 
     play
   };

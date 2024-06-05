@@ -11,6 +11,10 @@
     i {
       color: var(--player-buttons-color);
     }
+
+    &.active {
+      background-color: #ffffff3a;
+    }
   }
 
   &.white-text {
