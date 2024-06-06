@@ -9,13 +9,13 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 30%;
+    width: 50%;
     > .image-block {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 15%;
-      height: 100%;
+      width: 74px;
+      height: 74px;
       margin-right: .9375rem;
     }
     > .title-block {
@@ -23,7 +23,12 @@
       flex-direction: column;
       justify-content: space-between;
       color: var(--default-text-color);
+      width: 60%;
     }
+  }
+
+  > .secondary-info-block {
+    width: 15%;
   }
 
   .additional-block {

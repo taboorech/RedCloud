@@ -9,10 +9,14 @@ function SongExpansive({ title, secondaryInfo, duration, songId, songUrl, imageS
   const { setSource, setSongId } = audio;
 
   const clickHandler = (event) => {
-    onClick();
+    onClick && onClick();
     const songUrl = event.currentTarget.getAttribute("songurl");
     setSource(songUrl);
     setSongId(event.currentTarget.getAttribute("songid"))
+  }
+
+  const additionalButtonClickHandler = (event) => {
+    event.preventDefault();
   }
 
   return (
@@ -25,7 +29,7 @@ function SongExpansive({ title, secondaryInfo, duration, songId, songUrl, imageS
           <span>{ title }</span>
         </div>
       </div>
-      <div className="secondary-info-block">
+      <div className="secondary-info-block truncate">
         { secondaryInfo }
       </div>
       <div className="additional-block">
@@ -33,7 +37,7 @@ function SongExpansive({ title, secondaryInfo, duration, songId, songUrl, imageS
           <Time className={"light"} time={duration}/>
         </div>
         <div className="additional-menu">
-          <CircleButton className="black-button waves-effect waves-light white-text">
+          <CircleButton className="black-button waves-effect waves-light white-text" onClick={additionalButtonClickHandler}>
             <i className="material-icons">more_vert</i>
           </CircleButton>
         </div>

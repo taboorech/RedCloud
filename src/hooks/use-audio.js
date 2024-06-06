@@ -29,6 +29,7 @@ function useAudio() {
     audio.currentTime = time;
     setCurrentTime(time);
     audio.addEventListener("loadeddata", () => audio.addEventListener("loadeddata", () => setPlaying(true)));
+    audio.removeEventListener("loadeddata", () => audio.addEventListener("loadeddata", () => setPlaying(true)));
   }, [audio]);
 
   useEffect(() => {

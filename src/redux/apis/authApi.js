@@ -33,14 +33,6 @@ const authApi = createApi({
           }
         }
       }),
-      fetchUserInfo: builder.query({
-        query: () => {
-          return {
-            url: '/auth/info',
-            method: "GET",
-          }
-        }
-      })
     }
   }
 })
@@ -48,6 +40,5 @@ const authApi = createApi({
 export const {
   useAuthMutation,
   useRegistrationMutation,
-  useFetchUserInfoQuery
 } = authApi;
 export { authApi };
