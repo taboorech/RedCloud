@@ -31,7 +31,7 @@ function DefaultPageContainer({ audio, children }) {
         <Player className={"player"} audio={audio} />
       </div>
       <div className="right-side-block" ref={rightBlockRef}>
-        <CurentSongBlock closeButtonClickHandler={closeButtonClickHandler} className={"current-song-block"}/>
+        <CurentSongBlock closeButtonClickHandler={closeButtonClickHandler} className={"current-song-block"} audio={audio}/>
       </div>
       <CircleButton className="white-button waves-effect waves-dark close-button" onClick={closeButtonClickHandler}>
         <i className="material-icons">chevron_left</i>

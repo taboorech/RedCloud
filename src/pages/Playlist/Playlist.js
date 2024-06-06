@@ -11,17 +11,23 @@ import mainInstance from "../../api/mainInstance";
 
 function Playlist({ audio }) {
 
-  const { setSource, setPlaylist } = audio;
+  const { setPlaylist, setSource, setSongId, currentTimeChange } = audio;
   const params = useParams();
   const { data } = useFetchOnePlaylistQuery(params.id);
 
   const songs = data ? data.playlist?.songs : [];
 
-  const songClickHandler = (event) => {
-    const songUrl = event.currentTarget.getAttribute("songurl");
-    setSource(songUrl);
+  const songClickHandler = () => {
     setPlaylist(songs);
     localStorage.setItem("currentPlaylist", JSON.stringify(songs));
+  }
+
+  const playButtonClickHandler = () => {
+    setPlaylist(songs);
+    localStorage.setItem("currentPlaylist", JSON.stringify(songs));
+    setSource(mainInstance.defaults.baseURL + songs[0].songUrl);
+    setSongId(songs[0]._id);
+    currentTimeChange(0);
   }
 
   const songsFill = () => (
@@ -31,9 +37,11 @@ function Playlist({ audio }) {
         title={song.title} 
         secondaryInfo={song.album} 
         duration={song.duration} 
+        songId = {song._id}
         songUrl={mainInstance.defaults.baseURL + song.songUrl} 
         imageSrc={mainInstance.defaults.baseURL + song.imageUrl} 
         onClick={songClickHandler}
+        audio = { audio }
       />
     )
   );  
@@ -49,6 +57,7 @@ function Playlist({ audio }) {
             isPrivate = {data && data.playlist.private} 
             imageSource={data && mainInstance.defaults.baseURL + data.playlist.imageUrl} 
             isOwner={data && data.isOwner} 
+            playButtonClickHandler={playButtonClickHandler}
           />
         </Block>
         <SongsList className={"playlist-songs scroll"}>

@@ -17,8 +17,6 @@ function PlaylistsBlock({ className }) {
   const { data } = useFetchPlaylistsQuery();
   const [ createNewPlaylist, createNewPlaylistResult ] = useCreatePlaylistMutation();
 
-  // const playlists = data ? data : [];
-
   const fillPlaylists = () => (
     playlists.map((playlist, index) => (
       <NavLink to={`/playlist/${playlist._id}`} key={`playlist-${index}`} className="playlist">

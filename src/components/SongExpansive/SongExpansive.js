@@ -4,10 +4,19 @@ import Image from "../Image/Image";
 import Time from "../Time/Time";
 import "./SongExpansive.scss";
 
-function SongExpansive({ title, secondaryInfo, duration, songUrl, imageSrc, className, onClick }) {
+function SongExpansive({ title, secondaryInfo, duration, songId, songUrl, imageSrc, className, onClick, audio }) {
+
+  const { setSource, setSongId } = audio;
+
+  const clickHandler = (event) => {
+    onClick();
+    const songUrl = event.currentTarget.getAttribute("songurl");
+    setSource(songUrl);
+    setSongId(event.currentTarget.getAttribute("songid"))
+  }
 
   return (
-    <div className={classNamesHandler("SongExpansive", className)} songurl = {songUrl} onClick={onClick}>
+    <div className={classNamesHandler("SongExpansive", className)} songid = {songId} songurl = {songUrl} onClick={clickHandler}>
       <div className="content">
         <div className="image-block">
           <Image src={imageSrc} alt={"Song"}/>

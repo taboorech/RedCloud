@@ -10,11 +10,14 @@ function useAudio() {
   const [volume, setVolume] = useState(+localStorage.getItem("audioPlayerVolume"));
   const [duration, setDuration] = useState(0);
   const [playlist, setPlaylist] = useState(JSON.parse(localStorage.getItem("currentPlaylist")) || []);
+  const [songId, setSongId] = useState(localStorage.getItem("currentSongId") || "");
 
   const toggle = () => !!source.length && setPlaying(!playing);
 
   const pause = () => !!source.length && setPlaying(false);
   const play = () => !!source.length && setPlaying(true);
+
+  const currentSongIndex = useCallback(() => playlist.findIndex(songInfo => (mainInstance.defaults.baseURL + songInfo.songUrl) === audio.src.replaceAll("%20", " ")), [audio.src, playlist]);
 
   const currentTimeChange = useCallback((value) => {
     audio.currentTime = value;
@@ -25,6 +28,7 @@ function useAudio() {
     const time = +localStorage.getItem("currentTime");
     audio.currentTime = time;
     setCurrentTime(time);
+    audio.addEventListener("loadeddata", () => audio.addEventListener("loadeddata", () => setPlaying(true)));
   }, [audio]);
 
   useEffect(() => {
@@ -51,22 +55,23 @@ function useAudio() {
         return setPlaying(false);
       }
 
-      const nextSong = playlist.findIndex(songInfo => (mainInstance.defaults.baseURL + songInfo.songUrl) === audio.src.replaceAll("%20", " ")) + 1;
+      const nextSong = currentSongIndex() + 1;
       if(nextSong >= playlist.length) {
         return setPlaying(false);
       }
 
       setSource(mainInstance.defaults.baseURL + playlist[nextSong].songUrl);
+      setSongId(playlist[nextSong]._id);
       setPlaying(false);
-      audio.addEventListener("loadeddata", () => play());
-      audio.removeEventListener("loadeddata", () => play());
+      audio.addEventListener("loadeddata", () => setPlaying(true));
+      audio.removeEventListener("loadeddata", () => setPlaying(true));
     }
 
     audio.addEventListener('ended', () => onEndedFunc());
     return () => {
       audio.removeEventListener('ended', () => onEndedFunc());
     };
-  }, [audio, playlist]);
+  }, [audio, playlist, currentSongIndex]);
 
   useEffect(() => {
     audio.addEventListener("timeupdate", () => {
@@ -75,9 +80,13 @@ function useAudio() {
     })
 
     audio.addEventListener("loadeddata", () => {
-      setDuration(audio.duration)
+      setDuration(audio.duration);
     })
   }, [audio, currentTime]);
+
+  useEffect(() => {
+    localStorage.setItem("currentSongId", songId);
+  }, [songId]);
 
   return {
     playing, 
@@ -93,7 +102,11 @@ function useAudio() {
     duration, 
     setPlaylist,
     pause, 
-    play
+    play,
+    songId,
+    setSongId,
+    playlist,
+    currentSongIndex
   };
 }
 

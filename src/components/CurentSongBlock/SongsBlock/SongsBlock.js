@@ -1,8 +1,7 @@
 import "./SongsBlock.scss";
 import CircleButton from "../../CircleButton/CircleButton";
-import Song from "../../Song/Song";
 
-function SongsBlock() {
+function SongsBlock({ children }) {
   return (
     <div className="Songs-block">
       <div className="songs-block-title">
@@ -13,24 +12,7 @@ function SongsBlock() {
       </div>
       <div className="songs without-scrollbar">
         <div className="line">
-          <Song className="song"/>
-          <Song className="song"/>
-          <Song className="song"/>
-          <Song className="song"/>
-          <Song className="song"/>
-          <Song className="song"/>
-          <Song className="song"/>
-          <Song className="song"/>
-          <Song className="song"/>
-          <Song className="song"/>
-          <Song className="song"/>
-          <Song className="song"/>
-          <Song className="song"/>
-          <Song className="song"/>
-          <Song className="song"/>
-          <Song className="song"/>
-          <Song className="song"/>
-          <Song className="song"/>
+          { children }
         </div>
       </div>
     </div>

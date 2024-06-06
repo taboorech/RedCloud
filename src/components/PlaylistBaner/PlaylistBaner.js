@@ -3,7 +3,7 @@ import Image from "../Image/Image";
 import CircleButton from "../CircleButton/CircleButton";
 import Time from "../Time/Time";
 
-function PlaylistBaner({ imageSource, title, songsCount, duration, isPrivate, isOwner = false }) {
+function PlaylistBaner({ imageSource, title, songsCount, duration, isPrivate, playButtonClickHandler, isOwner = false }) {
 
   return (
     <div className="PlaylistBaner">
@@ -18,7 +18,7 @@ function PlaylistBaner({ imageSource, title, songsCount, duration, isPrivate, is
         </div>
       </div>
       <div className="buttons">
-        <CircleButton className="white-button waves-effect waves-dark btn-large play-button">
+        <CircleButton className="white-button waves-effect waves-dark btn-large play-button" onClick={playButtonClickHandler}>
           <i className="material-icons">play_arrow</i>
         </CircleButton>
         <CircleButton className="black-button waves-effect waves-light btn-large white-text">

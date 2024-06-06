@@ -3,20 +3,20 @@ import Image from "../Image/Image";
 import Time from "../Time/Time";
 import "./Song.scss";
 
-function Song({ className }) {
+function Song({ title, author, duration, imageUrl, className }) {
   return (
     <div className={classNamesHandler("Song", className)}>
       <div className="content">
         <div className="image-block">
-          <Image src={"./images/avatar.jpg"} />
+          <Image src={imageUrl} />
         </div>
         <div className="title-block">
-          <span>Name</span>
-          <span>Author</span>
+          <span>{ title }</span>
+          <span>{ author }</span>
         </div>
       </div>
       <div className="time-block">
-        <Time className={"secondary"} time={239}/>
+        <Time className={"secondary"} time={duration}/>
       </div>
     </div>
   )
