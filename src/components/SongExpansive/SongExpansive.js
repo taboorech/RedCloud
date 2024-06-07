@@ -25,11 +25,11 @@ function SongExpansive({ title, secondaryInfo, duration, songId, songUrl, imageS
         <div className="image-block">
           <Image src={imageSrc} alt={"Song"}/>
         </div>
-        <div className="title-block">
+        <div className="title-block" title={title}>
           <span>{ title }</span>
         </div>
       </div>
-      <div className="secondary-info-block truncate">
+      <div className="secondary-info-block truncate" title={secondaryInfo}>
         { secondaryInfo }
       </div>
       <div className="additional-block">

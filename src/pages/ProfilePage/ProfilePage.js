@@ -13,9 +13,13 @@ import Achievement from "../../components/AchievementsBlock/Achievement/Achievem
 function ProfilePage({ audio }) {
 
   const { data } = useFetchProfileInfoQuery();
+  const { setPlaylist } = audio;
 
-  const fillHimselfSongs = () => (
-    data?.songs.map(song => 
+  const fillHimselfSongs = () => {
+    const songsOnClick = () => {
+      setPlaylist([]);
+    }
+    return data?.songs.map(song => 
       <SongExpansive 
         key={song._id} 
         songId={song._id} 
@@ -24,10 +28,11 @@ function ProfilePage({ audio }) {
         duration={song.duration} 
         songUrl={mainInstance.defaults.baseURL + song.songUrl} 
         imageSrc={mainInstance.defaults.baseURL + song.imageUrl} 
+        onClick={songsOnClick}
         audio={audio} 
       />
     )
-  )
+  }
 
   return (
     <div className="ProfilePage">

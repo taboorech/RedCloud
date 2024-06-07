@@ -18,7 +18,7 @@ function CurentSongBlock({ closeButtonClickHandler, audio }){
 
   const fillSongs = () => (
     playlist.map((song, index) => 
-      (index > currentSongIndex()) && <Song title={song.title} author={song.authors[0].login} duration={song.duration} imageUrl={mainInstance.defaults.baseURL + song.imageUrl} className="song"/> 
+      (index > currentSongIndex()) && <Song key={song._id} title={song.title} author={song.authors[0].login} duration={song.duration} imageUrl={mainInstance.defaults.baseURL + song.imageUrl} className="song"/> 
     )
   );
 

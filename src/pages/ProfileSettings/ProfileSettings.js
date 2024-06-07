@@ -9,8 +9,27 @@ import Textarea from "../../components/Textarea/Textarea";
 import DefaultPageContainer from "../../hoc/DefaultPageContainer/DefaultPageContainer";
 import Image from "../../components/Image/Image";
 import Button from "../../components/Button/Button";
+import mainInstance from "../../api/mainInstance";
+import useInput from "../../hooks/use-input";
+import { useFetchProfileInfoQuery } from "../../redux";
+import { useEffect } from "react";
+import M from "materialize-css";
 
 function ProfileSettings({ audio }) {
+
+  const { data } = useFetchProfileInfoQuery();
+  const [usernameInput, setUsernameInput] = useInput();
+
+  useEffect(() => {
+    M.updateTextFields();
+  }, []);
+
+  // useEffect(() => {
+  //   if(isSuccess) {
+  //     setUsernameInput(data?.login);
+  //   }
+  // }, [data, isSuccess, setUsernameInput]);
+
   return (
     <div className="Profile-settings">
       <DefaultPageContainer audio={audio}>
@@ -18,10 +37,10 @@ function ProfileSettings({ audio }) {
           <div className="main-settings">
             <div className="box">
               <div className="image-block">
-                <Image src={"./images/avatar.jpg"} alt={"Profile image"} />
+                <Image src={data && mainInstance.defaults.baseURL + data.imageUrl} alt={"Profile image"} />
               </div>
               <div className="inputs">
-                <Input id={"name"} labelText={"Name"} />
+                <Input id={"name"} labelText={"Name"} value={usernameInput} onChange={setUsernameInput}/>
                 <Textarea id={"description"} labelText={"Description"} />
               </div>
             </div>
