@@ -53,7 +53,8 @@ function Auth() {
 
   useEffect(() => {
     if(registrationResults.isSuccess) {
-      navigate('#registration');
+      navigate('/auth#auth');
+      setLocationHash(window.location.hash);
     }
   }, [registrationResults, navigate]);
 

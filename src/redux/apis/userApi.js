@@ -21,10 +21,19 @@ const userApi = createApi({
             method: "GET"
           }
         }
+      }),
+      updateInfo: builder.mutation({
+        query: (data) => {
+          return {
+            url: '/user',
+            data,
+            method: "PATCH"
+          }
+        }
       })
     }
   }
 })
 
-export const { useFetchUserInfoQuery, useFetchProfileInfoQuery } = userApi;
+export const { useFetchUserInfoQuery, useFetchProfileInfoQuery, useUpdateInfoMutation } = userApi;
 export { userApi };
