@@ -24,10 +24,12 @@ const userApi = createApi({
       }),
       updateInfo: builder.mutation({
         query: (data) => {
+          console.log(data.get("country"));
           return {
             url: '/user',
             data,
-            method: "PATCH"
+            method: "PATCH",
+            headers: { "content-type": "multipart/form-data" }
           }
         }
       })

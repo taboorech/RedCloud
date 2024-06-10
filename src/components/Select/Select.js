@@ -3,14 +3,14 @@ import M from "materialize-css";
 import { useEffect, useRef, useState } from "react";
 import { classNamesHandler } from "../../utils/classNamesHandler";
 
-function Select({ header = "Choose an option", className, children }) {
+function Select({ value, onChange, header = "Choose an option", className, children }) {
 
-  const [value, setValue] = useState("");
+  // const [value, setValue] = useState("");
   const selectRef = useRef();
 
-  const onChangeHandler = (event) => {
-    setValue(event.target.value);
-  }
+  // const onChangeHandler = (event) => {
+  //   setValue(event.target.value);
+  // }
 
   useEffect(() => {    
     M.FormSelect.init(selectRef.current)
@@ -18,7 +18,7 @@ function Select({ header = "Choose an option", className, children }) {
 
   return (
     <div className={classNamesHandler("Select", className)}>
-      <select className="browser-default" value={value} onChange={onChangeHandler}>
+      <select className="browser-default" value={value} onChange={onChange}>
         <option value="" disabled>{ header }</option>
         { children }
       </select>

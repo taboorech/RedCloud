@@ -21,8 +21,10 @@ function ProfileSettings({ audio }) {
   const [surnameInput, setSurnameInput] = useInput(data?.surname);
   const [nameInput, setNameInput] = useInput(data?.name);
   const [descriptionInput, setDescriptionInput] = useInput(data?.description);
-  const [ updateInfo, updateInfoResult ] = useUpdateInfoMutation();
-  console.log(updateInfoResult);
+  const [countrySelectValue, setCountrySelectValue] = useState(data?.country || "");
+  const [backgroundImage, setBackgroundImage] = useState({});
+  const [fileInputValue, setFileInputValue] = useState(data?.backgroundImage?.originalname);
+  const [ updateInfo ] = useUpdateInfoMutation();
 
   // Checkboxes states
   const [settings, setSettings] = useState({
@@ -50,6 +52,8 @@ function ProfileSettings({ audio }) {
 
   useEffect(() => {
     if (data) {
+      setCountrySelectValue(data.country);
+      setFileInputValue(data.backgroundImage?.originalname);
       setSettings({
         profile: {
           showPlaylists: data.settings.profile.showPlaylists,
@@ -87,12 +91,22 @@ function ProfileSettings({ audio }) {
   };
 
   const saveButtonClick = () => {
-    updateInfo({
-      login: usernameInput,
-      surname: surnameInput,
-      name: nameInput,
-      settings
-    });
+    const updateForm = new FormData();
+    updateForm.append("login", usernameInput);
+    updateForm.append("surname", surnameInput);
+    updateForm.append("name", nameInput);
+    updateForm.append("country", countrySelectValue);
+    updateForm.append("backgroundImage", backgroundImage);
+    updateForm.append("settings", JSON.stringify(settings));
+    updateInfo(updateForm);
+  }
+
+  const countrySelectValueChangeHandler = (event) => {
+    setCountrySelectValue(event.target.value);
+  }
+
+  const backgroundImageInputChangeHandler = (event) => {
+    setBackgroundImage(event.target.files[0]);
   }
 
   return (
@@ -111,11 +125,11 @@ function ProfileSettings({ audio }) {
                 <Textarea id={"description"} labelText={"Description"} isActive={!!data} value={descriptionInput} onChange={setDescriptionInput}/>
               </div>
             </div>
-            <Select header="Choose your country" className={"select"}>
-              <option value={"ukraine"}>Ukraine</option>
+            <Select header="Choose your country" className={"select"} value={countrySelectValue} onChange={countrySelectValueChangeHandler}>
+              <option value={"UKRAINE"}>Ukraine</option>
             </Select>
           </div>
-          <FileInput buttonText={"Profile background image"} />
+          <FileInput buttonText={"Profile background image"} onChange={backgroundImageInputChangeHandler} value={fileInputValue}/>
           <div className="additional-settings">
             <SettingsPart className={"part"} header={<h4>Profile</h4>}>
               <Checkbox isChecked={settings.profile.showPlaylists} onChange={onCheckedHandler('profile', 'showPlaylists')}>Show my playlists</Checkbox>
