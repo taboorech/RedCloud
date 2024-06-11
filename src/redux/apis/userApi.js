@@ -7,6 +7,7 @@ const userApi = createApi({
   endpoints: builder => {
     return {
       fetchUserInfo: builder.query({
+        providesTags: ["changeAvatar"],
         query: () => {
           return {
             url: '/user/info',
@@ -15,6 +16,7 @@ const userApi = createApi({
         }
       }),
       fetchProfileInfo: builder.query({
+        providesTags: ["fetchProfile", "changeAvatar"],
         query: () => {
           return {
             url: '/user/profile-info',
@@ -23,10 +25,21 @@ const userApi = createApi({
         }
       }),
       updateInfo: builder.mutation({
+        invalidatesTags: ["fetchProfile"],
         query: (data) => {
-          console.log(data.get("country"));
           return {
             url: '/user',
+            data,
+            method: "PATCH",
+            headers: { "content-type": "multipart/form-data" }
+          }
+        }
+      }),
+      updateAvatar: builder.mutation({
+        invalidatesTags: ["changeAvatar"],
+        query: (data) => {
+          return {
+            url: '/user/avatar',
             data,
             method: "PATCH",
             headers: { "content-type": "multipart/form-data" }
@@ -37,5 +50,5 @@ const userApi = createApi({
   }
 })
 
-export const { useFetchUserInfoQuery, useFetchProfileInfoQuery, useUpdateInfoMutation } = userApi;
+export const { useFetchUserInfoQuery, useFetchProfileInfoQuery, useUpdateInfoMutation, useUpdateAvatarMutation } = userApi;
 export { userApi };

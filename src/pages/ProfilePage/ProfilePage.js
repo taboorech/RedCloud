@@ -41,7 +41,7 @@ function ProfilePage({ audio }) {
           <Block className="main-info">
             <div className="person-info-container">
               <div className="image-block">
-                <Image src={data && data.imageUrl} alt={"Profile image"}/>
+                <Image src={data && mainInstance.defaults.baseURL + data.imageUrl} alt={"Profile image"}/>
               </div>
               <div className="person-info">
                 <p className="name">

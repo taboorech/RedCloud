@@ -11,10 +11,42 @@
         flex: 2;
         gap: 1.5625rem;
         > .image-block {
+          position: relative;
           flex: 1;
+          cursor: pointer;
 
           img {
             object-fit:contain;
+          }
+
+          > .background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background-color: #000;
+            opacity: 0;
+            z-index: 100;
+            transition: opacity ease-in-out .5s;
+          }
+
+          > .edit {
+            position: absolute;
+            opacity: 0;
+            left: 50%;
+            top: 50%;
+            transition: opacity ease-in-out .5s;
+          }
+
+          &:hover {
+            > .background {
+              opacity: .4;
+            }
+  
+            > .edit {
+              opacity: 1;
+            }
           }
         }
 

@@ -32,4 +32,4 @@ export { setActiveFilter } from "./slices/searchFiltersSlice";
 export { useAuthMutation, useRegistrationMutation } from "./apis/authApi";
 export { useFetchPlaylistsQuery, useFetchOnePlaylistQuery, useCreatePlaylistMutation } from "./apis/playlistApi";
 export { useFetchSongQuery } from "./apis/songApi";
-export { useFetchUserInfoQuery, useFetchProfileInfoQuery, useUpdateInfoMutation } from "./apis/userApi";
+export { useFetchUserInfoQuery, useFetchProfileInfoQuery, useUpdateInfoMutation, useUpdateAvatarMutation } from "./apis/userApi";

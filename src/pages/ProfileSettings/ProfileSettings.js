@@ -11,9 +11,10 @@ import Image from "../../components/Image/Image";
 import Button from "../../components/Button/Button";
 import mainInstance from "../../api/mainInstance";
 import useInput from "../../hooks/use-input";
-import { useFetchProfileInfoQuery, useUpdateInfoMutation } from "../../redux";
-import { useEffect, useState } from "react";
+import { useFetchProfileInfoQuery, useUpdateAvatarMutation, useUpdateInfoMutation } from "../../redux";
+import { useEffect, useRef, useState } from "react";
 import M from "materialize-css";
+import { useNavigate } from "react-router-dom";
 
 function ProfileSettings({ audio }) {
   const { data } = useFetchProfileInfoQuery();
@@ -25,6 +26,9 @@ function ProfileSettings({ audio }) {
   const [backgroundImage, setBackgroundImage] = useState({});
   const [fileInputValue, setFileInputValue] = useState(data?.backgroundImage?.originalname);
   const [ updateInfo ] = useUpdateInfoMutation();
+  const [ updateAvatar ] = useUpdateAvatarMutation();
+  const avatarFileInputRef = useRef();
+  const navigate = useNavigate();
 
   // Checkboxes states
   const [settings, setSettings] = useState({
@@ -98,7 +102,11 @@ function ProfileSettings({ audio }) {
     updateForm.append("country", countrySelectValue);
     updateForm.append("backgroundImage", backgroundImage);
     updateForm.append("settings", JSON.stringify(settings));
-    updateInfo(updateForm);
+    updateInfo(updateForm)
+    .then((result) => {
+      if(!result.error)
+        navigate("/profile")
+    })
   }
 
   const countrySelectValueChangeHandler = (event) => {
@@ -109,14 +117,27 @@ function ProfileSettings({ audio }) {
     setBackgroundImage(event.target.files[0]);
   }
 
+  const avatarInputChangeHandler = (event) => {
+    const form = new FormData();
+    form.append("avatarImage", event.target.files[0]);
+    updateAvatar(form);
+  }
+
+  const changeAvatarImageChangeHandler = () => {
+    avatarFileInputRef.current.click();
+  }
+
   return (
     <div className="Profile-settings">
       <DefaultPageContainer audio={audio}>
         <Block className={"settings scroll"}>
           <div className="main-settings">
             <div className="box">
-              <div className="image-block">
+              <div className="image-block" onClick={changeAvatarImageChangeHandler}>
                 <Image src={data && mainInstance.defaults.baseURL + data.imageUrl} alt={"Profile image"} />
+                <div className="background"></div>
+                <i className="material-icons edit">edit</i>
+                <input type="file" hidden={true} ref={avatarFileInputRef} onChange={avatarInputChangeHandler}/>
               </div>
               <div className="inputs">
                 <Input id={"username"} labelText={"Username"} value={usernameInput} onChange={setUsernameInput} isActive={!!data} />
