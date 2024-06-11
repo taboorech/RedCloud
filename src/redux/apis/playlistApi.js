@@ -7,6 +7,7 @@ const playlistApi = createApi({
   endpoints: (builder) => {
     return {
       fetchPlaylists: builder.query({
+        providesTags: ["updatePlaylist"],
         query: () => {
           return {
             url: "/playlist",
@@ -15,6 +16,7 @@ const playlistApi = createApi({
         }
       }),
       fetchOnePlaylist: builder.query({
+        providesTags: ["updatePlaylist"],
         query: (id) => {
           return {
             url: `/playlist/${id}`,
@@ -32,10 +34,21 @@ const playlistApi = createApi({
             method: "PUT"
           }
         }
+      }),
+      updatePlaylist: builder.mutation({
+        invalidatesTags: ["updatePlaylist"],
+        query: (data) => {
+          return {
+            url: `/playlist/${data.id}/update`,
+            data: data.form,
+            method: "PATCH",
+            headers: { "content-type": "multipart/form-data" }
+          }
+        }
       })
     }
   }
 })
 
-export const { useFetchPlaylistsQuery, useFetchOnePlaylistQuery, useCreatePlaylistMutation } = playlistApi;
+export const { useFetchPlaylistsQuery, useFetchOnePlaylistQuery, useCreatePlaylistMutation, useUpdatePlaylistMutation } = playlistApi;
 export { playlistApi };

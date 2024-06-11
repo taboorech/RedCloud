@@ -44,7 +44,7 @@ function Playlist({ audio }) {
         audio = { audio }
       />
     )
-  );  
+  );
 
   return (
     <div className="Playlist">

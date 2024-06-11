@@ -37,6 +37,7 @@
             left: 50%;
             top: 50%;
             transition: opacity ease-in-out .5s;
+            transform: translate(-50%, -50%);
           }
 
           &:hover {

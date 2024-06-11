@@ -2,8 +2,54 @@ import "./PlaylistBaner.scss";
 import Image from "../Image/Image";
 import CircleButton from "../CircleButton/CircleButton";
 import Time from "../Time/Time";
+import ModalBlock from "../ModalBlock/ModalBlock";
+import FileInput from "../FileInput/FileInput";
+import Input from "../Input/Input";
+import Checkbox from "../Checkbox/Checkbox";
+import { useEffect, useState, useRef } from "react";
+import useInput from "../../hooks/use-input";
+import { useUpdatePlaylistMutation } from "../../redux";
+import { useParams } from "react-router-dom";
+import M from "materialize-css";
 
 function PlaylistBaner({ imageSource, title, songsCount, duration, isPrivate, playButtonClickHandler, isOwner = false }) {
+
+  const [ newPlaylistImage, setNewPlaylistImage ] = useState({});
+  const [ titleInput, setTitleInput ] = useInput(title);
+  const [ isPrivateCheck, setIsPrivateCheck ] = useState(isPrivate);
+  const [ updatePlaylist ] = useUpdatePlaylistMutation();
+  const modalWindowRef = useRef();
+  const id = useParams().id;
+
+  const saveChangeClickHandler = (event) => {
+    event.preventDefault();
+    const updateForm = new FormData();
+    updateForm.append("playlistImage", newPlaylistImage);
+    updateForm.append("title", titleInput);
+    updateForm.append("private", isPrivateCheck);
+    updatePlaylist({
+      id,
+      form: updateForm
+    });
+    modalWindowRef.current.classList.add("close");
+  }
+
+  const fileInputChangeHandler = (event) => {
+    setNewPlaylistImage(event.target.files[0]);
+  }
+
+  const privateChangeHandler = () => {
+    setIsPrivateCheck(!isPrivateCheck);
+  }
+
+  const settingsButtonClickHandler = () => {
+    modalWindowRef.current.classList.remove("close");
+  }
+
+  useEffect(() => {
+    setIsPrivateCheck(isPrivate);
+    M.updateTextFields();
+  }, [isPrivate]);
 
   return (
     <div className="PlaylistBaner">
@@ -28,17 +74,24 @@ function PlaylistBaner({ imageSource, title, songsCount, duration, isPrivate, pl
           <i className="material-icons">file_download</i>
         </CircleButton>
         {isOwner &&
-          <CircleButton className="black-button waves-effect waves-light btn-large white-text">
-            <i className="material-icons">add_circle_outline</i>
-          </CircleButton> 
+          <>
+            <CircleButton className="black-button waves-effect waves-light btn-large white-text">
+              <i className="material-icons">add_circle_outline</i>
+            </CircleButton> 
+            <CircleButton className="black-button waves-effect waves-light btn-large white-text modal-trigger" onClick={settingsButtonClickHandler}>
+              <i className="material-icons">settings</i>
+            </CircleButton>
+          </>
         }
-        <CircleButton className="black-button waves-effect waves-light btn-large white-text">
-          <i className="material-icons">settings</i>
-        </CircleButton>
         <CircleButton className="black-button waves-effect waves-light btn-large white-text">
           <i className="material-icons">more_vert</i>
         </CircleButton>
       </div>
+      <ModalBlock headlineText={"Playlist change"} buttonText={"Save"} onSubmit={saveChangeClickHandler} innerRef={modalWindowRef}>
+        <FileInput buttonText={"Playlist image"} onChange={fileInputChangeHandler}/>
+        <Input id={"title"} labelText={"Title"} value={titleInput} onChange={setTitleInput}/>
+        <Checkbox isChecked={isPrivateCheck} onChange={privateChangeHandler}>Private</Checkbox>
+      </ModalBlock>
     </div>
   )
 }
