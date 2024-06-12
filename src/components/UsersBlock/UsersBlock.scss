@@ -1,10 +1,11 @@
-.Authors-block {
+.Users-block {
   
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 7rem;
   grid-auto-rows: 100px;
   margin: 0 auto;
+  position: relative;
 
   &:not(.small) {
     max-width: 81.25rem;
@@ -16,10 +17,10 @@
     align-items: center;
     overflow-x: scroll;
     gap: 0;
-    > .author:not(:last-child) {
+    > .user:not(:last-child) {
       margin-right: 5.5rem;
     }
-    > .author {
+    > .user {
       width: 3.5rem;
       > .image-block {
         min-height: 50px;
@@ -28,15 +29,29 @@
         min-width: 50px;
       }
     }
+
+    > .empty {
+      margin: 0 auto;
+    }
+  
   }
 
-  > .author {
+  > .user {
     width: 100%;
     > .image-block {
       min-height: 100px;
       max-height: 100px;
       max-width: 100px;
       min-width: 100px;
+    }
+  }
+
+  &:not(.small) {
+    > .empty {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      width: 100%;
     }
   }
 

@@ -3,7 +3,7 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import SearchFilters from "../../components/SearchFilters/SearchFilters";
 import DefaultPageContainer from "../../hoc/DefaultPageContainer/DefaultPageContainer";
 import SongExpansive from "../../components/SongExpansive/SongExpansive";
-import AuthorsBlock from "../../components/AuthorsBlock/AuthorsBlock";
+import UsersBlock from "../../components/UsersBlock/UsersBlock";
 import { useSelector } from "react-redux";
 import { useFetchDataByRequestMutation } from "../../redux";
 import { useEffect, useState } from "react";
@@ -16,7 +16,6 @@ function Search({ audio }) {
   const { filters, activeFilter } = useSelector((state) => state.searchFilter);
   const [ sendRequest, sendRequestResult ] = useFetchDataByRequestMutation();
   const [ users, setUsers ] = useState([]);
-  // const [ users, setUsers ] = useState([]);
   const [ playlists, setPlaylists ] = useState([]);
   const [ songs, setSongs ] = useState([]);
 
@@ -25,22 +24,22 @@ function Search({ audio }) {
       case "Podcasts":
       case "Playlists":
         return (
-          <List className={"playlist-songs full scroll"}>
+          <List className={"playlist-songs playlists full scroll"} emptyText={!sendRequestResult.data && "Send search request"}>
             { playlists.map(playlist => (
               <PlaylistExpansive 
                 key={playlist._id} 
                 title={playlist.title} 
-                secondaryInfo={playlist.owners[0]} 
+                secondaryInfo={playlist.owners[0].login} 
                 duration={playlist.duration} 
                 imageSrc={mainInstance.defaults.baseURL + playlist.imageUrl} 
               />
-            )) }
+              )) }
           </List>
         )
       case "Songs":
         return (
           <>
-            <List className={"playlist-songs full scroll"}>
+            <List className={"playlist-songs full scroll"} emptyText={!sendRequestResult.data && "Send search request"}>
               { songs.map(song => (
                 <SongExpansive 
                   key={song._id} 
@@ -56,19 +55,20 @@ function Search({ audio }) {
             </List>
           </>
         )
-      // TODO: Change AuthorsBlock to Users Block
-      // TODO: Need to split author and default users
       case "Authors":
+        return (
+          <UsersBlock className={"authors-block full"} users={users.filter(user => !!user.songs.length)} emptyText={!sendRequestResult.data && "Send search request"}/>
+        )
       case "Profile":
         return (
-          <AuthorsBlock className={"authors-block full"} authors={users}/>
+          <UsersBlock className={"authors-block full"} users={users} emptyText={!sendRequestResult.data && "Send search request"}/>
         )
       case "All":
       default:
         return (
           <>
-            <AuthorsBlock className={"authors-block small"} authors={users}/>
-            <List className={"playlist-songs scroll"}>
+            <UsersBlock className={"authors-block small"} users={users} emptyText={!sendRequestResult.data && "Send search request"}/>
+            <List className={"playlist-songs scroll"} emptyText={!sendRequestResult.data && "Send search request"}>
               { songs.map(song => (
                 <SongExpansive 
                   key={song._id} 
@@ -81,6 +81,15 @@ function Search({ audio }) {
                   audio={audio} 
                 />
               )) }
+              { playlists.map(playlist => (
+                <PlaylistExpansive 
+                  key={playlist._id} 
+                  title={playlist.title} 
+                  secondaryInfo={playlist.owners[0].login} 
+                  duration={playlist.duration} 
+                  imageSrc={mainInstance.defaults.baseURL + playlist.imageUrl} 
+                />
+                )) }
             </List>
           </>
         )
@@ -93,11 +102,12 @@ function Search({ audio }) {
     }
     setUsers(sendRequestResult.data.users);
     setSongs(sendRequestResult.data.songs);
+
     sendRequestResult.data.users.map(user =>
-      user.songs.map(song => setSongs(prev => [...prev, song]))
+      user.songs.map(song => setSongs(prev => !prev.find(value => value._id === song._id) ? [...prev, song] : prev))
     );
     sendRequestResult.data.songs.map(song => 
-      song.authors.map(author => setUsers(prev => [...prev, author]))
+      song.authors.map(author => setUsers(prev => !prev.find(value => value._id === author._id) ? [...prev, author] : prev))
     );
     setPlaylists(sendRequestResult.data.playlists);
   }, [sendRequestResult]);

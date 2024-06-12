@@ -20,4 +20,8 @@
   &:focus {
     background-color: var(--default-button); 
   }
+
+  &.red-button {
+    background-color: var(--button-red-backgroud-color);
+  }
 }

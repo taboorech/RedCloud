@@ -1,15 +1,15 @@
-import "./AuthorsBlock.scss";
+import "./UsersBlock.scss";
 import { classNamesHandler } from "../../utils/classNamesHandler";
 import Block from "../Block/Block";
 import Person from "../Person/Person";
 import { useRef, useEffect } from "react";
 
-function AuthorsBlock({ className, authors }) {
+function UsersBlock({ emptyText, className, users }) {
 
   const scrollElementRef = useRef();
 
-  const fillAuthors = () => (
-    authors.map((author, index) => <Person key={`author-${index}`} user={author} className={"author"}/>)
+  const fillUsers = () => (
+    users.map((user, index) => <Person key={`user-${index}`} user={user} className={"user"}/>)
   )
 
   useEffect(() => {
@@ -23,10 +23,14 @@ function AuthorsBlock({ className, authors }) {
   }, []);
 
   return (
-    <Block className={classNamesHandler("Authors-block without-scrollbar scroll", className)} innerRef={scrollElementRef}>
-      { fillAuthors() }
+    <Block className={classNamesHandler("Users-block without-scrollbar scroll", className)} innerRef={scrollElementRef}>
+      { 
+        !!users.length ? 
+        fillUsers() : 
+        <h4 className="empty">{emptyText || "Not Found"}</h4>
+      }
     </Block>
   )
 }
 
-export default AuthorsBlock;
+export default UsersBlock;

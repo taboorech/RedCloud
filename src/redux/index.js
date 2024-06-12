@@ -32,7 +32,7 @@ setupListeners(store.dispatch);
 
 export { changeValue as changeSearchBarValue } from "./slices/searchBarSlice";
 export { setActiveFilter } from "./slices/searchFiltersSlice";
-export { useAuthMutation, useRegistrationMutation } from "./apis/authApi";
+export { useAuthMutation, useRegistrationMutation, useLogoutMutation } from "./apis/authApi";
 export { useFetchPlaylistsQuery, useFetchOnePlaylistQuery, useCreatePlaylistMutation, useUpdatePlaylistMutation } from "./apis/playlistApi";
 export { useFetchSongQuery } from "./apis/songApi";
 export { useFetchUserInfoQuery, useFetchProfileInfoQuery, useUpdateInfoMutation, useUpdateAvatarMutation } from "./apis/userApi";

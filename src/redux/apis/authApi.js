@@ -33,6 +33,14 @@ const authApi = createApi({
           }
         }
       }),
+      logout: builder.mutation({
+        query: () => {
+          return {
+            url: '/auth/logout',
+            method: "GET"
+          }
+        }
+      })
     }
   }
 })
@@ -40,5 +48,6 @@ const authApi = createApi({
 export const {
   useAuthMutation,
   useRegistrationMutation,
+  useLogoutMutation
 } = authApi;
 export { authApi };

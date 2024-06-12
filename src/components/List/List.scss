@@ -2,4 +2,10 @@
   > *:not(:last-child) {
     margin-bottom: 2rem;
   }
+
+  > .empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

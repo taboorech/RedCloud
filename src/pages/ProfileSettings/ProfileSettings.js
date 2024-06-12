@@ -11,7 +11,7 @@ import Image from "../../components/Image/Image";
 import Button from "../../components/Button/Button";
 import mainInstance from "../../api/mainInstance";
 import useInput from "../../hooks/use-input";
-import { useFetchProfileInfoQuery, useUpdateAvatarMutation, useUpdateInfoMutation } from "../../redux";
+import { useFetchProfileInfoQuery, useLogoutMutation, useUpdateAvatarMutation, useUpdateInfoMutation } from "../../redux";
 import { useEffect, useRef, useState } from "react";
 import M from "materialize-css";
 import { useNavigate } from "react-router-dom";
@@ -27,6 +27,7 @@ function ProfileSettings({ audio }) {
   const [fileInputValue, setFileInputValue] = useState(data?.backgroundImage?.originalname);
   const [ updateInfo ] = useUpdateInfoMutation();
   const [ updateAvatar ] = useUpdateAvatarMutation();
+  const [ logout ] = useLogoutMutation();
   const avatarFileInputRef = useRef();
   const navigate = useNavigate();
 
@@ -127,6 +128,13 @@ function ProfileSettings({ audio }) {
     avatarFileInputRef.current.click();
   }
 
+  const logoutButtonClickHandler = () => {
+    logout();
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    navigate('/auth#auth');
+  }
+
   return (
     <div className="Profile-settings">
       <DefaultPageContainer audio={audio}>
@@ -173,9 +181,14 @@ function ProfileSettings({ audio }) {
               <Checkbox isChecked={settings.privacy.twoStepVerification} onChange={onCheckedHandler('privacy', 'twoStepVerification')}>Two-step verification</Checkbox>
             </SettingsPart>
           </div>
-          <Button className={"white-text waves-effect waves-light save-button"} onClick={saveButtonClick}>
-            Save
-          </Button>
+          <div className="buttons">
+            <Button className={"white-text waves-effect waves-light logout-button red-button"} onClick={logoutButtonClickHandler}>
+              Logout
+            </Button>
+            <Button className={"white-text waves-effect waves-light save-button"} onClick={saveButtonClick}>
+              Save
+            </Button>
+          </div>
         </Block>
       </DefaultPageContainer>
     </div>

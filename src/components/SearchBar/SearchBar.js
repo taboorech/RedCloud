@@ -8,7 +8,9 @@ function SearchBar({ sendRequest }) {
   const dispatch = useDispatch();
 
   const onSearchClickHandler = () => {
-    console.log("Search...", value);
+    if(!value.trim()) {
+      return;
+    }
     sendRequest(value);
   }
 
@@ -16,13 +18,19 @@ function SearchBar({ sendRequest }) {
     dispatch(changeSearchBarValue(event.target.value));
   };
 
+  const onKeyDownHandler = (event) => {
+    if(event.key === "Enter") {
+      onSearchClickHandler();
+    }
+  }
+
   return (
     <div className="Search-bar">
       <div className="icon-block" onClick={onSearchClickHandler}>
         <i className="material-icons">search</i>
       </div>
       <div className="input-block">
-        <input value={value} placeholder="Search request" onChange={(event) => onInputChangeHandler(event)}/>
+        <input value={value} placeholder="Search request" onChange={(event) => onInputChangeHandler(event)} onKeyDown={onKeyDownHandler}/>
       </div>
     </div>
   )
