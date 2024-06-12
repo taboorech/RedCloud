@@ -9,7 +9,7 @@ function AuthorsBlock({ className, authors }) {
   const scrollElementRef = useRef();
 
   const fillAuthors = () => (
-    authors.map((author, index) => <Person key={`author-${index}`} username={author.name} className={"author"}/>)
+    authors.map((author, index) => <Person key={`author-${index}`} user={author} className={"author"}/>)
   )
 
   useEffect(() => {

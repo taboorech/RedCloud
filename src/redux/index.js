@@ -6,6 +6,7 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import { playlistApi } from "./apis/playlistApi";
 import { songApi } from "./apis/songApi";
 import { userApi } from "./apis/userApi";
+import { searchApi } from "./apis/searchApi";
 
 export const store = configureStore({
   reducer: {
@@ -14,14 +15,16 @@ export const store = configureStore({
     [authApi.reducerPath]: authApi.reducer,
     [playlistApi.reducerPath]: playlistApi.reducer,
     [songApi.reducerPath]: songApi.reducer,
-    [userApi.reducerPath]: userApi.reducer
+    [userApi.reducerPath]: userApi.reducer,
+    [searchApi.reducerPath]: searchApi.reducer
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware()
       .concat(authApi.middleware)
       .concat(playlistApi.middleware)
       .concat(songApi.middleware)
-      .concat(userApi.middleware);
+      .concat(userApi.middleware)
+      .concat(searchApi.middleware)
   },
 });
 
@@ -33,3 +36,4 @@ export { useAuthMutation, useRegistrationMutation } from "./apis/authApi";
 export { useFetchPlaylistsQuery, useFetchOnePlaylistQuery, useCreatePlaylistMutation, useUpdatePlaylistMutation } from "./apis/playlistApi";
 export { useFetchSongQuery } from "./apis/songApi";
 export { useFetchUserInfoQuery, useFetchProfileInfoQuery, useUpdateInfoMutation, useUpdateAvatarMutation } from "./apis/userApi";
+export { useFetchDataByRequestMutation } from "./apis/searchApi";

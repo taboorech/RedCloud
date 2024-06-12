@@ -3,7 +3,7 @@ import Block from "../../components/Block/Block";
 import DefaultPageContainer from "../../hoc/DefaultPageContainer/DefaultPageContainer";
 import SongExpansive from "../../components/SongExpansive/SongExpansive";
 import PlaylistBaner from "../../components/PlaylistBaner/PlaylistBaner";
-import SongsList from "../../components/SongsList/SongsList";
+import SongsList from "../../components/List/List";
 import Button from "../../components/Button/Button";
 import { useFetchOnePlaylistQuery } from "../../redux";
 import { useParams } from "react-router-dom";

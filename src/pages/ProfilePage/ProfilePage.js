@@ -4,7 +4,7 @@ import Image from "../../components/Image/Image";
 import Block from "../../components/Block/Block";
 import DefaultPageContainer from "../../hoc/DefaultPageContainer/DefaultPageContainer";
 import AchievementsBlock from "../../components/AchievementsBlock/AchievementsBlock";
-import SongsList from "../../components/SongsList/SongsList";
+import SongsList from "../../components/List/List";
 import SongExpansive from "../../components/SongExpansive/SongExpansive";
 import { useFetchProfileInfoQuery } from "../../redux";
 import mainInstance from "../../api/mainInstance";
