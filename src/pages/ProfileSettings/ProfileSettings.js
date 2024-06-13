@@ -11,13 +11,14 @@ import Image from "../../components/Image/Image";
 import Button from "../../components/Button/Button";
 import mainInstance from "../../api/mainInstance";
 import useInput from "../../hooks/use-input";
-import { useFetchProfileInfoQuery, useLogoutMutation, useUpdateAvatarMutation, useUpdateInfoMutation } from "../../redux";
+import { useFetchProfileInfoQuery, useUpdateAvatarMutation, useUpdateInfoMutation } from "../../redux";
 import { useEffect, useRef, useState } from "react";
 import M from "materialize-css";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/use-auth";
 
 function ProfileSettings({ audio }) {
-  const { data } = useFetchProfileInfoQuery();
+  const { data } = useFetchProfileInfoQuery(localStorage.getItem("userId"));
   const [usernameInput, setUsernameInput] = useInput(data?.login);
   const [surnameInput, setSurnameInput] = useInput(data?.surname);
   const [nameInput, setNameInput] = useInput(data?.name);
@@ -27,7 +28,7 @@ function ProfileSettings({ audio }) {
   const [fileInputValue, setFileInputValue] = useState(data?.backgroundImage?.originalname);
   const [ updateInfo ] = useUpdateInfoMutation();
   const [ updateAvatar ] = useUpdateAvatarMutation();
-  const [ logout ] = useLogoutMutation();
+  const { logout } = useAuth();
   const avatarFileInputRef = useRef();
   const navigate = useNavigate();
 
@@ -130,9 +131,6 @@ function ProfileSettings({ audio }) {
 
   const logoutButtonClickHandler = () => {
     logout();
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-    navigate('/auth#auth');
   }
 
   return (

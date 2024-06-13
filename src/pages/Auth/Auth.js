@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { useAuthMutation, useRegistrationMutation } from "../../redux";
 import useInput from "../../hooks/use-input";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/use-auth";
 
 function Auth() {
 
@@ -23,6 +24,7 @@ function Auth() {
   const [registrationConfirmPassword, setRegistrationConfirmPassword] = useInput();
   const [ auth, authResults ] = useAuthMutation();
   const [ registration, registrationResults ] = useRegistrationMutation();
+  const { logIn } = useAuth();
   const navigate = useNavigate();
 
   const onAuthSubmitHandler = async (event) => {
@@ -45,11 +47,9 @@ function Auth() {
 
   useEffect(() => {
     if(authResults.isSuccess) {
-      localStorage.setItem("accessToken", authResults.data.accessToken);
-      localStorage.setItem("refreshToken", authResults.data.refreshToken);
-      navigate('/');
+      logIn(authResults.data._id, authResults.data.accessToken, authResults.data.refreshToken);
     }
-  }, [authResults, navigate]);
+  }, [authResults, logIn]);
 
   useEffect(() => {
     if(registrationResults.isSuccess) {

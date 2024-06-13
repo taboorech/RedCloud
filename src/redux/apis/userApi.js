@@ -17,9 +17,9 @@ const userApi = createApi({
       }),
       fetchProfileInfo: builder.query({
         providesTags: ["fetchProfile", "changeAvatar"],
-        query: () => {
+        query: (id) => {
           return {
-            url: '/user/profile-info',
+            url: `/user/profile-info/${id}`,
             method: "GET"
           }
         }

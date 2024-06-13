@@ -3,19 +3,22 @@ import "./PlaylistsBlock.scss";
 import M from "materialize-css";
 import CircleButton from "../CircleButton/CircleButton";
 import { classNamesHandler } from "../../utils/classNamesHandler";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
 import { useCreatePlaylistMutation, useFetchPlaylistsQuery } from "../../redux";
 import mainInstance from "../../api/mainInstance";
+import { useAuth } from "../../hooks/use-auth";
 
 function PlaylistsBlock({ className }) {
 
   const playlistsElementRef = useRef();
   const contentElementRef = useRef();
+  const navigate = useNavigate();
   const [playlists, setPlaylists] = useState([]);
 
   const { data } = useFetchPlaylistsQuery();
   const [ createNewPlaylist, createNewPlaylistResult ] = useCreatePlaylistMutation();
+  const { isAuth } = useAuth();
 
   const fillPlaylists = () => (
     playlists.map((playlist, index) => (
@@ -26,6 +29,9 @@ function PlaylistsBlock({ className }) {
   )
 
   const createButtonClickHandler = () => {
+    if(!localStorage.getItem("accessToken")) {
+      return navigate("/auth#auth");
+    }
     createNewPlaylist("Playlist");
   }
 
@@ -85,17 +91,17 @@ function PlaylistsBlock({ className }) {
         <img src={"./images/Previous playlist.svg"} alt="prevPlaylistsButton"/>
       </div>
       <div className="content" ref={contentElementRef}>
-        {!!playlists?.length ?
+        {(isAuth && !!playlists?.length) ?
           <div ref={playlistsElementRef} className="playlists with-transition">
             {fillPlaylists()}
           </div> :
-          <Button className={"white-button waves-effect waves-dark create-button"}>Create</Button>
+          <Button onClick={createButtonClickHandler} className={"white-button waves-effect waves-dark create-button"}>Create</Button>
         }
       </div>
       <div className="next-button scroll-button" onClick={nextButtonClickHandler}>
         <img src={"./images/Next playlist.svg"} alt="nextPlaylistsButton"/>
       </div>
-      {!!playlists?.length &&
+      {(isAuth && !!playlists?.length) &&
         <CircleButton className={"btn-small waves-effect waves-dark white-button add-button"} onClick={createButtonClickHandler}>
           <i className="material-icons">add</i>
         </CircleButton>

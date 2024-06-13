@@ -7,9 +7,11 @@ function Part({ className, imageSrc, imageAlt, innerRef, children, closeButtonCl
 
   return (
     <div ref={innerRef} className={classNamesHandler("Part", className)}>
-      <div className={"image"}>
-        <Image src={imageSrc} alt={imageAlt} />
-      </div>
+      {!!imageSrc &&
+        <div className={"image"}>
+          <Image src={imageSrc} alt={imageAlt} />
+        </div>
+      }
       <div className="close-button-block">
         <CircleButton className="white-button waves-effect waves-dark" onClick={(event) => closeButtonClickHandler(event)}>
           <i className="material-icons">chevron_right</i>

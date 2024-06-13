@@ -23,6 +23,7 @@ function App() {
         <Route path="/lyrics" element={<Lyrics audio={audio}/>}></Route>
         <Route path="/about" element={<About audio={audio}/>}></Route>
         <Route path="/profile" element={<ProfilePage audio={audio}/>}></Route>
+        <Route path="/profile/:id" element={<ProfilePage audio={audio}/>}></Route>
         <Route path="/profile/settings" element={<ProfileSettings audio={audio}/>}></Route>
         <Route path="/settings" element={<Settings audio={audio}/>}></Route>
         <Route path="/auth" element={<Auth/>}></Route>

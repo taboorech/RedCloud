@@ -11,7 +11,7 @@ import Song from "../Song/Song";
 
 function CurentSongBlock({ closeButtonClickHandler, audio }){
 
-  const { songId, playlist, currentSongIndex } = audio;
+  const { songId, playlist, currentSongIndex, source } = audio;
   const [isQueue, setIsQueue] = useState(true);
   const partRef = useRef();
   const { data } = useFetchSongQuery(songId);
@@ -33,9 +33,11 @@ function CurentSongBlock({ closeButtonClickHandler, audio }){
           exit: 300
         }} mountOnEnter unmountOnExit>
           <Part imageSrc={data && mainInstance.defaults.baseURL + data.imageUrl} imageAlt={"Playlist-image"} innerRef={partRef} className={"queue-part"} closeButtonClickHandler={closeButtonClickHandler}>
-            <SongsBlock>
-              {fillSongs()}
-            </SongsBlock>
+            {!!source &&
+              <SongsBlock>
+                {fillSongs()}
+              </SongsBlock>
+            }
           </Part>
         </CSSTransition>
         <CSSTransition nodeRef={partRef} in={!isQueue} timeout={{
@@ -43,10 +45,12 @@ function CurentSongBlock({ closeButtonClickHandler, audio }){
           exit: 300
         }} mountOnEnter unmountOnExit>
           <Part imageSrc={data && mainInstance.defaults.baseURL + data.authors[0].imageUrl} imageAlt={"Author-photo"} innerRef={partRef} className={"author-part"} closeButtonClickHandler={closeButtonClickHandler}>
-            <AuthorBiographyBlock>
-              { data && <h4 className="truncate">{data.authors[0].login}</h4> }
-              { data && data.authors[0].description }
-            </AuthorBiographyBlock>
+            {!!source &&
+              <AuthorBiographyBlock>
+                { data && <h4 className="truncate">{data.authors[0].login}</h4> }
+                { data && data.authors[0].description }
+              </AuthorBiographyBlock>
+            }
           </Part>
         </CSSTransition>
       </div>

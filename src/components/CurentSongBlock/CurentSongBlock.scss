@@ -1,12 +1,13 @@
 .CurentSongBlock {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   background: linear-gradient(321deg, rgba(0,0,0,1) 31%, rgba(255,10,10,1) 83%);
   width: 100%;
   height: 100%;
   border-radius: 0.625rem;
   transition: transform ease-in-out .5s;
+  overflow: hidden;
 
   &.close {
     transform: translateX(90%);
@@ -16,5 +17,9 @@
     display: flex;
     justify-content: center;
     margin-top: 1.5625rem;
+  }
+
+  > .for-part {
+    height: 100%;
   }
 }

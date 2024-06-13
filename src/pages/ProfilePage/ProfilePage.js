@@ -9,10 +9,12 @@ import SongExpansive from "../../components/SongExpansive/SongExpansive";
 import { useFetchProfileInfoQuery } from "../../redux";
 import mainInstance from "../../api/mainInstance";
 import Achievement from "../../components/AchievementsBlock/Achievement/Achievement";
+import { useParams } from "react-router-dom";
 
 function ProfilePage({ audio }) {
 
-  const { data } = useFetchProfileInfoQuery();
+  const id = useParams().id;
+  const { data } = useFetchProfileInfoQuery(!!id ? id : localStorage.getItem("userId"));
   const { setPlaylist } = audio;
 
   const fillHimselfSongs = () => {
@@ -50,9 +52,11 @@ function ProfilePage({ audio }) {
                 <p className="description">{ data && data.description }</p>
               </div>
             </div>
-            <CircleButton isLink={true} to={"/profile/settings"} className="waves-effect waves-light black-button">
-              <i className="material-icons">edit</i>
-            </CircleButton>
+            { (data && data._id === localStorage.getItem("userId")) &&
+              <CircleButton isLink={true} to={"/profile/settings"} className="waves-effect waves-light black-button">
+                <i className="material-icons">edit</i>
+              </CircleButton>
+            }
           </Block>
           <div className="additional-info">
             <SongsList className={"playlist-songs scroll"}>
