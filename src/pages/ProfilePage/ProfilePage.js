@@ -6,7 +6,7 @@ import DefaultPageContainer from "../../hoc/DefaultPageContainer/DefaultPageCont
 import AchievementsBlock from "../../components/AchievementsBlock/AchievementsBlock";
 import SongsList from "../../components/List/List";
 import SongExpansive from "../../components/SongExpansive/SongExpansive";
-import { useFetchProfileInfoQuery } from "../../redux";
+import { useAddFriendMutation, useFetchProfileInfoQuery } from "../../redux";
 import mainInstance from "../../api/mainInstance";
 import Achievement from "../../components/AchievementsBlock/Achievement/Achievement";
 import { useParams } from "react-router-dom";
@@ -16,6 +16,7 @@ function ProfilePage({ audio }) {
   const id = useParams().id;
   const { data } = useFetchProfileInfoQuery(!!id ? id : localStorage.getItem("userId"));
   const { setPlaylist } = audio;
+  const [ addFriend ] = useAddFriendMutation();
 
   const fillHimselfSongs = () => {
     const songsOnClick = () => {
@@ -36,6 +37,10 @@ function ProfilePage({ audio }) {
     )
   }
 
+  const addFriendButtonClickHandler = () => {
+    addFriend(id);
+  }
+
   return (
     <div className="ProfilePage">
       <DefaultPageContainer audio={audio}>
@@ -52,9 +57,15 @@ function ProfilePage({ audio }) {
                 <p className="description">{ data && data.description }</p>
               </div>
             </div>
-            { (data && data._id === localStorage.getItem("userId")) &&
+            { 
+              (data && data._id === localStorage.getItem("userId")) 
+              ?
               <CircleButton isLink={true} to={"/profile/settings"} className="waves-effect waves-light black-button">
                 <i className="material-icons">edit</i>
+              </CircleButton> 
+              :
+              <CircleButton className="waves-effect waves-light black-button add-friend-button" onClick={addFriendButtonClickHandler}>
+                <i className="material-icons">group_add</i>
               </CircleButton>
             }
           </Block>

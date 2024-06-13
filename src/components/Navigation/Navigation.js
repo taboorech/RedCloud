@@ -1,3 +1,5 @@
+import mainInstance from "../../api/mainInstance";
+import { useFetchFriendsQuery } from "../../redux";
 import { classNamesHandler } from "../../utils/classNamesHandler";
 import CircleButton from "../CircleButton/CircleButton";
 import Friend from "../Friend/Friend";
@@ -5,10 +7,10 @@ import "./Navigation.scss";
 
 function Navigation({ className }) {
 
-  const friendsArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const { data } = useFetchFriendsQuery();
 
   const fillFriends = () => (
-    friendsArr.map((friend, index) => <Friend key={`friend-${index}`}/>)
+    data.friends.map((friend, index) => <Friend key={`friend-${index}`} id={friend._id} imageSrc={mainInstance.defaults.baseURL + friend.imageUrl} friendName={friend.login} />)
   )
 
   return (
@@ -27,7 +29,11 @@ function Navigation({ className }) {
       <div className="friends-online-block">
         <h5>Friends online</h5>
         <div className="friends without-scrollbar">
-          {fillFriends()}
+          {
+            !!data?.friends ?
+            fillFriends() :
+            <h6 className="empty">No friends</h6>
+          }
         </div>
       </div>
       <div className="bottom-buttons-block buttons-block">

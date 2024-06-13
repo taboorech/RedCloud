@@ -65,7 +65,7 @@ function Playlist({ audio }) {
             songsFill() :
             <div className="empty-playlist">
               <p>Empty playlist</p>
-              { (data && data.isOwner) && <Button className={"button white-button"}>Add song</Button>}
+              { (data && data.isOwner) && <Button isLink={true} to={"/search"} className={"button white-button"}>Add song</Button>}
             </div>
           }
         </SongsList>

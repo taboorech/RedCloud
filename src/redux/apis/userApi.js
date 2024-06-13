@@ -45,10 +45,28 @@ const userApi = createApi({
             headers: { "content-type": "multipart/form-data" }
           }
         }
+      }),
+      fetchFriends: builder.query({
+        providesTags: ["addFriend"],
+        query: () => {
+          return {
+            url: '/user/friends',
+            method: "GET"
+          }
+        }
+      }),
+      addFriend: builder.mutation({
+        invalidatesTags: ["addFriend"],
+        query: (id) => {
+          return {
+            url: `/user/friend-add/${id}`,
+            method: "PATCH"
+          }
+        }
       })
     }
   }
 })
 
-export const { useFetchUserInfoQuery, useFetchProfileInfoQuery, useUpdateInfoMutation, useUpdateAvatarMutation } = userApi;
+export const { useFetchUserInfoQuery, useFetchProfileInfoQuery, useUpdateInfoMutation, useUpdateAvatarMutation, useFetchFriendsQuery, useAddFriendMutation } = userApi;
 export { userApi };

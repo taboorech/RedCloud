@@ -1,12 +1,13 @@
+import { Link } from "react-router-dom";
 import CircleImage from "../CircleImage/CircleImage";
 import "./Friend.scss";
 
-function Friend() {
+function Friend({ id, friendName, imageSrc }) {
   return (
-    <div className="Friend">
-      <CircleImage src={"./images/avatar.jpg"} alt='profileImage' className={"small-image image-block"}/>
-      <p className="truncate">Friend's name</p>
-    </div>
+    <Link className="Friend" to={`/profile/${id}`}>
+      <CircleImage src={ imageSrc } alt='profileImage' className={"small-image image-block"}/>
+      <p className="truncate">{ friendName }</p>
+    </Link>
   )
 }
 
