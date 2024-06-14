@@ -57,17 +57,23 @@ function ProfilePage({ audio }) {
                 <p className="description">{ data && data.description }</p>
               </div>
             </div>
-            { 
-              (data && data._id === localStorage.getItem("userId")) 
-              ?
-              <CircleButton isLink={true} to={"/profile/settings"} className="waves-effect waves-light black-button">
-                <i className="material-icons">edit</i>
-              </CircleButton> 
-              :
-              <CircleButton className="waves-effect waves-light black-button add-friend-button" onClick={addFriendButtonClickHandler}>
-                <i className="material-icons">group_add</i>
+            <div className="buttons">
+              { 
+                (data && data._id === localStorage.getItem("userId")) &&
+                <CircleButton isLink={true} to={"/profile/settings"} className="waves-effect waves-light black-button">
+                  <i className="material-icons">edit</i>
+                </CircleButton> 
+              }
+              {
+                (data && (!data.friends.find(friend => friend === localStorage.getItem("userId")) && !(data._id === localStorage.getItem("userId")))) &&
+                <CircleButton className="waves-effect waves-light black-button add-friend-button" onClick={addFriendButtonClickHandler}>
+                  <i className="material-icons">group_add</i>
+                </CircleButton>
+              }
+              <CircleButton className="waves-effect waves-light black-button more-option-button" onClick={addFriendButtonClickHandler}>
+                <i className="material-icons">more_vert</i>
               </CircleButton>
-            }
+            </div>
           </Block>
           <div className="additional-info">
             <SongsList className={"playlist-songs scroll"}>

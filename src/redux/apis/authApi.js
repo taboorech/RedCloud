@@ -1,5 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { axiosBaseQuery } from "../../api/axiosBaseQuery";
+import { userApi } from "./userApi";
+import { playlistApi } from "./playlistApi";
 
 const authApi = createApi({
   reducerPath: "auth",
@@ -15,6 +17,15 @@ const authApi = createApi({
               password: data.password
             },
             method: "POST"
+          }
+        },
+        async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+          try {
+            await queryFulfilled;
+            dispatch(userApi.util.resetApiState());
+            dispatch(playlistApi.util.resetApiState());
+          } catch (error) {
+            console.log(error);
           }
         }
       }),
@@ -38,6 +49,15 @@ const authApi = createApi({
           return {
             url: '/auth/logout',
             method: "GET"
+          }
+        },
+        async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+          try {
+            await queryFulfilled;
+            dispatch(userApi.util.resetApiState());
+            dispatch(playlistApi.util.resetApiState());
+          } catch (error) {
+            console.log(error);
           }
         }
       })

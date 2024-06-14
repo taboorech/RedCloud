@@ -3,11 +3,13 @@ import { useFetchFriendsQuery } from "../../redux";
 import { classNamesHandler } from "../../utils/classNamesHandler";
 import CircleButton from "../CircleButton/CircleButton";
 import Friend from "../Friend/Friend";
+import { useAuth } from "../../hooks/use-auth";
 import "./Navigation.scss";
 
 function Navigation({ className }) {
 
   const { data } = useFetchFriendsQuery();
+  const { isAuth } = useAuth()
 
   const fillFriends = () => (
     data.friends.map((friend, index) => <Friend key={`friend-${index}`} id={friend._id} imageSrc={mainInstance.defaults.baseURL + friend.imageUrl} friendName={friend.login} />)
@@ -27,14 +29,19 @@ function Navigation({ className }) {
         </CircleButton>
       </div>
       <div className="friends-online-block">
-        <h5>Friends online</h5>
-        <div className="friends without-scrollbar">
-          {
-            !!data?.friends ?
-            fillFriends() :
-            <h6 className="empty">No friends</h6>
-          }
-        </div>
+        { !isAuth ?
+          <h5>You're offline</h5> :
+          <>
+            <h5>Friends</h5>
+            <div className="friends without-scrollbar">
+              {
+                !!data?.friends ?
+                fillFriends() :
+                <h6 className="empty">No friends</h6>
+              }
+            </div>
+          </>
+        }
       </div>
       <div className="bottom-buttons-block buttons-block">
         <CircleButton isNavLink={true} to={"/settings"} className="btn-large waves-effect waves-light black-button white-text without-shadow" title={"Settings"}>

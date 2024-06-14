@@ -7,6 +7,7 @@ import { playlistApi } from "./apis/playlistApi";
 import { songApi } from "./apis/songApi";
 import { userApi } from "./apis/userApi";
 import { searchApi } from "./apis/searchApi";
+import { recomendationsApi } from "./apis/recommendationsApi";
 
 export const store = configureStore({
   reducer: {
@@ -16,7 +17,8 @@ export const store = configureStore({
     [playlistApi.reducerPath]: playlistApi.reducer,
     [songApi.reducerPath]: songApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
-    [searchApi.reducerPath]: searchApi.reducer
+    [searchApi.reducerPath]: searchApi.reducer,
+    [recomendationsApi.reducerPath]: recomendationsApi.reducer
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware()
@@ -25,6 +27,7 @@ export const store = configureStore({
       .concat(songApi.middleware)
       .concat(userApi.middleware)
       .concat(searchApi.middleware)
+      .concat(recomendationsApi.middleware)
   },
 });
 
@@ -37,3 +40,4 @@ export { useFetchPlaylistsQuery, useFetchOnePlaylistQuery, useCreatePlaylistMuta
 export { useFetchSongQuery } from "./apis/songApi";
 export { useFetchUserInfoQuery, useFetchProfileInfoQuery, useUpdateInfoMutation, useUpdateAvatarMutation, useFetchFriendsQuery, useAddFriendMutation } from "./apis/userApi";
 export { useFetchDataByRequestMutation } from "./apis/searchApi";
+export { useFetchRecommendationsQuery } from "./apis/recommendationsApi";

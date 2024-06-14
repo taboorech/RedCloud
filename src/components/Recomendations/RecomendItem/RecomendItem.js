@@ -1,16 +1,16 @@
 import { classNamesHandler } from "../../../utils/classNamesHandler"
 import "./RecomendItem.scss"
-function RecomendItem({ className }) {
+function RecomendItem({ title, author, imageSrc, className }) {
   return (
     <div className={classNamesHandler("RecomendItem", className)}>
       <div className="image">
-        <img src={"./images/Song.png"} alt="PlayList" />
+        <img src={imageSrc} alt="PlayList" />
       </div>
       <div className="head-line">
-        <h5>Name</h5>
+        <h5>{ title }</h5>
       </div>
       <div className="sub-heading">
-        <p>Author</p>
+        <p>{ author }</p>
       </div>
     </div>
   )

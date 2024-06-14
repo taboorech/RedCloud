@@ -1,15 +1,9 @@
 import { useEffect, useRef } from "react";
-import RecomendItem from "./RecomendItem/RecomendItem";
 import "./Recomendations.scss";
 
-function Recomendations() {
+function Recomendations({ title, children }) {
 
   const scrollElementRef = useRef();
-  const playListArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-  const fillPlayLit = () => (
-    playListArr.map((PlayList, index) => <RecomendItem key={`PlayList-${index}`} className={"recommend-item"}/>)
-  )
 
   useEffect(() => {
     scrollElementRef.current.addEventListener('wheel', function(event) {
@@ -20,10 +14,11 @@ function Recomendations() {
 
   return (
     <div className="Recomendations">
-      <h4>Title</h4>
+      <h4>{ title }</h4>
       <div className="recomendations-content without-scrollbar" ref={scrollElementRef}>
         <div className="recomendations-list">
-          {fillPlayLit()}
+          { children }
+
         </div>
       </div>
     </div>
