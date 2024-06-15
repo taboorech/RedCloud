@@ -7,7 +7,7 @@ function useAudio() {
   const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(+localStorage.getItem("currentTime") || 0);
   const [isMuted, setIsMuted] = useState(localStorage.getItem("audioPlayerMuted") === "true");
-  const [volume, setVolume] = useState(+localStorage.getItem("audioPlayerVolume"));
+  const [volume, setVolume] = useState(+localStorage.getItem("audioPlayerVolume") || 1);
   const [duration, setDuration] = useState(0);
   const [playlist, setPlaylist] = useState(JSON.parse(localStorage.getItem("currentPlaylist")) || []);
   const [songId, setSongId] = useState(localStorage.getItem("currentSongId") || "");

@@ -6,10 +6,16 @@ import DefaultPageContainer from "../../hoc/DefaultPageContainer/DefaultPageCont
 import AchievementsBlock from "../../components/AchievementsBlock/AchievementsBlock";
 import SongsList from "../../components/List/List";
 import SongExpansive from "../../components/SongExpansive/SongExpansive";
-import { useAddFriendMutation, useFetchProfileInfoQuery } from "../../redux";
+import { useAddFriendMutation, useCreateSongMutation, useFetchProfileInfoQuery } from "../../redux";
 import mainInstance from "../../api/mainInstance";
 import Achievement from "../../components/AchievementsBlock/Achievement/Achievement";
 import { useParams } from "react-router-dom";
+import Button from "../../components/Button/Button";
+import ModalBlock from "../../components/ModalBlock/ModalBlock";
+import FileInput from "../../components/FileInput/FileInput";
+import Input from "../../components/Input/Input";
+import { useRef, useState } from "react";
+import useInput from "../../hooks/use-input";
 
 function ProfilePage({ audio }) {
 
@@ -17,6 +23,12 @@ function ProfilePage({ audio }) {
   const { data } = useFetchProfileInfoQuery(!!id ? id : localStorage.getItem("userId"));
   const { setPlaylist } = audio;
   const [ addFriend ] = useAddFriendMutation();
+  const [ createSongRequest ] = useCreateSongMutation();
+  const [ createSongImage, setCreateSongImage ] = useState(null);
+  const [ createSong, setCreateSong ] = useState(null);
+  const [ titleInput, setTitleInput ] = useInput();
+  const [ albumInput, setAlbumInput ] = useInput();
+  const modalWindowRef = useRef();
 
   const fillHimselfSongs = () => {
     const songsOnClick = () => {
@@ -39,6 +51,34 @@ function ProfilePage({ audio }) {
 
   const addFriendButtonClickHandler = () => {
     addFriend(id);
+  }
+
+  const createSongButtonClickHandler = () => {
+    modalWindowRef.current.classList.remove("close");
+  }
+
+  const fileInputChangeHandler = (event, part) => {
+    if(part === "image") {
+      return setCreateSongImage(event.target.files[0]);
+    }
+    
+    return setCreateSong(event.target.files[0]);
+  }
+
+  const saveChangeClickHandler = async (event) => {
+    event.preventDefault();
+    const createForm = new FormData();
+    createForm.append("songImage", createSongImage);
+    createForm.append("title", titleInput);
+    createForm.append("album", albumInput);
+    createForm.append("song", createSong);
+    const audio = new Audio(URL.createObjectURL(createSong));
+    audio.onloadedmetadata = () => {
+      createForm.append("duration", audio.duration);
+      audio.onloadedmetadata = null;
+      createSongRequest(createForm);
+    }
+    modalWindowRef.current.classList.add("close");
   }
 
   return (
@@ -77,6 +117,19 @@ function ProfilePage({ audio }) {
           </Block>
           <div className="additional-info">
             <SongsList className={"playlist-songs scroll"}>
+              {(data && data._id === localStorage.getItem("userId")) &&
+                <>
+                  <Button className={"waves-effect waves-dark white-button add-song-button"} onClick={createSongButtonClickHandler}>
+                    Add song
+                  </Button>
+                  <ModalBlock headlineText={"Song create"} buttonText={"Save"} onSubmit={saveChangeClickHandler} innerRef={modalWindowRef}>
+                    <FileInput buttonText={"Song image"} onChange={(event) => fileInputChangeHandler(event, "image")}/>
+                    <FileInput buttonText={"Song"} onChange={fileInputChangeHandler}/>
+                    <Input id={"title"} labelText={"Title"} value={titleInput} onChange={setTitleInput}/>
+                    <Input id={"album"} labelText={"Album"} value={albumInput} onChange={setAlbumInput}/>
+                  </ModalBlock>
+                </>
+              }
               { fillHimselfSongs() }
             </SongsList>
             <AchievementsBlock className={"achievements-block"}>

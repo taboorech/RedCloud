@@ -1,5 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { axiosBaseQuery } from "../../api/axiosBaseQuery";
+import { userApi } from "./userApi";
 
 const songApi = createApi({
   reducerPath: "song",
@@ -13,10 +14,28 @@ const songApi = createApi({
             method: "GET"
           }
         }
+      }),
+      createSong: builder.mutation({
+        query: (data) => {
+          return {
+            url: `/song/create`,
+            data,
+            method: "PUT",
+            headers: { "content-type": "multipart/form-data" }
+          }
+        },
+        async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+          try {
+            await queryFulfilled;
+            dispatch(userApi.util.resetApiState());
+          } catch (error) {
+            console.log(error);
+          }
+        }
       })
     }
   }
 })
 
-export const { useFetchSongQuery } = songApi;
+export const { useFetchSongQuery, useCreateSongMutation } = songApi;
 export { songApi };
