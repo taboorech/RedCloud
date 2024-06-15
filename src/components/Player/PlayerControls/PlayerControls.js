@@ -3,7 +3,7 @@ import CircleButton from "../../CircleButton/CircleButton";
 
 function PlayerControls({ audio }) {
 
-  const { playing, toggle } = audio;
+  const { playing, toggle, nextSong, prevSong } = audio;
 
   const playButtonClickHandler = () => {
     toggle();
@@ -14,13 +14,13 @@ function PlayerControls({ audio }) {
       <CircleButton className={"btn-small waves-effect waves-light black-button"}>
         <i className="material-icons">shuffle</i>
       </CircleButton>
-      <CircleButton className={"btn-small waves-effect waves-light black-button"}>
+      <CircleButton className={"btn-small waves-effect waves-light black-button"} onClick={prevSong}>
         <i className="material-icons">skip_previous</i>
       </CircleButton>
       <CircleButton className={"btn-small waves-effect waves-dark white-button"} onClick = {playButtonClickHandler}>
         <i className="material-icons">{!playing ? "play_arrow" : "pause"}</i>
       </CircleButton>
-      <CircleButton className={"btn-small waves-effect waves-light black-button"}>
+      <CircleButton className={"btn-small waves-effect waves-light black-button"} onClick={nextSong}>
         <i className="material-icons">skip_next</i>
       </CircleButton>
       <CircleButton className={"btn-small waves-effect waves-light black-button"}>

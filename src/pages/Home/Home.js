@@ -9,13 +9,36 @@ import mainInstance from "../../api/mainInstance";
 function Home({ audio }) {
 
   const { data } = useFetchRecommendationsQuery();
+  const { setPlaylist } = audio;
 
-  const fillSongs = () => (
-    data.songs.map(song => <RecomendItem title={song.title} author={song.author} imageSrc={mainInstance.defaults.baseURL + song.imageUrl} />)
-  )
+  const fillSongs = () => {
+    const songsOnClick = () => {
+      setPlaylist([]);
+    }
+    return data.songs.map(song => 
+      <RecomendItem 
+        key={`song-${song._id}`} 
+        title={song.title} 
+        author={song.author} 
+        imageSrc={mainInstance.defaults.baseURL + song.imageUrl} 
+        songId={song._id}
+        songUrl={mainInstance.defaults.baseURL + song.songUrl}
+        audio={audio}
+        onClick = {songsOnClick}
+      />
+    )
+  }
 
   const fillPlaylists = () => (
-    data.playlists.map(playlist => <RecomendItem title={playlist.title} author={playlist.author} imageSrc={mainInstance.defaults.baseURL + playlist.imageUrl} />)
+    data.playlists.map(playlist => 
+      <RecomendItem 
+        key={`playlist-${playlist._id}`} 
+        title={playlist.title} 
+        author={playlist.author} 
+        imageSrc={mainInstance.defaults.baseURL + playlist.imageUrl} 
+        playlistId={playlist._id}
+      />
+    )
   )
 
   return (

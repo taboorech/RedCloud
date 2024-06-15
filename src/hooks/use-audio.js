@@ -19,6 +19,35 @@ function useAudio() {
 
   const currentSongIndex = useCallback(() => playlist.findIndex(songInfo => (mainInstance.defaults.baseURL + songInfo.songUrl) === audio.src.replaceAll("%20", " ")), [audio.src, playlist]);
 
+  const nextSong = () => {
+    const currentIndex = currentSongIndex();
+    console.log(currentIndex);
+    if(!!source.length && !!playlist) {
+      let song;
+      if(currentIndex < (playlist.length - 1)) {
+        song = playlist[currentSongIndex() + 1];
+      } else {
+        song = playlist[0];
+      }
+      setSource(mainInstance.defaults.baseURL + song.songUrl);
+      setSongId(song._id);
+    }
+  }
+
+  const prevSong = () => {
+    const currentIndex = currentSongIndex();
+    if(!!source.length && !!playlist) {
+      let song;
+      if(currentIndex > 0) {
+        song = playlist[currentSongIndex() - 1];
+      } else {
+        song = playlist[playlist.length - 1];
+      }
+      setSource(mainInstance.defaults.baseURL + song.songUrl);
+      setSongId(song._id);
+    }
+  }
+
   const currentTimeChange = useCallback((value) => {
     audio.currentTime = value;
     setCurrentTime(value);
@@ -107,7 +136,9 @@ function useAudio() {
     songId,
     setSongId,
     playlist,
-    currentSongIndex
+    currentSongIndex,
+    nextSong,
+    prevSong
   };
 }
 
