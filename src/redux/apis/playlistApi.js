@@ -7,7 +7,7 @@ const playlistApi = createApi({
   endpoints: (builder) => {
     return {
       fetchPlaylists: builder.query({
-        providesTags: ["updatePlaylist"],
+        providesTags: ["updatePlaylist", "createPlaylist"],
         query: () => {
           return {
             url: "/playlist",
@@ -25,6 +25,7 @@ const playlistApi = createApi({
         }
       }),
       createPlaylist: builder.mutation({
+        providesTags: ["createPlaylist"],
         query: (title) => {
           return {
             url: `/playlist/create`,

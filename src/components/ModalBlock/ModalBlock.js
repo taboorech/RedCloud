@@ -1,3 +1,4 @@
+import Backdrop from "../Backdrop/Backdrop";
 import Form from "../Form/Form";
 import "./ModalBlock.scss";
 
@@ -17,7 +18,7 @@ function ModalBlock({ onSubmit, buttonText, headlineText, children, innerRef }) 
       >
         { children }
       </Form>
-      <div className="background" onClick={onBackgroundClickHandler}></div>
+      <Backdrop onClick={onBackgroundClickHandler}></Backdrop>
     </div>
   )
 }

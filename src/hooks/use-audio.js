@@ -22,7 +22,7 @@ function useAudio() {
   const nextSong = () => {
     const currentIndex = currentSongIndex();
     console.log(currentIndex);
-    if(!!source.length && !!playlist) {
+    if(!!source.length && !!playlist.length) {
       let song;
       if(currentIndex < (playlist.length - 1)) {
         song = playlist[currentSongIndex() + 1];
@@ -36,7 +36,7 @@ function useAudio() {
 
   const prevSong = () => {
     const currentIndex = currentSongIndex();
-    if(!!source.length && !!playlist) {
+    if(!!source.length && !!playlist.length) {
       let song;
       if(currentIndex > 0) {
         song = playlist[currentSongIndex() - 1];

@@ -11,6 +11,8 @@ import useInput from "../../hooks/use-input";
 import { useUpdatePlaylistMutation } from "../../redux";
 import { useParams } from "react-router-dom";
 import M from "materialize-css";
+import ContextMenu from "../ContextMenu/ContextMenu";
+import ContextMenuButton from "../ContextMenu/ContextMenuButton/ContextMenuButton";
 
 function PlaylistBaner({ imageSource, title, songsCount, duration, isPrivate, playButtonClickHandler, isOwner = false }) {
 
@@ -19,6 +21,7 @@ function PlaylistBaner({ imageSource, title, songsCount, duration, isPrivate, pl
   const [ isPrivateCheck, setIsPrivateCheck ] = useState(isPrivate);
   const [ updatePlaylist ] = useUpdatePlaylistMutation();
   const modalWindowRef = useRef();
+  const contextMenuButtonRef = useRef();
   const id = useParams().id;
 
   const saveChangeClickHandler = (event) => {
@@ -83,7 +86,7 @@ function PlaylistBaner({ imageSource, title, songsCount, duration, isPrivate, pl
             </CircleButton>
           </>
         }
-        <CircleButton className="black-button waves-effect waves-light btn-large white-text">
+        <CircleButton className="black-button waves-effect waves-light btn-large white-text" innerRef={contextMenuButtonRef}>
           <i className="material-icons">more_vert</i>
         </CircleButton>
       </div>
@@ -92,6 +95,17 @@ function PlaylistBaner({ imageSource, title, songsCount, duration, isPrivate, pl
         <Input id={"title"} labelText={"Title"} value={titleInput} onChange={setTitleInput}/>
         <Checkbox isChecked={isPrivateCheck} onChange={privateChangeHandler}>Private</Checkbox>
       </ModalBlock>
+      <ContextMenu button={contextMenuButtonRef}>
+        <ContextMenuButton>Play</ContextMenuButton>
+        <ContextMenuButton>Add to queue</ContextMenuButton>
+        <ContextMenuButton>Share</ContextMenuButton>
+        <ContextMenuButton>Listen together</ContextMenuButton>
+        <ContextMenuButton>Add to playlist</ContextMenuButton>
+        <ContextMenuButton>Add to folder</ContextMenuButton>
+        <ContextMenuButton>Info</ContextMenuButton>
+        <ContextMenuButton>Edit</ContextMenuButton>
+        <ContextMenuButton className={"red-text text-darken-1"}>Remove playlist</ContextMenuButton>
+      </ContextMenu>
     </div>
   )
 }
