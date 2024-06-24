@@ -7,7 +7,7 @@ const userApi = createApi({
   endpoints: builder => {
     return {
       fetchUserInfo: builder.query({
-        providesTags: ["changeAvatar"],
+        providesTags: ["fetchProfile", "changeAvatar"],
         query: () => {
           return {
             url: '/user/info',

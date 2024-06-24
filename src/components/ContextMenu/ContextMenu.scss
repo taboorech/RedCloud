@@ -31,13 +31,4 @@
     opacity: 0;
     cursor: default;
   }
-
-  @keyframes showContextMenu {
-    from {
-      transform: scaleY(0);
-    }
-    to {
-      transform: scaleY(1);
-    }
-  }
 }

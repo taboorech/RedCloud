@@ -8,8 +8,8 @@ import Input from "../Input/Input";
 import Checkbox from "../Checkbox/Checkbox";
 import { useEffect, useState, useRef } from "react";
 import useInput from "../../hooks/use-input";
-import { useUpdatePlaylistMutation } from "../../redux";
-import { useParams } from "react-router-dom";
+import { useRemovePlaylistMutation, useUpdatePlaylistMutation } from "../../redux";
+import { useNavigate, useParams } from "react-router-dom";
 import M from "materialize-css";
 import ContextMenu from "../ContextMenu/ContextMenu";
 import ContextMenuButton from "../ContextMenu/ContextMenuButton/ContextMenuButton";
@@ -20,6 +20,8 @@ function PlaylistBaner({ imageSource, title, songsCount, duration, isPrivate, pl
   const [ titleInput, setTitleInput ] = useInput(title);
   const [ isPrivateCheck, setIsPrivateCheck ] = useState(isPrivate);
   const [ updatePlaylist ] = useUpdatePlaylistMutation();
+  const [ removePlaylist, removePlaylistResult ] = useRemovePlaylistMutation();
+  const navigate = useNavigate();
   const modalWindowRef = useRef();
   const contextMenuButtonRef = useRef();
   const id = useParams().id;
@@ -49,10 +51,21 @@ function PlaylistBaner({ imageSource, title, songsCount, duration, isPrivate, pl
     modalWindowRef.current.classList.remove("close");
   }
 
+  const removePlaylistButtonClickHandler = () => {
+    removePlaylist(id);
+    console.log("f");
+  }
+
   useEffect(() => {
     setIsPrivateCheck(isPrivate);
     M.updateTextFields();
   }, [isPrivate]);
+
+  useEffect(() => {
+    if(removePlaylistResult.isSuccess) {
+      navigate('/');
+    }
+  }, [removePlaylistResult, navigate]);
 
   return (
     <div className="PlaylistBaner">
@@ -96,15 +109,15 @@ function PlaylistBaner({ imageSource, title, songsCount, duration, isPrivate, pl
         <Checkbox isChecked={isPrivateCheck} onChange={privateChangeHandler}>Private</Checkbox>
       </ModalBlock>
       <ContextMenu button={contextMenuButtonRef}>
-        <ContextMenuButton>Play</ContextMenuButton>
+        <ContextMenuButton onClick={playButtonClickHandler}>Play</ContextMenuButton>
         <ContextMenuButton>Add to queue</ContextMenuButton>
         <ContextMenuButton>Share</ContextMenuButton>
         <ContextMenuButton>Listen together</ContextMenuButton>
-        <ContextMenuButton>Add to playlist</ContextMenuButton>
-        <ContextMenuButton>Add to folder</ContextMenuButton>
-        <ContextMenuButton>Info</ContextMenuButton>
-        <ContextMenuButton>Edit</ContextMenuButton>
-        <ContextMenuButton className={"red-text text-darken-1"}>Remove playlist</ContextMenuButton>
+        {/* <ContextMenuButton>Add to playlist</ContextMenuButton> */}
+        {/* <ContextMenuButton>Add to folder</ContextMenuButton> */}
+        {/* <ContextMenuButton>Info</ContextMenuButton> */}
+        <ContextMenuButton onClick={settingsButtonClickHandler}>Edit</ContextMenuButton>
+        <ContextMenuButton className={"red-text text-darken-1"} onClick={removePlaylistButtonClickHandler} >Remove playlist</ContextMenuButton>
       </ContextMenu>
     </div>
   )

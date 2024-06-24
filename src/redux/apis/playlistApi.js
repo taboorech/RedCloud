@@ -7,7 +7,7 @@ const playlistApi = createApi({
   endpoints: (builder) => {
     return {
       fetchPlaylists: builder.query({
-        providesTags: ["updatePlaylist", "createPlaylist"],
+        providesTags: ["updatePlaylist", "createPlaylist", "removePlaylist"],
         query: () => {
           return {
             url: "/playlist",
@@ -46,10 +46,19 @@ const playlistApi = createApi({
             headers: { "content-type": "multipart/form-data" }
           }
         }
+      }),
+      removePlaylist: builder.mutation({
+        invalidatesTags: ["removePlaylist"],
+        query: (id) => {
+          return {
+            url: `/playlist/${id}`,
+            method: "DELETE"
+          }
+        }
       })
     }
   }
 })
 
-export const { useFetchPlaylistsQuery, useFetchOnePlaylistQuery, useCreatePlaylistMutation, useUpdatePlaylistMutation } = playlistApi;
+export const { useFetchPlaylistsQuery, useFetchOnePlaylistQuery, useCreatePlaylistMutation, useUpdatePlaylistMutation, useRemovePlaylistMutation } = playlistApi;
 export { playlistApi };

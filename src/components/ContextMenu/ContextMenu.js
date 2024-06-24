@@ -26,7 +26,7 @@ function ContextMenu({ button, children }) {
   }, [button, buttonOnClick]);
 
   return (
-    <div className="Context-menu close" ref={contextMenuRef}>
+    <div className="Context-menu close" ref={contextMenuRef} onClick={onBackdropClickHandler}>
       { children }
       <Backdrop className={"background"} onClick={onBackdropClickHandler} />
     </div>
